@@ -1,0 +1,18 @@
+class TeamMembership < ActiveRecord::Base
+  belongs_to :team
+  belongs_to :user
+
+  validates :user, :presence => true
+  validates :team, :presence => true
+  validates :user_id, :uniqueness => { :scope => :team_id }
+  validate :no_captains_allowed
+
+
+  private
+
+  def no_captains_allowed
+    if user.present? && team.present? && team.captain == user
+      errors.add(:user, "Captain is already a member.")
+    end
+  end
+end

@@ -1,0 +1,24 @@
+require 'spec_helper'
+
+describe TeamMembership do
+  describe 'membership validations' do
+    let(:team) { create(:team) }
+    let(:user) { create(:user) }
+
+    describe 'should require user and team' do
+      it { should have(1).error_on(:user) }
+      it { should have(1).error_on(:team) }
+    end
+
+    it 'should only allow a user to be a member once' do
+      TeamMembership.create(:user => user, :team => team)
+      second = TeamMembership.create(:user => user, :team => team)
+      second.should be_invalid
+    end
+
+    it 'should not allow a captain to become a member' do
+      membership = TeamMembership.create(:user => team.captain, :team => team)
+      membership.should be_invalid
+    end
+  end
+end

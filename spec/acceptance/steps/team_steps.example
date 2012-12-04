@@ -1,0 +1,72 @@
+step "I go to create a new team" do
+  visit new_team_path
+end
+
+step 'I go to the team list' do
+  visit teams_path
+end
+
+step "I should see the create a team form" do
+  page.should have_field 'Name'
+  page.should have_field 'Max members', :with => '16'
+end
+
+step "I submit the new team form" do
+  page.find('form#new_team').find('input[type=submit]').click
+end
+
+step "I fill out the team form with team name :team_name" do |team_name|
+  page.fill_in 'Name', :with => team_name
+end
+
+step "I check the box to make my team private" do
+  page.check "Private team?"
+end
+
+step 'I should see an error message about the team name' do
+  within 'form#new_team' do
+    page.should have_content "can't be blank"
+  end
+end
+
+step 'I should see :team_name in the team list' do |team_name|
+  within '.teams' do
+    page.should have_content(team_name)
+  end
+end
+
+step 'I should see :count teams in the team list' do |count|
+  within '.teams' do
+    page.all('h3.team').count.should == count.to_i
+  end
+end
+
+step 'the team list should be:' do |table|
+  within '.teams' do
+    actual = page.all('h3.team').collect { |h3| [h3.text] }
+    table.raw.should == actual
+  end
+end
+
+step 'I should have the option of joining the team' do
+  page.should have_button 'Join team'
+end
+
+step 'I should not have the option of joining the team' do
+  page.should have_no_button 'Join team'
+end
+
+step ':user_email should be in the team member list' do |user_email|
+  user = User.find_by_email(user_email)
+  assert user, "Could not find user by email: #{user_email}"
+  within '.members' do
+    page.should have_content user.to_s
+  end
+end
+
+step ':user_email captains the team :team_name' do |user_email, team_name|
+  user = User.find_by_email(user_email)
+  assert user, "Could not find user by email: #{user_email}"
+  FactoryGirl.create(:team, :name => team_name, :captain => user)
+end
+

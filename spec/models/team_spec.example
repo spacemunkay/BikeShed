@@ -1,0 +1,45 @@
+require 'spec_helper'
+
+describe Team do
+  it 'should have a size of 16 by default' do
+    subject.max_members.should == 16
+  end
+
+  describe 'validations' do
+    it { should have(2).error_on(:name) }
+
+    context 'name' do
+      it 'should require atleast 3 characters' do
+        subject.name = 'hi'
+        subject.should have(1).error_on(:name)
+      end
+      it 'should not allow blank' do
+        subject.name = ''
+        subject.should have(2).error_on(:name)
+      end
+      it 'should not allow duplicated' do
+        team = FactoryGirl.create(:team)
+        subject.name = team.name
+        subject.should have(1).error_on(:name)
+      end
+    end
+
+    context 'max_members' do
+      it 'should not let it be 0' do
+        subject.max_members = 0
+        subject.should have(1).error_on(:max_members)
+      end
+
+      it 'should not let it be left empty' do
+        subject.max_members = ''
+        subject.should have(2).error_on(:max_members)
+      end
+    end
+
+    context 'captain' do
+      it 'should require a captain' do
+        subject.should have(1).error_on(:captain)
+      end
+    end
+  end
+end

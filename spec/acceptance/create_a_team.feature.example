@@ -1,0 +1,30 @@
+Feature: Create a team
+  In order to gather my friends to participate in a hunt
+  As a user
+  I want to create a team
+
+  Background:
+    Given a user "test@example.com" with password "password"
+    When  I login with email "test@example.com" and password "password"
+    And   I go to create a new team
+
+  Scenario: View the create a team form
+    Then  I should see the create a team form
+
+  Scenario: Errors on form are displayed
+    When  I submit the new team form
+    Then  I should see an error message about the team name
+
+  Scenario: Created team is in list
+    When  I fill out the team form with team name "Happy Trackers"
+    And   I submit the new team form
+    And   I go to the team list
+    Then  I should see "Happy Trackers" in the team list
+
+  Scenario: Create a private team
+    When  I fill out the team form with team name "Happy Trackers"
+    And   I check the box to make my team private
+    And   I submit the new team form
+    And   I go to the team list
+    Then  the team list should be:
+      | Happy Trackers* |

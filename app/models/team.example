@@ -1,0 +1,17 @@
+class Team < ActiveRecord::Base
+  attr_accessible :name, :max_members, :private_team
+
+  belongs_to :captain, :class_name => 'User'
+  has_many :team_memberships
+  has_many :members, :through => :team_memberships, :source => :user
+
+  validates :name, :presence => true, :uniqueness => true, :length => { :minimum => 3 }
+  validates :max_members, :presence => true, :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :captain, :presence => true
+
+  self.per_page = 15
+
+  def to_s
+    "#{name}#{private_team? ? '*' : ''}"
+  end
+end

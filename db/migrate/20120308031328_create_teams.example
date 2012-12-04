@@ -1,0 +1,17 @@
+class CreateTeams < ActiveRecord::Migration
+  def up
+    create_table :teams do |t|
+      t.string :name, :null => false, :default => ''
+      t.integer :max_members, :null => false, :default => 16
+      t.integer :captain_id, :null => false
+    end
+    add_index :teams, :name, :unique => true
+    add_index :teams, :captain_id
+  end
+
+  def down
+    remove_index :teams, :column => :captain_id
+    remove_index :teams, :column => :name
+    drop_table :teams
+  end
+end

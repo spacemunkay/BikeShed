@@ -1,0 +1,28 @@
+<h2>Sign in</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div><%= f.label :email %><br />
+    <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in" %></div>
+<% end %>
+
+<%= render "links" %>
+
+<% if Rails.env.development? %>
+  <% User.all.each do |user| %>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= f.hidden_field :email, :value => user.email %></div>
+      <%= f.hidden_field :password, :value => 'password' %></div>
+      <div><%= f.submit "Sign in as #{user.email}" %></div>
+    <% end %>
+  <% end %>
+<% end %>
+

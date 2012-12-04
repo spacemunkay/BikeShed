@@ -1,0 +1,34 @@
+Feature: List teams
+  In order to see the teams
+  As a user
+  I want to see them sorted by name and paginated
+
+  Background:
+    Given a user "test@example.com" with password "password"
+    When  I login with email "test@example.com" and password "password"
+
+  Scenario: Team list paginated to 15
+    Given 20 teams exist
+    And   I go to the team list
+    Then  I should see 15 teams in the team list
+    When  I go to the next page
+    Then  I should see 5 teams in the team list
+
+  Scenario: Team list should be alphabetical by name
+    Given the following teams exist:
+      | name  |
+      | Bad   |
+      | Car   |
+      | Art   |
+      | Door  |
+      | ear   |
+      | apple |
+    And   I go to the team list
+    Then  the team list should be:
+      | apple |
+      | Art   |
+      | Bad   |
+      | Car   |
+      | Door  |
+      | ear   |
+

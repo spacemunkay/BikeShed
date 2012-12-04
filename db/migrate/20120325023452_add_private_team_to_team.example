@@ -1,0 +1,5 @@
+class AddPrivateTeamToTeam < ActiveRecord::Migration
+  def change
+    add_column :teams, :private_team, :boolean, :default => false, :null => false
+  end
+end

@@ -1,0 +1,21 @@
+= form_for team, :html => { :class => 'form-horizontal' } do |f|
+  .control-group{:class => team.errors[:name].present? ? 'error' : ''}
+    = f.label :name, 'Name', :class => 'control-label'
+    .controls
+      = f.text_field :name
+      - if team.errors[:name].present?
+        .help-inline= team.errors[:name].join(', ')
+  .control-group{:class => team.errors[:max_members].present? ? 'error' : ''}
+    = f.label :max_members, 'Max members', :class => 'control-label'
+    .controls
+      = f.text_field :max_members
+      - if team.errors[:max_members].present?
+        .help-inline= team.errors[:max_members].join(', ')
+  .control-group{:class => team.errors[:private_team].present? ? 'error' : ''}
+    = f.label :private_team, 'Private team?', :class => 'control-label'
+    .controls
+      = f.check_box :private_team
+      - if team.errors[:private_team].present?
+        .help-inline= team.errors[:private_team].join(', ')
+  .form-actions
+    = f.submit 'Create Team', :class => 'btn btn-primary'

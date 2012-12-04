@@ -1,0 +1,10 @@
+# Read about factories at https://github.com/thoughtbot/factory_girl
+
+FactoryGirl.define do
+  factory :map do
+    name "MyString"
+    creator_id ""
+    max_teams ""
+    max_members ""
+  end
+end

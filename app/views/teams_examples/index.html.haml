@@ -1,0 +1,9 @@
+%p
+  = link_to 'Create a Team', new_team_path, :class => 'btn btn-large btn-primary'
+
+.teams
+  - teams.each do |team|
+    %h3.team= link_to team, team
+
+= will_paginate teams
+

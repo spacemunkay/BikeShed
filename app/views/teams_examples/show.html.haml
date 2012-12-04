@@ -1,0 +1,11 @@
+%h3= team
+
+%ul.members
+  %li= team.captain
+  - team.members.each do |member|
+    %li= member
+    
+- unless current_user.is_a_member_of?(team)
+  = form_tag join_team_path(team) do
+    = submit_tag 'Join team', :class => 'btn'
+
