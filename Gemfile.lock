@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:spacemunkay/acts_as_loggable.git
+  revision: bacd43a1de10edd3eac0fefc6dcc35ca282e416a
+  specs:
+    acts_as_loggable (0.0.3)
+      activerecord (>= 3.0)
+      activesupport (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -210,6 +218,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_loggable!
   bootstrap-will_paginate (~> 0.0.6)
   capybara (~> 1.1.2)
   coffee-rails (~> 3.2.1)

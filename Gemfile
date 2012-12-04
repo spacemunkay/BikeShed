@@ -9,6 +9,7 @@ gem 'jquery-rails', '~> 2.0'
 gem 'decent_exposure', '~> 1.0.1'
 gem 'will_paginate', '~> 3.0.3'
 gem 'bootstrap-will_paginate', '~> 0.0.6'
+gem 'acts_as_loggable', :git => 'git@github.com:spacemunkay/acts_as_loggable.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
