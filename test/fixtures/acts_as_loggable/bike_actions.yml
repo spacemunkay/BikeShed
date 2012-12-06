@@ -1,0 +1,15 @@
+acquired:
+  id: 1
+  action: ACQUIRED
+scrapped:
+  id: 2
+  action: SCRAPPED
+worked:
+  id: 3
+  action: WORKED
+completed:
+  id: 4
+  action: COMPLETED
+sold:
+  id: 5
+  action: SOLD

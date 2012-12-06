@@ -1,0 +1,13 @@
+poor:
+  id: 1
+  condition: POOR
+fair:
+  id: 2
+  condition: FAIR
+good:
+  id: 3
+  condition: GOOD
+excellent:
+  id: 4
+  condition: EXCELLENT
+
