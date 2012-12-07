@@ -1,15 +1,25 @@
 acquired:
   id: 1
   action: ACQUIRED
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 scrapped:
   id: 2
   action: SCRAPPED
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 worked:
   id: 3
   action: WORKED
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 completed:
   id: 4
   action: COMPLETED
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 sold:
   id: 5
   action: SOLD
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
