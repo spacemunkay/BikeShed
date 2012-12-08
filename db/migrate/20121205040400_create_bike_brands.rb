@@ -2,7 +2,7 @@ class CreateBikeBrands < ActiveRecord::Migration
   def change
     create_table :bike_brands do |t|
       t.string "brand"
-      t.timestamps
+      #t.timestamps
     end
   end
 end

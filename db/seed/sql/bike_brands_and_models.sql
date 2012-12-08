@@ -1,9 +1,10 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
+/**
 CREATE TABLE bike_brands(
     _id INTEGER PRIMARY KEY,
     name varchar(255)
-  );
+  );*/
 INSERT INTO "bike_brands" VALUES(1,'Phil Wood');
 INSERT INTO "bike_brands" VALUES(2,'Mt. Shasta');
 INSERT INTO "bike_brands" VALUES(3,'Moving Violations');
@@ -490,11 +491,12 @@ INSERT INTO "bike_brands" VALUES(483,'Windy City');
 INSERT INTO "bike_brands" VALUES(484,'Banshee');
 INSERT INTO "bike_brands" VALUES(485,'Basso');
 INSERT INTO "bike_brands" VALUES(486,'Gazelle Bikes');
+/**
 CREATE TABLE bike_models(
     _id INTEGER PRIMARY KEY,
     name varchar(255),
     brand_id int
-  );
+  );*/
 INSERT INTO "bike_models" VALUES(1,'Kiss Off',1);
 INSERT INTO "bike_models" VALUES(2,'Kiss Off Julienne',1);
 INSERT INTO "bike_models" VALUES(3,'Le Kiss Off',1);
