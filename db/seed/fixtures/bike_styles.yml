@@ -1,0 +1,9 @@
+mountain:
+  id: 1
+  style: MOUNTAIN
+hybrid:
+  id: 2
+  style: HYBRID
+road:
+  id: 3
+  style: ROAD
