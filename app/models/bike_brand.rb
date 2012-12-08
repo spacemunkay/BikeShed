@@ -4,6 +4,8 @@ class BikeBrand < ActiveRecord::Base
   has_many :bikes
   has_many :bike_models
 
+  self.per_page = 15
+
   def models
     self.bike_models
   end
