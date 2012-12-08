@@ -1,5 +1,5 @@
 class BikeBrand < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :brand
 
   has_many :bikes
   has_many :bike_models
@@ -8,5 +8,9 @@ class BikeBrand < ActiveRecord::Base
 
   def models
     self.bike_models
+  end
+
+  def to_s
+    self.brand
   end
 end
