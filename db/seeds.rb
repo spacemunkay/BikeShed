@@ -13,7 +13,7 @@ Dir.glob(File.join(Rails.root, 'db', 'seed', 'fixtures', '**', '*.{yml,csv}')).e
 end
 
 #Load bike brands and models from sql
-if
+if BikeBrand.all.empty? and BikeModel.all.empty?
   sql_path = File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')
   system "sqlite3  db/development.sqlite3 < #{sql_path}" if Rails.env.development?
 end
