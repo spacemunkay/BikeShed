@@ -12,6 +12,12 @@ Dir.glob(File.join(Rails.root, 'db', 'seed', 'fixtures', '**', '*.{yml,csv}')).e
   ActiveRecord::Fixtures.create_fixtures(File.dirname(fixture_file), File.basename(fixture_file, '.*'))
 end
 
+#Load bike brands and models from sql
+if
+  sql_path = File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')
+  system "sqlite3  db/development.sqlite3 < #{sql_path}" if Rails.env.development?
+end
+
 if Rails.env.development?
   user = FactoryGirl.build(:user)
   FactoryGirl.create(:user) if not User.find_by_email(user.email)
