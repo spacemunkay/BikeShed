@@ -7,9 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'active_record/fixtures'
 
-Dir.glob(File.join(Rails.root, 'test', 'fixtures', '**/*.{yml,csv}')).each do |fixture_file, something|
-  puts fixture_file
-  puts File.dirname(fixture_file)
+#Load defaults from db/seed/fixtures
+Dir.glob(File.join(Rails.root, 'db', 'seed', 'fixtures', '**', '*.{yml,csv}')).each do |fixture_file, something|
   ActiveRecord::Fixtures.create_fixtures(File.dirname(fixture_file), File.basename(fixture_file, '.*'))
 end
 
