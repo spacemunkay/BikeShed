@@ -7,14 +7,11 @@ Velocipede::Application.routes.draw do
 
   match 'site/index' => 'site#index'
 
-  resources :teams, :except => [:edit, :delete] do
-    member do
-      post :join
-    end
-  end
+  resources :bike_brands, :except => [:edit, :delete]
 
-  resources :clues
-  resources :maps
+  #resources :clues
+  #resources :maps
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
