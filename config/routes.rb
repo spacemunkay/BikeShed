@@ -8,6 +8,7 @@ Velocipede::Application.routes.draw do
   match 'site/index' => 'site#index'
 
   resources :bike_brands, :except => [:edit, :delete]
+  resources :bike_models, :except => [:edit, :delete]
 
   #resources :clues
   #resources :maps

@@ -1,0 +1,15 @@
+- model_class = bike_model.class
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:model) + ':'
+  %br
+  = bike_model.model
+%p
+  %strong= model_class.human_attribute_name(:bike_brand_id) + ':'
+  %br
+  = link_to bike_model.brand, bike_brand_path(bike_model.brand)
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), bike_models_path, :class => 'btn'
