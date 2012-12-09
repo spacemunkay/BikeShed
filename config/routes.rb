@@ -17,6 +17,7 @@ Velocipede::Application.routes.draw do
   namespace :acts_as_loggable do
     resources :bike_actions
     resources :user_actions
+    resources :transaction_actions
   end
   #resources :clues
   #resources :maps

@@ -1,0 +1,25 @@
+time:
+  id: 1
+  action: TIME
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+borrow:
+  id: 2
+  action: BORROW
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+cash:
+  id: 3
+  action: CASH
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+check:
+  id: 4
+  action: CHECK
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+credit:
+  id: 5
+  action: CREDIT
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
