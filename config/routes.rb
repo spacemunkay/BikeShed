@@ -10,6 +10,7 @@ Velocipede::Application.routes.draw do
   resources :bike_brands, :except => [:edit, :delete]
   resources :bike_models, :except => [:edit, :delete]
   resources :bike_statuses
+  resources :bike_styles
 
   #resources :clues
   #resources :maps
