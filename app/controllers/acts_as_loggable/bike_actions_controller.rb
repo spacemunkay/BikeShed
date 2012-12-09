@@ -1,16 +1,6 @@
 class ActsAsLoggable::BikeActionsController < AuthenticatedController
-  expose(:bike_action) do
-    if params[:id]
-      BikeAction.find(params[:id])
-    elsif params[:bike_action]
-      BikeAction.new(params[:bike_action])
-    else
-      puts "WhOOOPS"
-      #BikeAction.new(:max_members => 16)
-    end
-  end
-
-  expose(:bike_actions) { BikeAction.order('id').paginate(:page => params[:page]) }
+  expose(:bike_action)
+  expose(:bike_actions) { ActsAsLoggable::BikeAction.order('id').paginate(:page => params[:page]) }
 
   def index
   end
@@ -23,9 +13,23 @@ class ActsAsLoggable::BikeActionsController < AuthenticatedController
 
   def create
     if bike_action.save
-      redirect_to bike_actions_url
+      redirect_to acts_as_loggable_bike_actions_url
     else
       render :new
     end
+  end
+
+  def update
+    puts bike_action.inspect
+    if bike_action.save
+      redirect_to acts_as_loggable_bike_actions_url
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    bike_action.destroy
+    redirect_to acts_as_loggable_bike_actions_url
   end
 end
