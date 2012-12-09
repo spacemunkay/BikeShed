@@ -1,0 +1,15 @@
+volunteer:
+  id: 1
+  action: VOLUNTEER
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+personal:
+  id: 2
+  action: PERSONAL
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+staff:
+  id: 3
+  action: STAFF
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
