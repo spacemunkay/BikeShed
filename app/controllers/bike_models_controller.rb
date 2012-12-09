@@ -1,14 +1,5 @@
 class BikeModelsController < AuthenticatedController
-  expose(:bike_model) do
-    if params[:id]
-      BikeModel.find(params[:id])
-    elsif params[:bike_model]
-      BikeModel.new(params[:bike_model])
-    else
-      BikeModel.new
-    end
-  end
-
+  expose(:bike_model)
   expose(:bike_models) { BikeModel.order('id').paginate(:page => params[:page]) }
 
   def index
