@@ -19,6 +19,14 @@ if BikeBrand.all.empty? and BikeModel.all.empty?
 end
 
 if Rails.env.development?
-  user = FactoryGirl.build(:user)
-  FactoryGirl.create(:user) if not User.find_by_email(user.email)
+
+  #create default dev user
+  FactoryGirl.create(:user) if User.all.empty?
+
+  #create fake bikes
+  if Bike.all.empty?
+    42.times do |n|
+      FactoryGirl.create(:bike)
+    end
+  end
 end
