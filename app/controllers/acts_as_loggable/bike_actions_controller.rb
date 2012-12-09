@@ -1,4 +1,5 @@
 class ActsAsLoggable::BikeActionsController < AuthenticatedController
+  #TODO Fix this so updating works
   expose(:bike_action)
   expose(:bike_actions) { ActsAsLoggable::BikeAction.order('id').paginate(:page => params[:page]) }
 
