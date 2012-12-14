@@ -1,4 +1,5 @@
 class Bike < ActiveRecord::Base
+  acts_as_loggable
   attr_accessible :serial_number, :bike_brand_id, :bike_model_id, :color, :bike_style_id, :seat_tube_height,
     :top_tube_length, :wheel_size, :value, :bike_condition_id, :bike_status_id
 

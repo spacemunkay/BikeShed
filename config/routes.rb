@@ -1,7 +1,6 @@
 Velocipede::Application.routes.draw do
 
   devise_for :users
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -13,66 +12,26 @@ Velocipede::Application.routes.draw do
   resources :bike_styles
   resources :bike_conditions
   resources :bikes
-
+  
   namespace :acts_as_loggable do
+    resources :logs
     resources :bike_actions
     resources :user_actions
     resources :transaction_actions
   end
-  #resources :clues
-  #resources :maps
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+  #user logs
+  get 'users/:loggable_id/logs' => 'user_logs#index', :as => 'user_logs'
+  get 'users/:loggable_id/logs/new' => 'user_logs#new', :as => 'new_user_log'
+  post 'users/:loggable_id/logs' => 'user_logs#create'
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  #bike logs
+  get 'bikes/:loggable_id/logs' => 'bike_logs#index', :as => 'bike_logs'
+  get 'bikes/:loggable_id/logs/new' => 'bike_logs#new', :as => 'new_bike_log'
+  post 'bikes/:loggable_id/logs' => 'bike_logs#create'
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  #match ':loggable_type/:loggable_id/logs' => 'acts_as_loggable/logs#index', :as => 'loggable_logs'
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-   root :to => 'site#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  root :to => 'site#index'
 end
