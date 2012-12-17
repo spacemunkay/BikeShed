@@ -11,28 +11,106 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121104211300) do
+ActiveRecord::Schema.define(:version => 20121205043759) do
 
+  create_table "bike_actions", :force => true do |t|
+    t.string   "action",     :limit => 128, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
-# create_table "team_memberships", :force => true do |t|
-#   t.integer  "user_id",    :null => false
-#   t.integer  "team_id",    :null => false
-#   t.datetime "created_at", :null => false
-#   t.datetime "updated_at", :null => false
-# end
+  create_table "bike_brands", :force => true do |t|
+    t.string "brand"
+  end
 
-# add_index "team_memberships", ["team_id"], :name => "index_team_memberships_on_team_id"
-# add_index "team_memberships", ["user_id"], :name => "index_team_memberships_on_user_id"
+  create_table "bike_conditions", :force => true do |t|
+    t.string   "condition",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
-# create_table "teams", :force => true do |t|
-#   t.string  "name",         :default => "",    :null => false
-#   t.integer "max_members",  :default => 16,    :null => false
-#   t.integer "captain_id",                      :null => false
-#   t.boolean "private_team", :default => false, :null => false
-# end
+  create_table "bike_models", :force => true do |t|
+    t.string  "model",         :null => false
+    t.integer "bike_brand_id", :null => false
+  end
 
-# add_index "teams", ["captain_id"], :name => "index_teams_on_captain_id"
-# add_index "teams", ["name"], :name => "index_teams_on_name", :unique => true
+  create_table "bike_statuses", :force => true do |t|
+    t.string   "status",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "bike_styles", :force => true do |t|
+    t.string   "style",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "bikes", :force => true do |t|
+    t.string   "serial_number"
+    t.integer  "bike_brand_id",     :null => false
+    t.integer  "bike_model_id",     :null => false
+    t.string   "color"
+    t.integer  "bike_style_id",     :null => false
+    t.float    "seat_tube_height"
+    t.float    "top_tube_length"
+    t.integer  "wheel_size"
+    t.float    "value"
+    t.string   "bike_condition_id", :null => false
+    t.integer  "bike_status_id",    :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
+    t.integer  "logger_id"
+    t.string   "logger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "start_date",                                   :null => false
+    t.datetime "end_date",                                     :null => false
+    t.text     "description",                  :default => ""
+    t.integer  "action_id",                    :default => 0
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+  end
+
+  add_index "logs", ["loggable_id", "loggable_type", "context"], :name => "index_logs_on_loggable_id_and_loggable_type_and_context"
+
+  create_table "transaction_actions", :force => true do |t|
+    t.string   "action",     :limit => 128, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.integer "user_id", :null => false
+    t.integer "bike_id"
+    t.integer "amount",  :null => false
+  end
+
+  create_table "user_actions", :force => true do |t|
+    t.string   "action",     :limit => 128, :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "user_profiles", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "bike_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "addrStreet1"
+    t.string   "addrStreet2"
+    t.string   "addrCity"
+    t.string   "addrState"
+    t.string   "addrZip"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

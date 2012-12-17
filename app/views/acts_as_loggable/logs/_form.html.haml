@@ -1,4 +1,4 @@
-= form_for @log, :html => { :class => 'form-horizontal' }, :url => @loggable_path  do |f|
+= form_for @log, :html => { :class => 'form-horizontal' }, :url => @log.loggable_path  do |f|
   - if @log.loggable_type or @log.loggable_id
     = f.hidden_field :loggable_id, :class => 'number_field'
     = f.hidden_field :loggable_type, :class => 'text_field'
@@ -44,4 +44,4 @@
       = f.number_field :action_id, :class => 'number_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), @loggable_path, :class => 'btn'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @log.loggable_path, :class => 'btn'
