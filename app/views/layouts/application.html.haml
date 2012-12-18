@@ -16,10 +16,12 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          = link_to 'Mash', root_path, :class => 'brand'
+          = link_to 'Velocipede', root_path, :class => 'brand'
           .container.nav-collapse
             %ul.nav
               %li= link_to "Home", root_path
+              %li= link_to "Bikes", bikes_path
+              %li= link_to "Users", users_path
             %ul.nav.pull-right
               - if user_signed_in?
                 %li#logged_in_as
