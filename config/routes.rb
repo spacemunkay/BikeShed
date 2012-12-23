@@ -1,6 +1,8 @@
 Velocipede::Application.routes.draw do
 
   devise_for :users
+  netzke
+=begin
   resources :users
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -36,5 +38,6 @@ Velocipede::Application.routes.draw do
 
   #match ':loggable_type/:loggable_id/logs' => 'acts_as_loggable/logs#index', :as => 'loggable_logs'
 
+=end
   root :to => 'site#index'
 end

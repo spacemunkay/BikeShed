@@ -22,6 +22,7 @@ if Rails.env.development?
 
   #create default dev user
   FactoryGirl.create(:user) if User.all.empty?
+  FactoryGirl.create(:user_profile) if UserProfile.all.empty?
 
   #create fake bikes
   if Bike.all.empty?
