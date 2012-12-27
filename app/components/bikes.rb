@@ -5,8 +5,8 @@ class Bikes < Netzke::Basepack::Grid
 
     c.columns = [
       :serial_number,
-      { :name => :bike_brand__brand },
-      { :name => :bike_model__model,
+      { :name => :bike_brand__brand, :text => 'Brand' },
+      { :name => :bike_model__model, :text => 'Model',
         :scope => lambda { |rel|
                     if session[:selected_bike_brand_id]
                       rel.where(:bike_brand_id => session[:selected_bike_brand_id])
@@ -16,13 +16,13 @@ class Bikes < Netzke::Basepack::Grid
                   }
       },
       :color,
-      { :name => :bike_style__style },
+      { :name => :bike_style__style, :text => 'Style' },
       :seat_tube_height,
       :top_tube_length,
       :wheel_size,
       :value,
-      { :name => :bike_condition__condition},
-      { :name => :bike_status__status}
+      { :name => :bike_condition__condition, :text => 'Condition'},
+      { :name => :bike_status__status, :text => 'Status'}
     ]
   end
 
