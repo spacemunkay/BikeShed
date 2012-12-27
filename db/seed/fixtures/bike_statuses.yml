@@ -7,9 +7,12 @@ scrap:
 parts:
   id: 3
   status: PARTS
-buildbike:
+storage:
   id: 4
+  status: STORAGE
+buildbike:
+  id: 5
   status: BUILDBIKE
 sale:
-  id: 5
+  id: 6
   status: SALE
