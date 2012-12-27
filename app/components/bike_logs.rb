@@ -1,4 +1,6 @@
 class BikeLogs < Netzke::Basepack::Grid
+
+
   def configure(c)
     super
 
@@ -13,10 +15,11 @@ class BikeLogs < Netzke::Basepack::Grid
     }
 
     c.columns = [
-      { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165 },
+      { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db)  },
+      { :name => :end_date, :hidden => true, :default_value => Time.now.to_formatted_s(:db) },
       { :name => :hours, :getter => lambda { |rec| (rec.end_date - rec.start_date)/3600 }, :sorting_scope => :sort_by_duration},
       :description,
-      { :name => :bike_action__action},
+      { :name => :bike_action__action, :text => 'Action'},
       { :name => :created_at, :read_only => true},
       { :name => :updated_at, :read_only => true}
     ]
@@ -25,10 +28,10 @@ class BikeLogs < Netzke::Basepack::Grid
 
   def default_fields_for_forms
     [
-      :start_date,
-      { :name => :end_date, :xtype => 'datetime', :value => Time.now.to_s },
+      { :name => :start_date},
+      { :name => :end_date},
       :description,
-      { :name => :bike_action__action}
+      { :name => :bike_action__action, :field_label => 'Action'}
     ]
   end
 

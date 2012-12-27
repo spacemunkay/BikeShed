@@ -1,4 +1,5 @@
 class UserLogs < Netzke::Basepack::Grid
+
   def configure(c)
     super
 
@@ -12,10 +13,11 @@ class UserLogs < Netzke::Basepack::Grid
       :log_action_type => 'ActsAsLoggable::UserAction'
     }
     c.columns = [
-      { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165 },
+      { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db) },
+      { :name => :end_date, :hidden => true, :default_value => Time.now.to_formatted_s(:db) },
       { :name => :hours, :getter => lambda { |rec| (rec.end_date - rec.start_date)/3600 }, :sorting_scope => :sort_by_duration},
       :description,
-      { :name => :user_action__action },
+      { :name => :user_action__action, :text => 'Action' },
       :created_at,
       :updated_at
     ]
@@ -23,10 +25,10 @@ class UserLogs < Netzke::Basepack::Grid
 
   def default_fields_for_forms
     [
-      :start_date,
-      :end_date,
+      { :name => :start_date},
+      { :name => :end_date},
       :description,
-      { :name => :user_action__action}
+      { :name => :user_action__action, :field_label => 'Action'}
     ]
   end
 
