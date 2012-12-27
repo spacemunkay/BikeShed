@@ -2,7 +2,7 @@
 class ActsAsLoggable::LogAction < ActiveRecord::Base
   attr_accessible :action
   
-  belongs_to :log
+  has_many :logs
 
   def to_s
     self.action

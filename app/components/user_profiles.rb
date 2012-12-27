@@ -2,6 +2,7 @@ class UserProfiles < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "UserProfile"
+    c.title = "User Profiles"
     c.data_store = {auto_load: false}
     c.scope = lambda { |rel| puts session.inspect; rel.where(:user_id => session[:selected_user_id]);}
     c.columns = [

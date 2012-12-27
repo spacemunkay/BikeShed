@@ -10,7 +10,7 @@ class ActsAsLoggableMigration < ActiveRecord::Migration
       t.datetime "end_date", :null => false
 
       t.text :description, :default => ""
-      t.integer :action_id, :default => 0
+      t.references :log_action, :polymorphic => true
 
       t.timestamps
     end

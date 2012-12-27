@@ -3,12 +3,15 @@ class UsersAndProfilesBorder < Netzke::Base
   include Netzke::Basepack::ItemPersistence
   component :users
   component :user_profiles
+  component :user_logs
+
   def configure(c)
     super
     c.title = "Users/Profiles"
     c.items = [
-     { netzke_component: :users, region: :center, split: true },
-     { netzke_component: :user_profiles, region: :south, height: 300, split: true}
+     { netzke_component: :users, region: :center, width: 300, split: true },
+    { netzke_component: :user_profiles, region: :south, height: 150, split: true},
+     { netzke_component: :user_logs, region: :east, split: true}
     ]
   end
 
@@ -28,6 +31,7 @@ class UsersAndProfilesBorder < Netzke::Base
           // The beauty of using Ext.Direct: calling 3 endpoints in a row, which results in a single call to the server!
           this.selectUser({user_id: record.get('id')});
           this.getComponent('user_profiles').getStore().load();
+          this.getComponent('user_logs').getStore().load();
         }, this);
       }
     JS

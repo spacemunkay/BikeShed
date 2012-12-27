@@ -1,7 +1,6 @@
 class ActsAsLoggable::BikeAction < ActiveRecord::Base
   attr_accessible :action
-  
-  belongs_to :bike
+  has_many :logs
 
   def to_s
     self.action
