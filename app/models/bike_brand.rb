@@ -4,6 +4,8 @@ class BikeBrand < ActiveRecord::Base
   has_many :bikes
   has_many :bike_models
 
+  default_scope order('brand ASC')
+
   self.per_page = 15
 
   def models
