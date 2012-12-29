@@ -23,6 +23,12 @@ class BikeLogs < Netzke::Basepack::Grid
       { :name => :created_at, :read_only => true},
       { :name => :updated_at, :read_only => true}
     ]
+    
+    if controller.current_user.user?
+      c.prohibit_update = true
+      c.prohibit_create = true
+      c.prohibit_delete = true
+    end
 
   end
 
@@ -37,6 +43,8 @@ class BikeLogs < Netzke::Basepack::Grid
 
   #override with nil to remove actions
   def default_bbar
-    [ :apply, :add_in_form, :search ]
+    bbar = [ :search ]
+    bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
+    bbar
   end
 end

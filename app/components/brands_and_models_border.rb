@@ -7,7 +7,6 @@ class BrandsAndModelsBorder < Netzke::Base
     super
     c.title = "Brands/Models"
     c.items = [
-#      { netzke_component: :bike_brands, region: :center, split: true }
      { netzke_component: :bike_brands, region: :center, split: true },
      { netzke_component: :bike_models, region: :east, width: 500, split: true}
     ]
@@ -17,7 +16,7 @@ class BrandsAndModelsBorder < Netzke::Base
     c.layout = :border
     c.border = false
 
-# Overriding initComponent
+    # Overriding initComponent
     c.init_component = <<-JS
       function(){
         // calling superclass's initComponent
@@ -40,18 +39,6 @@ class BrandsAndModelsBorder < Netzke::Base
     puts "BikeBrandID-----------------------------"
     #puts params[:bike_brand_id]
     puts session.inspect
-
-=begin
-    brand = BikeBrand.find_by_id(params[:bike_brand_id])
-    bike_models_grid = component_instance(:bike_models)
-    bike_models_data = bike_models_grid.get_data
-
-    {
-      :bike_models=> {:load_store_data => bike_models_data, :set_title => "Models for #{brand.brand}"},
-    }
-=end 
   end
-
-
   
 end

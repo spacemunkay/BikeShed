@@ -8,7 +8,7 @@ Velocipede::Application.routes.draw do
   # first created -> highest priority.
 
   match 'site/index' => 'site#index'
-
+=end
   resources :bike_brands, :except => [:edit, :delete]
   resources :bike_models, :except => [:edit, :delete]
   resources :bike_statuses
@@ -38,6 +38,5 @@ Velocipede::Application.routes.draw do
 
   #match ':loggable_type/:loggable_id/logs' => 'acts_as_loggable/logs#index', :as => 'loggable_logs'
 
-=end
   root :to => 'site#index'
 end

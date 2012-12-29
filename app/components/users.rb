@@ -7,7 +7,8 @@ class Users < Netzke::Basepack::Grid
       :first_name,
       :last_name,
       :nickname,
-      :email
+      :email,
+      :user_role__role
     ]
   end
 

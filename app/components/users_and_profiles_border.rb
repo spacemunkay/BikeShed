@@ -10,7 +10,7 @@ class UsersAndProfilesBorder < Netzke::Base
     c.title = "Users/Profiles"
     c.items = [
      { netzke_component: :users, region: :center, width: 300, split: true },
-    { netzke_component: :user_profiles, region: :south, height: 150, split: true},
+     { netzke_component: :user_profiles, region: :south, height: 150, split: true},
      { netzke_component: :user_logs, region: :east, split: true}
     ]
   end
@@ -19,7 +19,7 @@ class UsersAndProfilesBorder < Netzke::Base
     c.layout = :border
     c.border = false
 
-# Overriding initComponent
+    # Overriding initComponent
     c.init_component = <<-JS
       function(){
         // calling superclass's initComponent
@@ -41,7 +41,7 @@ class UsersAndProfilesBorder < Netzke::Base
     # store selected boss id in the session for this component's instance
     session[:selected_user_id] = params[:user_id]
     puts "UserID-----------------------------"
-    #puts params[:bike_brand_id]
+    puts params[:user_id]
     puts session.inspect
   end
   

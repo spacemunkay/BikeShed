@@ -19,6 +19,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
+      t.integer  :user_role_id
+
       ## Encryptable
       # t.string :password_salt
 

@@ -40,10 +40,11 @@ class Bikes < Netzke::Basepack::Grid
             // setting the 'rowclick' event
             var view = this.getView();
             view.on('itemclick', function(view, record){
-            console.log(view);
-            console.log(record);
+              console.log(view);
+              console.log(record);
               // The beauty of using Ext.Direct: calling 3 endpoints in a row, which results in a single call to the server!
               this.selectBikeBrand({bike_brand_id: record.get('bike_brand__brand')});
+              console.log(record.get('bike_brand__brand'));
             }, this);
           }
         JS
@@ -53,7 +54,7 @@ class Bikes < Netzke::Basepack::Grid
     # store selected boss id in the session for this component's instance
     session[:selected_bike_brand_id] = params[:bike_brand_id]
     puts "BikeID-----------------------------"
-    #puts params[:bike_brand_id]
+    puts params[:bike_brand_id]
     puts session.inspect
   end
 end

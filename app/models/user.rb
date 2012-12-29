@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :first_name, :last_name, :nickname
+    :first_name, :last_name, :nickname, :role_id
 
   has_many :user_profiles
+  belongs_to :user_role
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -18,5 +19,17 @@ class User < ActiveRecord::Base
 
   def to_s
     "#{first_name} #{last_name}"
+  end
+
+  def user?
+    user_role.to_s == "user"
+  end
+
+  def staff?
+    user_role.to_s == "staff"
+  end
+
+  def admin?
+    user_role.to_s == "admin"
   end
 end

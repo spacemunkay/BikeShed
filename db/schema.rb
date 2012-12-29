@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121205043759) do
+ActiveRecord::Schema.define(:version => 20121229160809) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -67,13 +67,14 @@ ActiveRecord::Schema.define(:version => 20121205043759) do
     t.string   "loggable_type"
     t.integer  "logger_id"
     t.string   "logger_type"
-    t.string   "context",       :limit => 128
-    t.datetime "start_date",                                   :null => false
-    t.datetime "end_date",                                     :null => false
-    t.text     "description",                  :default => ""
-    t.integer  "action_id",                    :default => 0
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.string   "context",         :limit => 128
+    t.datetime "start_date",                                     :null => false
+    t.datetime "end_date",                                       :null => false
+    t.text     "description",                    :default => ""
+    t.integer  "log_action_id"
+    t.string   "log_action_type"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
   end
 
   add_index "logs", ["loggable_id", "loggable_type", "context"], :name => "index_logs_on_loggable_id_and_loggable_type_and_context"
@@ -112,6 +113,12 @@ ActiveRecord::Schema.define(:version => 20121205043759) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "user_roles", :force => true do |t|
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -123,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20121205043759) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "user_role_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "failed_attempts",        :default => 0

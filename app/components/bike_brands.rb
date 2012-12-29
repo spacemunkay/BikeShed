@@ -2,25 +2,19 @@ class BikeBrands < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "BikeBrand"
+    c.title = "Brands"
 
-    
-=begin
-    c.columns = [
-      :done,
-      :name,
-      {name: :notes, flex: 1},
-      :priority,
-      {name: :due, header: "Due on"}
-    ]
-=end
-    #c.enable_context_menu = false
-    #c.context_menu = false
-    #c.enable_edit_in_form = false
-    #c.scope = {done: [nil, false]}
+    if controller.current_user.user?
+      c.prohibit_update = true
+      c.prohibit_create = true
+      c.prohibit_delete = true
+    end
   end
 
   #override with nil to remove actions
   def default_bbar
-    [ :apply, :add_in_form, :search ]
+    bbar = [ :search ]
+    bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
+    bbar
   end
 end
