@@ -8,7 +8,8 @@ class Users < Netzke::Basepack::Grid
       :last_name,
       :nickname,
       :email,
-      :user_role__role
+      :user_role__role,
+      :bike__serial_number
     ]
   end
 

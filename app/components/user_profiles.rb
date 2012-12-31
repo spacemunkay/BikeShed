@@ -15,7 +15,6 @@ class UserProfiles < Netzke::Basepack::Grid
     c.data_store = user_profiles_data_store
     c.scope = user_profiles_scope
     c.columns = [
-      { :name => :bike__serial_number},
       :addrStreet1,
       :addrStreet2,
       :addrCity,

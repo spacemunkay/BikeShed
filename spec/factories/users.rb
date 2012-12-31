@@ -6,6 +6,7 @@ FactoryGirl.define do
     first_name 'Michael'
     last_name 'Scott'
     user_role_id 1
+    sequence(:bike_id) { |n| n }
 
     factory :staff do
       first_name 'Staff'

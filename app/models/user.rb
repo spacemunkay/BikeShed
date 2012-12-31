@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :first_name, :last_name, :nickname, :role_id
+    :first_name, :last_name, :nickname, :user_role_id
 
   has_many :user_profiles
   belongs_to :user_role
+  belongs_to :bike
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
@@ -31,5 +32,18 @@ class User < ActiveRecord::Base
 
   def admin?
     user_role.to_s == "admin"
+  end
+
+  def total_hours
+    ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id).sum { |l| (l.end_date - l.start_date)/3600 }
+  end
+
+  def current_month_hours
+    #TODO need to prevent users from saving logs across months, force to create a new log if crossing month
+    current_month_range = (Time.now.beginning_of_month..Time.now.end_of_month)
+    ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id)
+      .where( :start_date => current_month_range)
+      .where( :end_date => current_month_range)
+      .sum { |l| (l.end_date - l.start_date)/3600 }
   end
 end

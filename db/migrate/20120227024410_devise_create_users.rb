@@ -19,8 +19,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
-      t.integer  :user_role_id
-
       ## Encryptable
       # t.string :password_salt
 
@@ -39,6 +37,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.string :authentication_token
 
 
+      #I need to move these elsewhere eventually
+      t.integer  :user_role_id, :null => false, :default => 1
+      #one bike per user for now
+      t.integer  :bike_id
+
       t.timestamps
     end
 
@@ -47,5 +50,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     # add_index :users, :confirmation_token,   :unique => true
     # add_index :users, :unlock_token,         :unique => true
     # add_index :users, :authentication_token, :unique => true
+    
+    add_index :users, :bike_id,              :unique => true
   end
 end

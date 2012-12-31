@@ -6,7 +6,10 @@ class UserLogs < Netzke::Basepack::Grid
     #all users
     user_log_strong_default_attrs = {
       :loggable_type => 'User',
-      :log_action_type => 'ActsAsLoggable::UserAction'
+      :log_action_type => 'ActsAsLoggable::UserAction',
+      :copy_type => 'Bike',
+      :copy_action_type => 'ActsAsLoggable::BikeAction',
+      :copy_action_id => 3
     }
 
     #just users
@@ -40,11 +43,21 @@ class UserLogs < Netzke::Basepack::Grid
   end
 
   def default_fields_for_forms
+    #figure out a better way to do this
+    bike_store = Bike.all.map { |b| [b.id, b.serial_number] }
+    current_user ||= User.find_by_id(session[:selected_user_id]) || controller.current_user
+    bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
+    puts "YOOOOO BIKE: #{bike_id}"
     [
       { :name => :start_date},
       { :name => :end_date},
-      :description,
-      { :name => :user_action__action, :field_label => 'Action'}
+      { :name => :description},
+      { :name => :user_action__action, :field_label => 'Action'},
+      { :name => :for_bike, :title => "Copy description to a Bike's History?", :xtype => 'fieldset', :collapsible => true, :collapsed => true, :items => [
+          {:xtype => 'checkbox', :name => :copy_log, :inputValue => true, :read_only => false},
+          {:xtype => 'combo', :name => :copy_id, :fieldLabel => 'Bike', :store => bike_store, :value => bike_id}
+        ]
+      }
     ]
   end
 
@@ -52,4 +65,5 @@ class UserLogs < Netzke::Basepack::Grid
   def default_bbar
     [ :apply, :add_in_form, :search ]
   end
+
 end

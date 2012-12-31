@@ -22,13 +22,18 @@ class Bikes < Netzke::Basepack::Grid
       :wheel_size,
       :value,
       { :name => :bike_condition__condition, :text => 'Condition'},
-      { :name => :bike_status__status, :text => 'Status'}
+      { :name => :bike_status__status, :text => 'Status'},
+      { :name => :owner, :getter => lambda { |rec|
+                                              user = rec.owner
+                                              user.nil? ? "" : "#{user.first_name} #{user.last_name}"
+                                           }
+      }
     ]
   end
 
   #override with nil to remove actions
   def default_bbar
-    [ :apply, :add_in_form ]
+    [ :apply, :add_in_form, :search ]
   end
 
   js_configure do |c|

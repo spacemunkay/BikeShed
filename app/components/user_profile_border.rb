@@ -2,6 +2,7 @@ class UserProfileBorder < Netzke::Base
   # Remember regions collapse state and size
   include Netzke::Basepack::ItemPersistence
   component :user_logs
+  component :user_stats
   component :user_profiles
 
   def configure(c)
@@ -9,6 +10,7 @@ class UserProfileBorder < Netzke::Base
     c.title = "Profile"
     c.items = [
      { netzke_component: :user_logs, region: :center, split: true},
+     { netzke_component: :user_stats, region: :east, width: 350, split: true},
      { netzke_component: :user_profiles, region: :south, height: 150, split: true }
     ]
   end

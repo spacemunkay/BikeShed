@@ -11,7 +11,9 @@ class BikeLogs < Netzke::Basepack::Grid
     c.strong_default_attrs = {
       :loggable_type => 'Bike',
       :loggable_id => session[:selected_bike_id],
-      :log_action_type => 'ActsAsLoggable::BikeAction'
+      :log_action_type => 'ActsAsLoggable::BikeAction',
+      :logger_type => 'User',
+      :logger_id => controller.current_user.id
     }
 
     c.columns = [
@@ -21,7 +23,12 @@ class BikeLogs < Netzke::Basepack::Grid
       :description,
       { :name => :bike_action__action, :text => 'Action'},
       { :name => :created_at, :read_only => true},
-      { :name => :updated_at, :read_only => true}
+      { :name => :updated_at, :read_only => true},
+      { :name => :logged_by, :getter => lambda{ |rec|
+                                                user = User.find_by_id(rec.logger_id)
+                                                user.nil? ? "" : "#{user.first_name} #{user.last_name}"
+                                              }
+      }
     ]
     
     if controller.current_user.user?
@@ -36,15 +43,17 @@ class BikeLogs < Netzke::Basepack::Grid
     [
       { :name => :start_date},
       { :name => :end_date},
-      :description,
+      { :name => :description},
       { :name => :bike_action__action, :field_label => 'Action'}
     ]
   end
 
+=begin
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
     bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
     bbar
   end
+=end
 end

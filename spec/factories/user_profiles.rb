@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :user_profile do
     user_id 1
-    bike_id 1
     addrStreet1 "Charles Street"
     addrStreet2 "Apt #42"
     addrCity "Baltimore"

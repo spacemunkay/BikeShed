@@ -14,5 +14,7 @@ class CreateBike < ActiveRecord::Migration
       t.integer  "bike_status_id", :null => false
       t.timestamps
     end
+
+    add_index :bikes, :serial_number, :unique => true
   end
 end

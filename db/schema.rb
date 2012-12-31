@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(:version => 20121229160809) do
     t.datetime "updated_at",        :null => false
   end
 
+  add_index "bikes", ["serial_number"], :name => "index_bikes_on_serial_number", :unique => true
+
   create_table "logs", :force => true do |t|
     t.integer  "loggable_id"
     t.string   "loggable_type"
@@ -99,7 +101,6 @@ ActiveRecord::Schema.define(:version => 20121229160809) do
 
   create_table "user_profiles", :force => true do |t|
     t.integer  "user_id",     :null => false
-    t.integer  "bike_id"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "addrStreet1"
@@ -130,7 +131,8 @@ ActiveRecord::Schema.define(:version => 20121229160809) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "user_role_id"
+    t.integer  "user_role_id",           :default => 1,  :null => false
+    t.integer  "bike_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "failed_attempts",        :default => 0
@@ -141,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20121229160809) do
     t.string   "nickname"
   end
 
+  add_index "users", ["bike_id"], :name => "index_users_on_bike_id", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
