@@ -6,7 +6,7 @@ class UserProfiles < Netzke::Basepack::Grid
       user_profiles_scope = lambda { |rel| rel.where(:user_id => controller.current_user.id);}
       user_profiles_data_store = { auto_load: true }
     else
-      user_profiles_scope = lambda { |rel| puts session.inspect; rel.where(:user_id => session[:selected_user_id]);}
+      user_profiles_scope = lambda { |rel| rel.where(:user_id => session[:selected_user_id]);}
       user_profiles_data_store = { auto_load: false}
     end
 

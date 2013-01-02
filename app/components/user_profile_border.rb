@@ -24,8 +24,6 @@ class UserProfileBorder < Netzke::Base
       function(){
         // calling superclass's initComponent
         this.callParent();
-        console.log("init component");
-        console.log(this);
         this.getComponent('user_stats').updateStats();
 
         var store = this.getComponent('user_logs').getStore()
@@ -33,26 +31,6 @@ class UserProfileBorder < Netzke::Base
             console.log("Bitches");
             this.getComponent('user_stats').updateStats();
           }, this);
-        /**
-        this.getComponent('user_logs').getStore().load({
-          callback : function(records, operation, success) {
-            console.log(self);
-            console.log(this);
-            console.log("records");
-            console.log(records);
-            console.log("operation");
-            console.log(operation);
-            console.log("success");
-            console.log(success);
-
-            self.getComponent('user_stats').updateStats();
-          }
-        });*/
-        
-      //  var view = this.getComponent('user_logs').getView();
-      //  view.on('itemclick', function(view, record){
-      //    this.getComponent('user_stats').updateStats();
-      //  }, this);
       }
     JS
   end

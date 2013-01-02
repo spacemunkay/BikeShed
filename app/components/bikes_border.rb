@@ -37,7 +37,5 @@ class BikesBorder < Netzke::Base
   endpoint :select_bike do |params, this|
     # store selected boss id in the session for this component's instance
     session[:selected_bike_id] = params[:bike_id]
-    puts "BikeID-----------------------------"
-    puts session.inspect
   end
 end

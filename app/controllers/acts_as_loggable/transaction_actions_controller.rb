@@ -21,7 +21,6 @@ class ActsAsLoggable::TransactionActionsController < AuthenticatedController
   end
 
   def update
-    puts transaction_action.inspect
     if transaction_action.save
       redirect_to acts_as_loggable_transaction_actions_url
     else

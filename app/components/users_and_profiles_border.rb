@@ -41,9 +41,6 @@ class UsersAndProfilesBorder < Netzke::Base
   endpoint :select_user do |params, this|
     # store selected boss id in the session for this component's instance
     session[:selected_user_id] = params[:user_id]
-    puts "UserID-----------------------------"
-    puts params[:user_id]
-    puts session.inspect
   end
   
 end

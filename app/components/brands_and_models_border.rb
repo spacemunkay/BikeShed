@@ -36,9 +36,6 @@ class BrandsAndModelsBorder < Netzke::Base
   endpoint :select_bike_brand do |params, this|
     # store selected boss id in the session for this component's instance
     session[:selected_bike_brand_id] = params[:bike_brand_id]
-    puts "BikeBrandID-----------------------------"
-    #puts params[:bike_brand_id]
-    puts session.inspect
   end
   
 end

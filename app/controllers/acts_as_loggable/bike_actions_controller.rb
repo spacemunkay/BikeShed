@@ -21,7 +21,6 @@ class ActsAsLoggable::BikeActionsController < AuthenticatedController
   end
 
   def update
-    puts bike_action.inspect
     if bike_action.save
       redirect_to acts_as_loggable_bike_actions_url
     else

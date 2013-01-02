@@ -7,7 +7,7 @@ class BikeLogs < Netzke::Basepack::Grid
     c.model = "ActsAsLoggable::Log"
     c.title = "Bike History"
     c.data_store = {auto_load: false}
-    c.scope = lambda { |rel| puts session.inspect; rel.where(:loggable_type => 'Bike',:loggable_id => session[:selected_bike_id]);}
+    c.scope = lambda { |rel| rel.where(:loggable_type => 'Bike',:loggable_id => session[:selected_bike_id]);}
     c.strong_default_attrs = {
       :loggable_type => 'Bike',
       :loggable_id => session[:selected_bike_id],
