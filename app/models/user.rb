@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def total_hours
-    ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id).sum { |l| (l.end_date - l.start_date)/3600 }
+    ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
   end
 
   def current_month_hours
@@ -45,5 +45,6 @@ class User < ActiveRecord::Base
       .where( :start_date => current_month_range)
       .where( :end_date => current_month_range)
       .sum { |l| (l.end_date - l.start_date)/3600 }
+      .round(2)
   end
 end
