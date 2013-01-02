@@ -7,6 +7,8 @@ class UserLogs < Netzke::Basepack::Grid
     user_log_strong_default_attrs = {
       :loggable_type => 'User',
       :log_action_type => 'ActsAsLoggable::UserAction',
+      :logger_type => 'User',
+      :logger_id => controller.current_user.id,
       :copy_type => 'Bike',
       :copy_action_type => 'ActsAsLoggable::BikeAction',
       :copy_action_id => 3
@@ -38,7 +40,12 @@ class UserLogs < Netzke::Basepack::Grid
       :description,
       { :name => :user_action__action, :text => 'Action' },
       :created_at,
-      :updated_at
+      :updated_at,
+      { :name => :logged_by, :getter => lambda{ |rec|
+                                                user = User.find_by_id(rec.logger_id)
+                                                user.nil? ? "" : "#{user.first_name} #{user.last_name}"
+                                              }
+      }
     ]
   end
 
@@ -47,15 +54,14 @@ class UserLogs < Netzke::Basepack::Grid
     bike_store = Bike.all.map { |b| [b.id, b.serial_number] }
     current_user ||= User.find_by_id(session[:selected_user_id]) || controller.current_user
     bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
-    puts "YOOOOO BIKE: #{bike_id}"
+    action_id = current_user.user_role.id
     [
       { :name => :start_date},
       { :name => :end_date},
       { :name => :description},
-      { :name => :user_action__action, :field_label => 'Action'},
-      { :name => :for_bike, :title => "Copy description to a Bike's History?", :xtype => 'fieldset', :collapsible => true, :collapsed => true, :items => [
-          {:xtype => 'checkbox', :name => :copy_log, :inputValue => true, :read_only => false},
-          {:xtype => 'combo', :name => :copy_id, :fieldLabel => 'Bike', :store => bike_store, :value => bike_id}
+      { :name => :user_action__action, :field_label => 'Action', :value => action_id},
+      { :name => :for_bike, :checkboxName => :copy_log, :inputValue => true, :title => "Copy description to a Bike's History?", :xtype => 'fieldset', :checkboxToggle => true, :collapsed => true, :items => [
+          {:xtype => 'combo', :no_binding => true, :name => :copy_id, :title => 'Bike', :fieldLabel => 'Bike', :store => bike_store, :value => bike_id}
         ]
       }
     ]
