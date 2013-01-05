@@ -5,3 +5,6 @@ tmp/
 *.swp
 .powrc
 .rbenv-version
+.DS_Store
+public/extjs
+public/images/icons
