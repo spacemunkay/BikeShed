@@ -19,7 +19,7 @@ worked:
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
 completed:
-  id: 4
+  id: 5
   action: COMPLETED
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
