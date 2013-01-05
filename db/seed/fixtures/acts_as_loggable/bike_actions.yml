@@ -1,15 +1,20 @@
-acquired:
+note:
   id: 1
+  action: NOTE
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
+acquired:
+  id: 2
   action: ACQUIRED
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
 scrapped:
-  id: 2
+  id: 3
   action: SCRAPPED
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
 worked:
-  id: 3
+  id: 4
   action: WORKED
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
@@ -19,7 +24,7 @@ completed:
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
 sold:
-  id: 5
+  id: 6
   action: SOLD
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>

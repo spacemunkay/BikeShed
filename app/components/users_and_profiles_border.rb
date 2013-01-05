@@ -24,7 +24,10 @@ class UsersAndProfilesBorder < Netzke::Base
       function(){
         // calling superclass's initComponent
         this.callParent();
-        this.getComponent('user_stats').updateStats();
+        var stats = this.getComponent('user_stats');
+        if (stats != undefined){
+          stats.updateStats();
+        }
 
         // setting the 'rowclick' event
         var view = this.getComponent('users').getView();

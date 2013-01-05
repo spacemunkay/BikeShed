@@ -1,6 +1,6 @@
 class UserProfile < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :bike_id, :addrStreet1, :addrStreet2, :addrCity,
+  attr_accessible :user_id, :addrStreet1, :addrStreet2, :addrCity,
     :addrState, :addrZip, :phone
   
   belongs_to :user

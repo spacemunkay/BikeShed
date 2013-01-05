@@ -11,7 +11,7 @@ class UserLogs < Netzke::Basepack::Grid
       :logger_id => controller.current_user.id,
       :copy_type => 'Bike',
       :copy_action_type => 'ActsAsLoggable::BikeAction',
-      :copy_action_id => 3
+      :copy_action_id => 4
     }
 
     #just users
