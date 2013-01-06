@@ -2,6 +2,7 @@ class Logs < Netzke::Basepack::Grid
 
   def configure(c)
     super
+    c.header = false
     c.model = "ActsAsLoggable::Log"
     c.columns = [
       :loggable_id,

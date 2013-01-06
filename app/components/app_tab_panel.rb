@@ -1,5 +1,6 @@
 class AppTabPanel < Netzke::Basepack::TabPanel
 
+
   action :sign_out do |c|
     c.icon = :door_out
     c.text = "Sign out #{controller.current_user.email}" if controller.current_user
@@ -8,19 +9,26 @@ class AppTabPanel < Netzke::Basepack::TabPanel
   def configure(c)
 
     #all users
-    @@app_tab_panel_items = [ :bikes_border, :brands_and_models_border]
+    #  (had to use hash for borders to get the title to display properly)
+    @@app_tab_panel_items = [ :bikes_border, {layout: :fit, wrappedComponent: :brands_and_models_border, title: "Brands/Models"}]
 
     #for users
     if controller.current_user.user?
-      @@app_tab_panel_items.concat [:user_profile_border]
+      # (had to use hash for borders to get the title to display properly)
+      @@app_tab_panel_items.concat [{ layout: :fit, wrappedComponent: :user_profile_border, title: "Profile"}]
     end
     #for admins
     if controller.current_user.admin?
-      @@app_tab_panel_items.concat [:users_and_profiles_border, :logs]
+      # (had to use hash for borders to get the title to display properly)
+      @@app_tab_panel_items.concat [{ layout: :fit, wrappedComponent: :users_and_profiles_border, title: "Users/Profiles"}, :logs]
     end
 
     @@app_tab_panel_items.each do |item|
-      self.class.component item
+      if item.kind_of?(Symbol)
+        self.class.component item
+      elsif item.kind_of?(Hash)
+        self.class.component item[:wrappedComponent]
+      end
     end
 
     c.active_tab = 0

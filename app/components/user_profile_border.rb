@@ -7,7 +7,7 @@ class UserProfileBorder < Netzke::Base
 
   def configure(c)
     super
-    c.title = "Profile"
+    c.header = false
     c.items = [
      { netzke_component: :user_logs, region: :center, split: true},
      { netzke_component: :user_stats, region: :east, width: 350, split: true},

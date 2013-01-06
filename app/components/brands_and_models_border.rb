@@ -1,3 +1,4 @@
+
 class BrandsAndModelsBorder < Netzke::Base
   # Remember regions collapse state and size
   include Netzke::Basepack::ItemPersistence
@@ -5,7 +6,7 @@ class BrandsAndModelsBorder < Netzke::Base
   component :bike_models
   def configure(c)
     super
-    c.title = "Brands/Models"
+    c.header = false
     c.items = [
      { netzke_component: :bike_brands, region: :center, split: true },
      { netzke_component: :bike_models, region: :east, width: 500, split: true}
