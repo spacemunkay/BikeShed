@@ -18,6 +18,9 @@
     %br/
     = f.email_field :email
   %div
+    = f.fields_for :user_profiles, UserProfile.new do |builder|
+      = render 'user_profile_fields', f: builder
+  %div
     = f.label :password
     %br/
     = f.password_field :password

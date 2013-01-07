@@ -7,16 +7,17 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :first_name, :last_name, :nickname, :user_role_id, :bike_id
+    :first_name, :last_name, :nickname, :user_role_id, :bike_id,
+    :user_profiles_attributes
 
   has_many :user_profiles
+  accepts_nested_attributes_for :user_profiles, allow_destroy: false
+
   belongs_to :user_role
   belongs_to :bike
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
-
-  self.per_page = 15
 
   def to_s
     "#{first_name} #{last_name}"
