@@ -16,22 +16,7 @@ class BrandsAndModelsBorder < Netzke::Base
   js_configure do |c|
     c.layout = :border
     c.border = false
-
-    # Overriding initComponent
-    c.init_component = <<-JS
-      function(){
-        // calling superclass's initComponent
-        this.callParent();
-
-        // setting the 'rowclick' event
-        var view = this.getComponent('bike_brands').getView();
-        view.on('itemclick', function(view, record){
-          // The beauty of using Ext.Direct: calling 3 endpoints in a row, which results in a single call to the server!
-          this.selectBikeBrand({bike_brand_id: record.get('id')});
-          this.getComponent('bike_models').getStore().load();
-        }, this);
-      }
-    JS
+    c.mixin :init_component
   end
 
   endpoint :select_bike_brand do |params, this|

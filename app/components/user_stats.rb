@@ -15,15 +15,7 @@ class UserStats < Netzke::Base
   js_configure do |c|
     c.body_padding = 15
     c.title = "User Stats"
-    #c.html = body_content()
-    c.update_stats = <<-JS
-      function(){
-        // Call endpoint
-        this.serverUpdate({}, function(){
-          //success callback
-        }, this);
-      }
-    JS
+    c.mixin :user_stats
   end
 
   endpoint :server_update do |params, this|
