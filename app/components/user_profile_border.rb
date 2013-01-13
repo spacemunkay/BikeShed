@@ -18,21 +18,7 @@ class UserProfileBorder < Netzke::Base
   js_configure do |c|
     c.layout = :border
     c.border = false
-
-    # Overriding initComponent
-    c.init_component = <<-JS
-      function(){
-        // calling superclass's initComponent
-        this.callParent();
-        this.getComponent('user_stats').updateStats();
-
-        var store = this.getComponent('user_logs').getStore()
-        store.on('load', function (store, records, operation, success){
-            console.log("Bitches");
-            this.getComponent('user_stats').updateStats();
-          }, this);
-      }
-    JS
+    c.mixin :init_component
   end
 
 end

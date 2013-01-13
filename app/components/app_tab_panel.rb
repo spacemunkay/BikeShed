@@ -39,15 +39,8 @@ class AppTabPanel < Netzke::Basepack::TabPanel
   end
 
   js_configure do |c|
-    c.on_sign_out = <<-JS
-      //this will give a 401 error, but made 401 exceptions forward to 'users/sign_in'
-      function(){
-        Ext.Ajax.request({
-           url: '/users/sign_out',
-           method: 'DELETE'
-        });        
-      }
-    JS
+    #gets js from app_tab_panel/javascripts/sign_out.js
+    c.mixin :sign_out
   end
 
 end
