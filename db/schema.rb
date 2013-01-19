@@ -88,9 +88,14 @@ ActiveRecord::Schema.define(:version => 20121229160809) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.integer "user_id", :null => false
-    t.integer "bike_id"
-    t.integer "amount",  :null => false
+    t.integer  "vendor_id",     :null => false
+    t.integer  "customer_id"
+    t.integer  "customer_type"
+    t.integer  "bike_id"
+    t.integer  "amount",        :null => false
+    t.string   "item",          :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "user_actions", :force => true do |t|

@@ -10,7 +10,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
 
     #all users
     #  (had to use hash for borders to get the title to display properly)
-    @@app_tab_panel_items = [ :bikes_border, {layout: :fit, wrappedComponent: :brands_and_models_border, title: "Brands/Models"}]
+    @@app_tab_panel_items = [ :transactions, :bikes_border, {layout: :fit, wrappedComponent: :brands_and_models_border, title: "Brands/Models"}]
 
     #for users
     if controller.current_user.user?
