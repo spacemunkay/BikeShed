@@ -3,7 +3,7 @@ class CreateTransactions < ActiveRecord::Migration
     create_table :transactions do |t|
       t.integer "vendor_id", :null => false
       t.integer "customer_id", :null => false
-      t.integer "customer_type", :null => false
+      t.string "customer_type", :null => false
       t.integer "bike_id"
       t.integer "amount", :null => false
       t.string  "item", :null => false

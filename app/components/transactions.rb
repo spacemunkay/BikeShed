@@ -4,8 +4,8 @@ class Transactions < Netzke::Basepack::Grid
     c.model = "Transaction"
     c.strong_default_attrs = {
       :vendor_id => controller.current_user.id,
-      :customer_id => session[:selected_user_id],
-      :customer_type => session[:selected_type]
+      :customer_id => session[:selected_customer_id],
+      :customer_type => session[:selected_customer_type]
     }
     c.columns = [
       :amount,
@@ -23,7 +23,13 @@ class Transactions < Netzke::Basepack::Grid
   def default_fields_for_forms
     bike_store = Bike.all.map { |b| [b.id, b.serial_number] }
     user_store = User.all.map { |u| [u.id, u.to_s] }
-    customer = User.find_by_id(session[:selected_user_id])
+    customer = nil
+    if session[:selected_customer_type] == "User"
+      customer = User.find_by_id(session[:selected_customer_id])
+    elsif session[:selected_customer_type] == "Customer"
+      customer = Customer.find_by_id(session[:selected_customer_id])
+    end
+    
     customer = "No User Selected" if customer.nil?
     [
       { :no_binding => true, :xtype => 'label', :text => "Creating Transaction for: #{customer.to_s}"},
@@ -37,14 +43,8 @@ class Transactions < Netzke::Basepack::Grid
     ]
   end
 
-  js_configure do |c|
-    c.mixin :init_component
+  #override with nil to remove actions
+  def default_bbar
+    [ :apply, :add_in_form, :search ]
   end
-
-  endpoint :select_user do |params, this|
-    # store selected boss id in the session for this component's instance
-    session[:selected_user_id] = params[:user_id]
-    session[:selected_type] = 'User'
-  end
-
 end

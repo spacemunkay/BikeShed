@@ -5,7 +5,7 @@ class Transaction < ActiveRecord::Base
 
   belongs_to :vendor, :class_name => 'User', :foreign_key => 'vendor_id'
   belongs_to :bike
-  belongs_to :customer
+  belongs_to :customer, :polymorphic => true
 
   validates :vendor_id, :presence => true
   validates :customer_id, :presence => { :message => "Choose a User or Customer"}
