@@ -2,7 +2,11 @@ class Transactions < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "Transaction"
-    c.strong_default_attrs = { :vendor_id => controller.current_user.id }
+    c.strong_default_attrs = {
+      :vendor_id => controller.current_user.id,
+      :customer_id => session[:selected_user_id],
+      :customer_type => session[:selected_type]
+    }
     c.columns = [
       :amount,
       :item,
@@ -19,49 +23,28 @@ class Transactions < Netzke::Basepack::Grid
   def default_fields_for_forms
     bike_store = Bike.all.map { |b| [b.id, b.serial_number] }
     user_store = User.all.map { |u| [u.id, u.to_s] }
+    customer = User.find_by_id(session[:selected_user_id])
+    customer = "No User Selected" if customer.nil?
     [
+      { :no_binding => true, :xtype => 'label', :text => "Creating Transaction for: #{customer.to_s}"},
       :amount,
       :item,
       { :name => :for_bike, :checkboxName => :bike_item, :inputValue => true, :title => "Selling a bike?",
         :xtype => 'fieldset', :checkboxToggle => true, :collapsed => true, :items => [
           {:xtype => 'combo', :no_binding => true, :name => :bike_id, :title => 'Bike', :fieldLabel => 'Bike', :store => bike_store}
         ]
-      },
-      {
-        xtype: 'fieldcontainer',
-        fieldLabel: 'Customer Type',
-        defaultType: 'radiofield',
-        defaults: {
-          flex: 1
-        },
-        layout: 'hbox',
-        items: [
-          {
-            no_binding: true,
-            boxLabel: 'Customer',
-            name: 'customer_type',
-            inputValue: 'Customer',
-            id: 'customer_radio'
-          },
-          {
-            no_binding: true,
-            boxLabel: 'User',
-            name: 'customer_type',
-            inputValue: 'User',
-            id: 'user_radio'
-          }
-        ]
-      },
-      { :name => :for_user, :checkboxName => :customer_type, :inputValue => true, :title => "Customer a User?",
-        :xtype => 'fieldset', :collapsible => true, :collapsed => true, :items => [
-          {:xtype => 'combo', :no_binding => true, :name => :customer_id, :title => 'User', :fieldLabel => 'User', :store => user_store}
-        ]
-      },
-      { :name => :for_customer, :checkboxName => :customer_type, :inputValue => true, :title => "New Customer?",
-        :xtype => 'fieldset', :collapsible => true, :collapsed => true, :items => [
-          { :xtype => 'textfield', :no_binding => true, :name => 'customer[first_name]'},
-        ]
       }
     ]
   end
+
+  js_configure do |c|
+    c.mixin :init_component
+  end
+
+  endpoint :select_user do |params, this|
+    # store selected boss id in the session for this component's instance
+    session[:selected_user_id] = params[:user_id]
+    session[:selected_type] = 'User'
+  end
+
 end
