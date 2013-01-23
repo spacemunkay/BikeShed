@@ -15,6 +15,11 @@ class Transactions < Netzke::Basepack::Grid
                                               user = rec.vendor
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"
                                            }
+      },
+      { :name => :customer, :getter => lambda { |rec|
+                                              user = rec.customer
+                                              user.nil? ? "" : "#{user.first_name} #{user.last_name}"
+                                           }
       }
     ]
     
@@ -32,7 +37,7 @@ class Transactions < Netzke::Basepack::Grid
     
     customer = "No User Selected" if customer.nil?
     [
-      { :no_binding => true, :xtype => 'label', :text => "Creating Transaction for: #{customer.to_s}"},
+      { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Creating Transaction for:", :value => "#{customer.to_s}"},
       :amount,
       :item,
       { :name => :for_bike, :checkboxName => :bike_item, :inputValue => true, :title => "Selling a bike?",

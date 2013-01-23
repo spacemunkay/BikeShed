@@ -14,6 +14,8 @@ class Customer < ActiveRecord::Base
   #validates :phone, :presence => true
   #validates :email, :presence => true
 
+  self.per_page = 15
+
   def to_s
     "#{first_name} #{last_name}"
   end

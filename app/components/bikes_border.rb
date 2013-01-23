@@ -6,6 +6,7 @@ class BikesBorder < Netzke::Base
 
   def configure(c)
     super
+    c.header = false
     c.title = "Bikes"
     c.items = [
      { netzke_component: :bikes, region: :center, split: true },
