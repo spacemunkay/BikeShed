@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
     :first_name, :last_name, :nickname, :user_role_id, :bike_id,
     :user_profiles_attributes
 
+  has_many :transactions
   has_many :user_profiles
   accepts_nested_attributes_for :user_profiles, allow_destroy: false
 

@@ -9,7 +9,7 @@ class UsersAndProfilesBorder < Netzke::Base
     super
     c.header = false
     c.items = [
-     { netzke_component: :users, region: :center, width: 300, split: true },
+     { netzke_component: :users, header: "Users", region: :center, width: 300, split: true },
      { netzke_component: :user_profiles, region: :south, height: 150, split: true},
      { netzke_component: :user_logs, region: :east, split: true}
     ]

@@ -1,17 +1,6 @@
-class Users < Netzke::Basepack::Grid
+class Customers < Netzke::Basepack::Grid
   def configure(c)
-    super
-    c.header = false
-    c.model = "User"
-
-    c.columns = [
-      :first_name,
-      :last_name,
-      :nickname,
-      :email,
-      :user_role__role,
-      :bike__serial_number
-    ]
+    c.model = "Customer"
   end
 
   #override with nil to remove actions
