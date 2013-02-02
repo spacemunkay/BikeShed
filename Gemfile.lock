@@ -1,8 +1,8 @@
 GIT
   remote: git@github.com:spacemunkay/acts_as_loggable.git
-  revision: fd2c276abad00567a294a1a841dce9861e240c82
+  revision: 6033fe5a44878bb374f73fe473fed9a3396ddc74
   specs:
-    acts_as_loggable (0.0.6)
+    acts_as_loggable (0.0.7)
       activerecord (>= 3.0)
       activesupport (~> 3.0)
 

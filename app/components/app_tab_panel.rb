@@ -10,9 +10,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
 
     #all users
     #  (had to use hash for borders to get the title to display properly)
-    @@app_tab_panel_items = [ { layout: :fit,
-                                wrappedComponent: :bikes_border,
-                                title: "Bikes"},
+    @@app_tab_panel_items = [ :bikes_border,
                               { layout: :fit,
                                 wrappedComponent: :brands_and_models_border,
                                 title: "Brands/Models"}
@@ -49,7 +47,6 @@ class AppTabPanel < Netzke::Basepack::TabPanel
       end
     end
 
-    c.active_tab = 0
     c.prevent_header = true
     c.tbar = [:sign_out]
     c.items = @@app_tab_panel_items
