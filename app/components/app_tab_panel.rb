@@ -10,17 +10,35 @@ class AppTabPanel < Netzke::Basepack::TabPanel
 
     #all users
     #  (had to use hash for borders to get the title to display properly)
-    @@app_tab_panel_items = [ :transactions_border, {layout: :fit, wrappedComponent: :bikes_border, title: "Bikes"}, {layout: :fit, wrappedComponent: :brands_and_models_border, title: "Brands/Models"}]
+    @@app_tab_panel_items = [ { layout: :fit,
+                                wrappedComponent: :bikes_border,
+                                title: "Bikes"},
+                              { layout: :fit,
+                                wrappedComponent: :brands_and_models_border,
+                                title: "Brands/Models"}
+                              ]
 
     #for users
     if controller.current_user.user?
       # (had to use hash for borders to get the title to display properly)
-      @@app_tab_panel_items.concat [{ layout: :fit, wrappedComponent: :user_profile_border, title: "Profile"}]
+      @@app_tab_panel_items.concat [{ layout: :fit,
+                                      wrappedComponent: :user_profile_border,
+                                      title: "Profile"},
+                                    { layout: :fit,
+                                      wrappedComponent: :user_transactions_border,
+                                      title: "Transactions"}
+                                    ]
     end
     #for admins
     if controller.current_user.admin?
       # (had to use hash for borders to get the title to display properly)
-      @@app_tab_panel_items.concat [{ layout: :fit, wrappedComponent: :users_and_profiles_border, title: "Users/Profiles"}, :logs]
+      @@app_tab_panel_items.concat [{ layout: :fit,
+                                      wrappedComponent: :users_and_profiles_border,
+                                      title: "Users/Profiles"},
+                                      { layout: :fit,
+                                      wrappedComponent: :transactions_border,
+                                      title: "Transactions"},
+                                      :logs]
     end
 
     @@app_tab_panel_items.each do |item|

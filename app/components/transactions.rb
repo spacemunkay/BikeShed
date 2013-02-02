@@ -20,9 +20,10 @@ class Transactions < Netzke::Basepack::Grid
                                               user = rec.customer
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"
                                            }
-      }
+      },
+      :created_at
     ]
-    
+
   end
 
   def default_fields_for_forms
@@ -34,7 +35,7 @@ class Transactions < Netzke::Basepack::Grid
     elsif session[:selected_customer_type] == "Customer"
       customer = Customer.find_by_id(session[:selected_customer_id])
     end
-    
+
     customer = "No User Selected" if customer.nil?
     [
       { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Creating Transaction for:", :value => "#{customer.to_s}"},
@@ -52,4 +53,10 @@ class Transactions < Netzke::Basepack::Grid
   def default_bbar
     [ :apply, :add_in_form, :search ]
   end
+=begin
+  #needed for transaction selection
+  js_configure do |c|
+    c.mixin :init_component
+  end
+=end
 end
