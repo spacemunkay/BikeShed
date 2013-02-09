@@ -2,7 +2,7 @@ class BikesBorder < Netzke::Base
   # Remember regions collapse state and size
   include Netzke::Basepack::ItemPersistence
   component :bikes
-  component :bike_logs
+  component :bike_logs_and_tasks_accordian
 
   def configure(c)
     super
@@ -10,7 +10,7 @@ class BikesBorder < Netzke::Base
     c.title = "Bikes"
     c.items = [
      { netzke_component: :bikes, region: :center, split: true },
-     { netzke_component: :bike_logs, region: :south, height: 300, split: true}
+     { netzke_component: :bike_logs_and_tasks_accordian, region: :south, height: 300, split: true}
     ]
   end
 
