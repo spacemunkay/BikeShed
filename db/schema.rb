@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120142249) do
+ActiveRecord::Schema.define(:version => 20130209023110) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -95,6 +95,19 @@ ActiveRecord::Schema.define(:version => 20130120142249) do
   end
 
   add_index "logs", ["loggable_id", "loggable_type", "context"], :name => "index_logs_on_loggable_id_and_loggable_type_and_context"
+
+  create_table "task_lists", :force => true do |t|
+    t.integer "item_id",   :null => false
+    t.string  "item_type", :null => false
+    t.string  "name",      :null => false
+  end
+
+  create_table "tasks", :force => true do |t|
+    t.integer "task_list_id", :null => false
+    t.string  "task",         :null => false
+    t.text    "notes"
+    t.boolean "done"
+  end
 
   create_table "transaction_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
