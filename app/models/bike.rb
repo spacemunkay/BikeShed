@@ -27,10 +27,12 @@ class Bike < ActiveRecord::Base
 
   self.per_page = 15
 
+  after_save :create_task_list
+
   def brand
     self.bike_brand
   end
-  
+
   def model
     self.bike_model
   end
@@ -49,5 +51,9 @@ class Bike < ActiveRecord::Base
 
   def to_s
     "#{brand} - #{model} - #{style}"
+  end
+
+  def create_task_list
+    TaskList.create( item_id: self.id, item_type: self.class.to_s, name: "Safety Checklist")
   end
 end
