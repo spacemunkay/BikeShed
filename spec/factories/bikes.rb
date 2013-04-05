@@ -2,6 +2,9 @@
 
 FactoryGirl.define do
   factory :bike do
+    sequence :shop_id do |n|
+      "Shop ID #{n}"
+    end
     sequence :serial_number do |n|
       "S/N# #{n}"
     end

@@ -50,7 +50,7 @@ class UserLogs < Netzke::Basepack::Grid
 
   def default_fields_for_forms
     #figure out a better way to do this
-    bike_store = Bike.all.map { |b| [b.id, b.serial_number] }
+    bike_store = Bike.all.map { |b| [b.id, b.shop_id] }
     current_user ||= User.find_by_id(session[:selected_user_id]) || controller.current_user
     bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
     action_id = current_user.user_role.id

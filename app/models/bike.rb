@@ -1,6 +1,6 @@
 class Bike < ActiveRecord::Base
   acts_as_loggable
-  attr_accessible :serial_number, :bike_brand_id, :bike_model_id, :color, :bike_style_id, :seat_tube_height,
+  attr_accessible :shop_id, :serial_number, :bike_brand_id, :bike_model_id, :color, :bike_style_id, :seat_tube_height,
     :top_tube_length, :wheel_size, :value, :bike_condition_id, :bike_status_id
 
   has_many :transactions
@@ -13,6 +13,7 @@ class Bike < ActiveRecord::Base
   belongs_to :bike_condition
   belongs_to :bike_status
 
+  validates :shop_id, :presence => true, :uniqueness => true, :length => { :minimum => 3 }
   validates :serial_number, :uniqueness => true, :length => { :minimum => 3 }
   validates :bike_brand_id, :presence => true
   validates :bike_model_id, :presence => true
