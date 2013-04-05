@@ -10,7 +10,7 @@ class Users < Netzke::Basepack::Grid
       :nickname,
       :email,
       :user_role__role,
-      :bike__serial_number
+      :bike__shop_id
     ]
   end
 
