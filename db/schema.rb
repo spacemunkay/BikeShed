@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209023110) do
+ActiveRecord::Schema.define(:version => 20130405012238) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -60,9 +60,10 @@ ActiveRecord::Schema.define(:version => 20130209023110) do
     t.integer  "bike_status_id",    :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "shop_id"
   end
 
-  add_index "bikes", ["serial_number"], :name => "index_bikes_on_serial_number", :unique => true
+  add_index "bikes", ["shop_id"], :name => "index_bikes_on_shop_id", :unique => true
 
   create_table "customers", :force => true do |t|
     t.string "first_name",  :null => false

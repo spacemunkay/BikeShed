@@ -4,6 +4,7 @@ class Bikes < Netzke::Basepack::Grid
     c.model = "Bike"
 
     c.columns = [
+      { :name => :shop_id, :text => 'Shop ID'},
       :serial_number,
       { :name => :bike_brand__brand, :text => 'Brand' },
       { :name => :bike_model__model, :text => 'Model',

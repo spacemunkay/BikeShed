@@ -10,7 +10,7 @@ class UserTransactions < Netzke::Basepack::Grid
     c.columns = [
       :amount,
       :item,
-      { :name => :bike__serial_number},
+      { :name => :bike__shop_id},
       { :name => :vendor, :getter => lambda { |rec|
                                               user = rec.vendor
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"
