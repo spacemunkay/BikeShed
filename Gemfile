@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.13'
 
 gem 'netzke-core', '~>0.8.0'
 gem 'netzke-basepack', '~>0.8.0'
