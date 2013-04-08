@@ -17,7 +17,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                               ]
 
     #for users
-    if controller.current_user.user?
+    if controller.current_user.role?(:user)
       # (had to use hash for borders to get the title to display properly)
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :user_profile_border,
@@ -28,7 +28,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                     ]
     end
     #for admins
-    if controller.current_user.admin?
+    if controller.current_user.role?(:admin)
       # (had to use hash for borders to get the title to display properly)
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :users_and_profiles_border,

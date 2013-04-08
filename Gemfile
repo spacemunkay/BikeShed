@@ -2,18 +2,20 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
+gem 'netzke-cancan'
 gem 'netzke-core', '~>0.8.0'
 gem 'netzke-basepack', '~>0.8.0'
 
 
-gem 'sqlite3', '~> 1.3.5'
+gem 'acts_as_loggable', :git => 'https://github.com/spacemunkay/acts_as_loggable.git'
+gem 'bootstrap-will_paginate', '~> 0.0.6'
+gem 'cancan'
+gem 'decent_exposure', '~> 1.0.1'
 gem 'devise', '~> 2.0.4'
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails', '~> 2.0'
-gem 'decent_exposure', '~> 1.0.1'
+gem 'sqlite3', '~> 1.3.5'
 gem 'will_paginate', '~> 3.0.3'
-gem 'bootstrap-will_paginate', '~> 0.0.6'
-gem 'acts_as_loggable', :git => 'https://github.com/spacemunkay/acts_as_loggable.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

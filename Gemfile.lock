@@ -42,6 +42,7 @@ GEM
     bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.0.4)
+    cancan (1.6.9)
     capybara (1.1.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -124,6 +125,9 @@ GEM
     multi_json (1.7.2)
     netzke-basepack (0.8.2)
       netzke-core (~> 0.8.2)
+    netzke-cancan (0.8.2)
+      cancan
+      netzke-core
     netzke-core (0.8.3)
       execjs
       uglifier
@@ -224,6 +228,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_loggable!
   bootstrap-will_paginate (~> 0.0.6)
+  cancan
   capybara (~> 1.1.2)
   coffee-rails (~> 3.2.1)
   database_cleaner
@@ -236,6 +241,7 @@ DEPENDENCIES
   jquery-rails (~> 2.0)
   launchy
   netzke-basepack (~> 0.8.0)
+  netzke-cancan
   netzke-core (~> 0.8.0)
   pry (~> 0.9.8)
   rails (= 3.2.13)
