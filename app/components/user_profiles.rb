@@ -3,17 +3,17 @@ class UserProfiles < Netzke::Basepack::Grid
   def configure(c)
     super
 
-    if controller.current_user.user?
-      user_profiles_scope = lambda { |rel| rel.where(:user_id => controller.current_user.id);}
-      user_profiles_data_store = { auto_load: true }
-      user_profile_strong_default_attrs = {
-        :user_id => controller.current_user.id
-      }
-    else
+    if can? :manage, UserProfile
       user_profiles_scope = lambda { |rel| rel.where(:user_id => session[:selected_user_id]);}
       user_profiles_data_store = { auto_load: false}
       user_profile_strong_default_attrs = {
         :user_id => session[:selected_user_id]
+      }
+    else
+      user_profiles_scope = lambda { |rel| rel.where(:user_id => controller.current_user.id);}
+      user_profiles_data_store = { auto_load: true }
+      user_profile_strong_default_attrs = {
+        :user_id => controller.current_user.id
       }
     end
 

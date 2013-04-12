@@ -30,11 +30,12 @@ class BikeLogs < Netzke::Basepack::Grid
                                               }
       }
     ]
-    
-    if controller.current_user.user?
-      c.prohibit_update = true
-      c.prohibit_create = true
-      c.prohibit_delete = true
+
+    #TODO: fix GUI so it actually respects this
+    current_bike = Bike.find_by_id(session[:selected_bike_id]) 
+    if cannot? :update, current_bike
+      # if you can't update the bike, you can't do anything to the log
+      c.prohibit_update = c.prohibit_create = c.prohibit_delete = true
     end
 
   end
@@ -53,7 +54,8 @@ class BikeLogs < Netzke::Basepack::Grid
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
-    bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
+    bbar.concat [ :apply ] if can? :update, ::ActsAsLoggable::Log
+    bbar.concat [ :add_in_form ] if can? :create, ::ActsAsLoggable::Log
     bbar
   end
 =end

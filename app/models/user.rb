@@ -24,16 +24,12 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def user?
-    user_role.to_s == "user"
+  def role
+    user_role.role
   end
 
-  def staff?
-    user_role.to_s == "staff"
-  end
-
-  def admin?
-    user_role.to_s == "admin"
+  def role?(role)
+    user_role.to_s == role.to_s
   end
 
   def total_hours
