@@ -29,11 +29,9 @@ class TransactionLogs < Netzke::Basepack::Grid
       }
     ]
 
-    if controller.current_user.user?
-      c.prohibit_update = true
-      c.prohibit_create = true
-      c.prohibit_delete = true
-    end
+    c.prohibit_update = true if cannot? :update, ::ActsAsLoggable::Log
+    c.prohibit_create = true if cannot? :create, ::ActsAsLoggable::Log
+    c.prohibit_delete = true if cannot? :delete, ::ActsAsLoggable::Log 
 
   end
 
@@ -60,7 +58,8 @@ class TransactionLogs < Netzke::Basepack::Grid
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
-    bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
+    bbar.concat [ :apply ] if can? :update, ::ActsAsLoggable::Log
+    bbar.concat [:add_in_form ] if can? :create, ::ActsAsLoggable::Log
     bbar
   end
 

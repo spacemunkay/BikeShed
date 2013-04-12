@@ -24,17 +24,16 @@ class UserTransactions < Netzke::Basepack::Grid
       :created_at
     ]
 
-    if controller.current_user.user?
-      c.prohibit_update = true
-      c.prohibit_create = true
-      c.prohibit_delete = true
-    end
+    c.prohibit_update = true if cannot? :update, Transaction
+    c.prohibit_create = true if cannot? :create, Transaction
+    c.prohibit_delete = true if cannot? :delete, Transaction
   end
 
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
-    bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
+    bbar.concat [ :apply ] if can? :update, Transaction
+    bbar.concat [ :add_in_form ] if can? :create, Transaction
     bbar
   end
 end

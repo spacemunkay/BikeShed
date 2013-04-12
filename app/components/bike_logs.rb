@@ -54,7 +54,8 @@ class BikeLogs < Netzke::Basepack::Grid
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
-    bbar.concat [ :apply, :add_in_form ] if not controller.current_user.user?
+    bbar.concat [ :apply ] if can? :update, ::ActsAsLoggable::Log
+    bbar.concat [ :add_in_form ] if can? :create, ::ActsAsLoggable::Log
     bbar
   end
 =end

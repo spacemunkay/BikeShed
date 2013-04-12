@@ -14,15 +14,15 @@ class UserLogs < Netzke::Basepack::Grid
       :copy_action_id => 4
     }
 
-    #just users
-    if controller.current_user.user?
-      user_log_scope = lambda { |rel| rel.where(:loggable_type => 'User',:loggable_id => controller.current_user.id)}
-      user_log_strong_default_attrs.merge!( { :loggable_id => controller.current_user.id } )
-      user_log_data_store = {auto_load: true }
-    #admins and staff
-    else
+    if can? :manage, ::ActsAsLoggable::Log
+      #admins and staff
       user_log_scope = lambda { |rel| rel.where(:loggable_type => 'User',:loggable_id => session[:selected_user_id]);}
       user_log_strong_default_attrs.merge!( { :loggable_id => session[:selected_user_id] } )
+      user_log_data_store = {auto_load: true }
+    else
+      #just users
+      user_log_scope = lambda { |rel| rel.where(:loggable_type => 'User',:loggable_id => controller.current_user.id)}
+      user_log_strong_default_attrs.merge!( { :loggable_id => controller.current_user.id } )
       user_log_data_store = {auto_load: true }
     end
 
