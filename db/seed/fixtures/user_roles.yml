@@ -1,9 +1,0 @@
-user:
-  id: 1
-  role: user
-staff:
-  id: 2
-  role: staff
-admin:
-  id: 3
-  role: admin

@@ -5,17 +5,22 @@ FactoryGirl.define do
     password_confirmation { password }
     first_name 'Michael'
     last_name 'Scott'
-    user_role_id 1
     sequence(:bike_id) { |n| n }
+    association :user_role, factory: :role_user
 
     factory :staff do
       first_name 'Staff'
-      user_role_id 2
+      association :user_role, factory: :role_staff
     end
 
     factory :admin do
       first_name 'Admin'
-      user_role_id 3
+      association :user_role, factory: :role_admin
+    end
+
+    factory :bike_admin do
+      first_name 'BikeAdmin'
+      association :user_role, factory: :role_bike_admin
     end
 
   end

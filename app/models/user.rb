@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :user_profiles
   accepts_nested_attributes_for :user_profiles, allow_destroy: false
 
-  belongs_to :user_role
+  has_one :user_role
   belongs_to :bike
 
   validates :first_name, :presence => true
@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
 
   def to_s
     "#{first_name} #{last_name}"
+  end
+
+  def full_name
+    to_s
   end
 
   def role

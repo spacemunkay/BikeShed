@@ -1,7 +1,7 @@
 class UserRole < ActiveRecord::Base
   attr_accessible :role
 
-  has_many :users
+  belongs_to :user
 
   self.per_page = 15
 

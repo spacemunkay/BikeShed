@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405012238) do
+ActiveRecord::Schema.define(:version => 20130419010051) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(:version => 20130405012238) do
     t.string   "role"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "ends"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
