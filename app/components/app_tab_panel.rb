@@ -37,7 +37,8 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                       wrappedComponent: :transactions_border,
                                       title: "Transactions"},
                                       :logs,
-                                      :user_roles]
+                                      :user_roles
+                                      ]
     end
 
     @@app_tab_panel_items.each do |item|

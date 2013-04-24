@@ -21,7 +21,7 @@ end
 if Rails.env.development?
 
   #create default admin user
-  if UserRole.all.empty? and User.all.empty?
+  if User.all.empty?
     FactoryGirl.create(:user)
     FactoryGirl.create(:staff)
     FactoryGirl.create(:admin)

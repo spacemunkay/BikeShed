@@ -53,7 +53,7 @@ class UserLogs < Netzke::Basepack::Grid
     bike_store = Bike.all.map { |b| [b.id, b.shop_id] }
     current_user ||= User.find_by_id(session[:selected_user_id]) || controller.current_user
     bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
-    action_id = current_user.user_role.id
+    action_id = ::ActsAsLoggable::UserAction.all.first.id
     [
       { :name => :start_date},
       { :name => :end_date},
