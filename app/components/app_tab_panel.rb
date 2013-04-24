@@ -37,7 +37,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                       wrappedComponent: :transactions_border,
                                       title: "Transactions"},
                                       :logs,
-                                      :user_roles
+                                      :user_role_joins
                                       ]
     end
 
@@ -48,7 +48,6 @@ class AppTabPanel < Netzke::Basepack::TabPanel
         self.class.component item[:wrappedComponent]
       end
     end
-
     c.prevent_header = true
     c.tbar = [:sign_out]
     c.items = @@app_tab_panel_items

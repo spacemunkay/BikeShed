@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(:version => 20130424005701) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "user_role_joins", :id => false, :force => true do |t|
+  create_table "user_role_joins", :force => true do |t|
     t.string   "role_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
