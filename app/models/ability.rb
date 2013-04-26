@@ -3,7 +3,9 @@ class Ability
 
   def initialize(current_user)
     @current_user = current_user
-    self.send(current_user.role.role.to_sym)
+    current_user.roles.each do |role|
+      self.send(role.role.to_sym)
+    end
   end
 
   def admin
