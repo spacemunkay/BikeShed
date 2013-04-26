@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :user_profiles
   accepts_nested_attributes_for :user_profiles, allow_destroy: false
 
-  has_many :user_role_joins
+  has_many :user_role_joins, :conditions => ["ends IS NULL OR ends > ?", Time.now]
   has_many :roles, through: :user_role_joins
 
   belongs_to :bike

@@ -1,6 +1,6 @@
 class UserRoleJoin < ActiveRecord::Base
   set_table_name :user_role_joins
-  attr_accessible :role_id, :user_id
+  attr_accessible :role_id, :user_id, :ends
 
   belongs_to :user
   belongs_to :role
