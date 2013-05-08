@@ -20,3 +20,6 @@
 
 Use mailcatcher to see what emails look like in development.
 Follow the instructions from http://mailcatcher.me/ to create an rvm wrapper so you don't install it all over your gemsets
+
+# License
+Velocipede is released under the MIT license (http://opensource.org/licenses/MIT)
