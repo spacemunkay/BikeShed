@@ -5,7 +5,7 @@
 1. `gem install bundler`
 1. `bundle`
 1. `rake db:create db:migrate db:seed`
-1. Download extJS (http://www.sencha.com/products/extjs), unzip, and place where ever you like.
+1. Download extJS 4.1 (http://www.sencha.com/products/extjs), unzip, and place where ever you like.
 1. Link to your extJS folder path under `public/extjs`: (From app root) `ln -s /MY/PATH/extjs/ public/extjs`
 1. `rails s`
 
