@@ -37,7 +37,9 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                       wrappedComponent: :transactions_border,
                                       title: "Transactions"},
                                       :logs,
-                                      :user_role_joins
+                                      { layout: :fit,
+                                      wrappedComponent: :user_role_joins,
+                                      title: "User Roles"}
                                       ]
     end
 
