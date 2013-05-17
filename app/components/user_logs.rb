@@ -37,7 +37,7 @@ class UserLogs < Netzke::Basepack::Grid
       { :name => :end_date, :hidden => true, :default_value => Time.now.to_formatted_s(:db) },
       { :name => :hours, :getter => lambda { |rec| (rec.end_date - rec.start_date)/3600 }, :sorting_scope => :sort_by_duration},
       :description,
-      { :name => :user_action__action, :text => 'Action' },
+      { :name => :user_action__action, :text => 'Action', :default_value => ::ActsAsLoggable::UserAction.all.first.id },
       :created_at,
       :updated_at,
       { :name => :logged_by, :getter => lambda{ |rec|
@@ -53,13 +53,12 @@ class UserLogs < Netzke::Basepack::Grid
     bike_store = Bike.all.map { |b| [b.id, b.shop_id] }
     current_user ||= User.find_by_id(session[:selected_user_id]) || controller.current_user
     bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
-    action_id = ::ActsAsLoggable::UserAction.all.first.id
     [
       { :name => :start_date},
       { :name => :end_date},
       { :name => :description},
       #had to hack acts_as_loggable/log.rb to get this to work
-      { :name => :user_action__action, :field_label => 'Action', :value => action_id},
+      { :name => :user_action__action, :field_label => 'Action'},
       { :name => :for_bike, :checkboxName => :copy_log, :inputValue => true, :title => "Copy description to a Bike's History?", :xtype => 'fieldset', :checkboxToggle => true, :collapsed => true, :items => [
           {:xtype => 'combo', :no_binding => true, :name => :copy_id, :title => 'Bike', :fieldLabel => 'Bike', :store => bike_store, :value => bike_id}
         ]
