@@ -1,6 +1,7 @@
 class Api::V1::LogsController < Api::V1::BaseController
 
   def checkin
+    #must use @current_user since user may not have signed in
     if @current_user.checked_in?
       render :json => { "error" => "You are already checked in."}, :status => 404 and return
     else
@@ -10,6 +11,7 @@ class Api::V1::LogsController < Api::V1::BaseController
   end
 
   def checkout
+    #must use @current_user since user may not have signed in
     if !@current_user.checked_in?
       render :json => { "error" => "You were not even checked in."}, :status => 404 and return
     else

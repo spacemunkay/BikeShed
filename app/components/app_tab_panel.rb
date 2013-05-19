@@ -6,6 +6,11 @@ class AppTabPanel < Netzke::Basepack::TabPanel
     c.text = "Sign out #{controller.current_user.email}" if controller.current_user
   end
 
+  action :check_out do |c|
+    c.icon = :door_out
+    c.text = "CHECK OUT" if controller.current_user
+  end
+
   def configure(c)
 
     #all users
@@ -49,7 +54,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
     end
 
     c.prevent_header = true
-    c.tbar = [:sign_out]
+    c.tbar = [:sign_out, :check_out]
     c.items = @@app_tab_panel_items
     super
   end
@@ -58,6 +63,5 @@ class AppTabPanel < Netzke::Basepack::TabPanel
     #gets js from app_tab_panel/javascripts/sign_out.js
     c.mixin :sign_out
   end
-
 end
 
