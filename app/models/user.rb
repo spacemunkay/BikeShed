@@ -70,7 +70,6 @@ class User < ActiveRecord::Base
                  log_action_id: log_action.id,
                  log_action_type: log_action.class.to_s)
     save
-    puts logs.inspect
   end
 
   def checkout
@@ -80,6 +79,5 @@ class User < ActiveRecord::Base
       where("start_date = end_date").first
     checked.end_date = Time.now
     checked.save
-    puts logs.inspect
   end
 end
