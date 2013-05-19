@@ -13,3 +13,8 @@ staff:
   action: STAFF
   created_at: <%= Time.now %>
   updated_at: <%= Time.now %>
+checkin:
+  id: 4
+  action: CHECKIN
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>

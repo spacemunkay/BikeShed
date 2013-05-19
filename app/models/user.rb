@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
     user_role.to_s == role.to_s
   end
 
+### TODO methods below probably belong somewhere else
+
   def total_hours
     ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
   end
@@ -48,5 +50,36 @@ class User < ActiveRecord::Base
       .where( :end_date => current_month_range)
       .sum { |l| (l.end_date - l.start_date)/3600 }
       .round(2)
+  end
+
+  def checked_in?
+    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    checked = logs.where( log_action_id: log_action.id).
+      where("start_date >= ?", Time.zone.now.beginning_of_day).
+      where("start_date = end_date")
+    !checked.empty?
+  end
+
+  def checkin
+    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    time = Time.now
+    logs.create( logger_id: self.id,
+                 logger_type: self.class.to_s,
+                 start_date: time,
+                 end_date: time,
+                 log_action_id: log_action.id,
+                 log_action_type: log_action.class.to_s)
+    save
+    puts logs.inspect
+  end
+
+  def checkout
+    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    checked = logs.where( log_action_id: log_action.id).
+      where("start_date >= ?", Time.zone.now.beginning_of_day).
+      where("start_date = end_date").first
+    checked.end_date = Time.now
+    checked.save
+    puts logs.inspect
   end
 end

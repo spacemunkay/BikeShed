@@ -221,3 +221,9 @@ Devise.setup do |config|
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
 end
+
+#Check in the user if they sign in. (Devise uses Warden)
+Warden::Manager.after_authentication do |user,auth,opts|
+  user.checkin unless user.checked_in?
+end
+
