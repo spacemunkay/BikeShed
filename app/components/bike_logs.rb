@@ -30,14 +30,36 @@ class BikeLogs < Netzke::Basepack::Grid
                                               }
       }
     ]
-
+=begin
     #TODO: fix GUI so it actually respects this
-    current_bike = Bike.find_by_id(session[:selected_bike_id]) 
-    if cannot? :update, current_bike
+    current_bike = Bike.find_by_id(session[:selected_bike_id])
+    if can? :manage, current_bike
+      puts "\n\n\nCAN MANAGE!\n\n\n"
+      c.bbar = default_bbar
+    else
+      puts "\n\n\nCANNNOT MANAGE!\n\n\n"
       # if you can't update the bike, you can't do anything to the log
-      c.prohibit_update = c.prohibit_create = c.prohibit_delete = true
+      #c.prohibit_update = c.prohibit_create = c.prohibit_delete = true
+      c.bbar = [ :search ]
     end
+=end
+  end
 
+  endpoint :set_read_only do |params, this|
+    current_bike = Bike.find_by_id(session[:selected_bike_id])
+      puts "\n\n\nREAD!\n\n\n"
+    if can? :manage, current_bike
+      puts "\n\n\nCAN MANAGE!\n\n\n"
+      #calls this.setDisabled()
+      this.set_disabled(false)
+      #sets the return value of this function
+      #this.netzke_set_result(true)
+    else
+      puts "\n\n\nCANNNOT MANAGE!\n\n\n"
+      #sets the return value of this function
+      #this.netzke_set_result(true)
+      this.set_disabled(true)
+    end
   end
 
   def default_fields_for_forms
@@ -50,13 +72,12 @@ class BikeLogs < Netzke::Basepack::Grid
     ]
   end
 
-=begin
+
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
-    bbar.concat [ :apply ] if can? :update, ::ActsAsLoggable::Log
-    bbar.concat [ :add_in_form ] if can? :create, ::ActsAsLoggable::Log
+    bbar.concat [ :apply ] #if can? :update, ::ActsAsLoggable::Log
+    bbar.concat [ :add_in_form ] #if can? :create, ::ActsAsLoggable::Log
     bbar
   end
-=end
 end
