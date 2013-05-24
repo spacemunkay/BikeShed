@@ -6,21 +6,29 @@ FactoryGirl.define do
     first_name 'Michael'
     last_name 'Scott'
     sequence(:bike_id) { |n| n }
-    association :user_role, factory: :role_user
+    after_build do |r|
+      r.roles << (Role.find_by_role("user") || FactoryGirl.create(:role_user))
+    end
 
     factory :staff do
       first_name 'Staff'
-      association :user_role, factory: :role_staff
+      after_build do |r|
+        r.roles << (Role.find_by_role("staff") || FactoryGirl.create(:role_staff))
+      end
     end
 
     factory :admin do
       first_name 'Admin'
-      association :user_role, factory: :role_admin
+      after_build do |r|
+        r.roles << (Role.find_by_role("admin") || FactoryGirl.create(:role_admin))
+      end
     end
 
     factory :bike_admin do
       first_name 'BikeAdmin'
-      association :user_role, factory: :role_bike_admin
+      after_build do |r|
+        r.roles << (Role.find_by_role("bike_admin") || FactoryGirl.create(:role_bike_admin))
+      end
     end
 
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419010051) do
+ActiveRecord::Schema.define(:version => 20130424005701) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -97,6 +97,12 @@ ActiveRecord::Schema.define(:version => 20130419010051) do
 
   add_index "logs", ["loggable_id", "loggable_type", "context"], :name => "index_logs_on_loggable_id_and_loggable_type_and_context"
 
+  create_table "roles", :force => true do |t|
+    t.string   "role"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "task_lists", :force => true do |t|
     t.integer "item_id",   :null => false
     t.string  "item_type", :null => false
@@ -148,8 +154,8 @@ ActiveRecord::Schema.define(:version => 20130419010051) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "user_roles", :force => true do |t|
-    t.string   "role"
+  create_table "user_role_joins", :force => true do |t|
+    t.integer  "role_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.datetime "ends"
@@ -167,7 +173,6 @@ ActiveRecord::Schema.define(:version => 20130419010051) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "user_role_id",           :default => 1,  :null => false
     t.integer  "bike_id"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
