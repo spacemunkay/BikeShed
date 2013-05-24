@@ -7,14 +7,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :first_name, :last_name, :nickname, :user_role_id, :bike_id,
+    :first_name, :last_name, :nickname, :bike_id,
     :user_profiles_attributes
 
   has_many :transactions
   has_many :user_profiles
   accepts_nested_attributes_for :user_profiles, allow_destroy: false
 
-  has_one :user_role
+  has_many :user_role_joins, :conditions => ["ends IS NULL OR ends > ?", Time.now]
+  has_many :roles, through: :user_role_joins
+
   belongs_to :bike
 
   validates :first_name, :presence => true
@@ -28,12 +30,11 @@ class User < ActiveRecord::Base
     to_s
   end
 
-  def role
-    user_role.role
-  end
-
   def role?(role)
-    user_role.to_s == role.to_s
+    if role.kind_of?(String) or role.kind_of?(Symbol)
+      role = Role.find_by_role(role.to_s)
+    end
+    roles.include?(role)
   end
 
 ### TODO methods below probably belong somewhere else
