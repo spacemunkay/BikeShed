@@ -44,7 +44,8 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                       :logs,
                                       { layout: :fit,
                                       wrappedComponent: :user_role_joins,
-                                      title: "User Roles"}
+                                      title: "User Roles"},
+                                      :check_ins
                                       ]
     end
 
