@@ -17,8 +17,7 @@ class Bikes < Netzke::Basepack::Grid
                   }
       },
       #needs to have type :action or else won't work in grid, because... netzke
-      { :name => "color", :type => :action, :editor => { :xtype => "xcolorcombo"}},
-      #{ :name => :color },
+      { :name => "color", :text => "Frame Color", :type => :action, :editor => { :xtype => "xcolorcombo"}, :renderer => :color_block},
       { :name => :bike_style__style, :text => 'Style' },
       { :name => :seat_tube_height, :text => 'Seat Tube (in)'},
       { :name => :top_tube_length, :text => 'Top Tube (in)'},
