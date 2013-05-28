@@ -40,13 +40,15 @@ class User < ActiveRecord::Base
 ### TODO methods below probably belong somewhere else
 
   def total_hours
-    ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
+    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    logs.where("log_action_id != ? AND log_action_type = ?", log_action.id, log_action.class.to_s).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
   end
 
   def current_month_hours
+    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
     #TODO need to prevent users from saving logs across months, force to create a new log if crossing month
     current_month_range = (Time.now.beginning_of_month..Time.now.end_of_month)
-    ActsAsLoggable::Log.where( :loggable_type => self.class.to_s, :loggable_id => self.id)
+    logs.where("log_action_id != ? AND log_action_type = ?", log_action.id, log_action.class.to_s)
       .where( :start_date => current_month_range)
       .where( :end_date => current_month_range)
       .sum { |l| (l.end_date - l.start_date)/3600 }
