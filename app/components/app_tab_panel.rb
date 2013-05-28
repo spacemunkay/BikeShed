@@ -11,6 +11,11 @@ class AppTabPanel < Netzke::Basepack::TabPanel
     c.text = "CHECK OUT" if controller.current_user
   end
 
+  action :change_account_info do |c|
+    c.icon = :user_edit
+    c.text = "Change Email/Password"
+  end
+
   def configure(c)
 
     #all users
@@ -56,7 +61,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
       end
     end
     c.prevent_header = true
-    c.tbar = [:sign_out, :check_out]
+    c.tbar = [:sign_out, :check_out, :change_account_info]
     c.items = @@app_tab_panel_items
     super
   end
