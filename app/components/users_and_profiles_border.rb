@@ -9,7 +9,7 @@ class UsersAndProfilesBorder < Netzke::Base
     super
     c.header = false
     c.items = [
-     { netzke_component: :users, header: "Users", region: :center, width: 300, split: true },
+     { netzke_component: :users, header: "Users", region: :center, width: 350, split: true },
      { netzke_component: :user_profiles, region: :south, height: 150, split: true},
      { netzke_component: :user_logs, region: :east, split: true}
     ]
@@ -25,5 +25,5 @@ class UsersAndProfilesBorder < Netzke::Base
     # store selected boss id in the session for this component's instance
     session[:selected_user_id] = params[:user_id]
   end
-  
+
 end
