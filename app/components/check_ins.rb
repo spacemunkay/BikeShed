@@ -8,8 +8,8 @@ class CheckIns < Netzke::Basepack::Grid
                                  where("start_date >= ?", Time.zone.now.beginning_of_day);
                      }
     c.columns = [
-      { :name => :logged_by, :getter => lambda{ |rec|
-                                                user = User.find_by_id(rec.logger_id)
+      { :name => :name, :getter => lambda{ |rec|
+                                                user = User.find_by_id(rec.loggable_id)
                                                 user.nil? ? "" : "#{user.first_name} #{user.last_name}"
                                               }
       },
