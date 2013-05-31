@@ -16,7 +16,8 @@ class Bikes < Netzke::Basepack::Grid
                     end
                   }
       },
-      :color,
+      #needs to have type :action or else won't work in grid, because... netzke
+      { :name => "color", :text => "Frame Color", :type => :action, :editor => { :xtype => "xcolorcombo"}, :renderer => :color_block},
       { :name => :bike_style__style, :text => 'Style' },
       { :name => :seat_tube_height, :text => 'Seat Tube (in)'},
       { :name => :top_tube_length, :text => 'Top Tube (in)'},
@@ -29,6 +30,23 @@ class Bikes < Netzke::Basepack::Grid
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"
                                            }
       }
+    ]
+  end
+
+  def default_fields_for_forms
+    [
+      { :name => :shop_id, :field_label => 'Shop ID'},
+      :serial_number,
+      { :name => :bike_brand__brand, :field_label => 'Brand' },
+      { :name => :bike_model__model, :field_label => 'Model'},
+      { :name => "color", :xtype => "xcolorcombo"},
+      { :name => :bike_style__style, :field_label => 'Style' },
+      { :name => :seat_tube_height, :field_label => 'Seat Tube (in)'},
+      { :name => :top_tube_length, :field_label => 'Top Tube (in)'},
+      { :name => :wheel_size, :field_label => 'Wheel Size (in)'},
+      :value,
+      { :name => :bike_condition__condition, :field_label => 'Condition'},
+      { :name => :bike_status__status, :field_label => 'Status'}
     ]
   end
 
