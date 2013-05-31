@@ -29,22 +29,21 @@ class TransactionLogs < Netzke::Basepack::Grid
       }
     ]
 
-    c.prohibit_update = true if cannot? :update, ::ActsAsLoggable::Log
-    c.prohibit_create = true if cannot? :create, ::ActsAsLoggable::Log
-    c.prohibit_delete = true if cannot? :delete, ::ActsAsLoggable::Log 
+    @transaction_logs = ::ActsAsLoggable::Log.where(:loggable_type => "Transaction").all
+    c.prohibit_update = true if cannot? :update, @transaction_logs
+    c.prohibit_create = true if cannot? :create, @transaction_logs
+    c.prohibit_delete = true if cannot? :delete, @transaction_logs
 
   end
 
   def default_fields_for_forms
-    customer = nil
-    item = nil
-    if session[:selected_transaction_id]
-      trans = Transaction.find_by_id(session[:selected_transaction_id])
+    customer = "No Customer Selected"
+    item = "No Item Selected"
+    trans = Transaction.find_by_id(session[:selected_transaction_id])
+    if trans
       customer = trans.customer
       item = trans.item
     end
-    customer = "No Customer Selected" if customer.nil?
-    item = "No Item Selected" if item.nil?
     [
       { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Payment from:", :value => "#{customer.to_s}"},
       { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Payment for:", :value => "#{item.to_s}"},
@@ -58,8 +57,8 @@ class TransactionLogs < Netzke::Basepack::Grid
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
-    bbar.concat [ :apply ] if can? :update, ::ActsAsLoggable::Log
-    bbar.concat [:add_in_form ] if can? :create, ::ActsAsLoggable::Log
+    bbar.concat [ :apply ] if can? :update, @transaction_logs
+    bbar.concat [:add_in_form ] if can? :create, @transaction_logs
     bbar
   end
 
