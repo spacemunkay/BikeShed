@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "bootstrap_and_overrides", :media => "all" %>
 
-<h2>Sign in</h2>
+<h2>Velocipede</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :username%><br />
@@ -14,7 +14,14 @@
   <% end -%>
 
   <div><%= f.submit "Sign in" %></div>
+
+  <div id="checkin_menu"style="display:none;">
+    <input id="checkin" name="checkin" type="button" value="CHECK IN">
+    <input id="checkout" name="checkout" type="button" value="CHECK OUT">
+  </div>
 <% end %>
+
+
 
 <%= render "links" %>
 
