@@ -17,5 +17,8 @@
          });
        }
     });
+  },
+  onChangeAccountInfo: function(){
+    window.location.href="users/edit";
   }
 }
