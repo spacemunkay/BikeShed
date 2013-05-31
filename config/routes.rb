@@ -10,6 +10,7 @@ Velocipede::Application.routes.draw do
     scope 'v1', :module => :v1 do
       post 'checkin' => "logs#checkin", :as => "api_checkin"
       post 'checkout' => "logs#checkout", :as => "api_checkout"
+      post 'reset' => "users#password_reset", :as => "api_password_reset"
     end
   end
 

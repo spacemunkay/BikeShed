@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :user do
+    sequence(:username) { |n| "user_#{n}" }
     sequence(:email) { |n| "user_#{n}@example.com" }
     password 'password'
     password_confirmation { password }
@@ -11,6 +12,7 @@ FactoryGirl.define do
     end
 
     factory :staff do
+      username "staff"
       first_name 'Staff'
       after_build do |r|
         r.roles << (Role.find_by_role("staff") || FactoryGirl.create(:role_staff))
@@ -18,6 +20,7 @@ FactoryGirl.define do
     end
 
     factory :admin do
+      username "admin"
       first_name 'Admin'
       after_build do |r|
         r.roles << (Role.find_by_role("admin") || FactoryGirl.create(:role_admin))
@@ -25,6 +28,7 @@ FactoryGirl.define do
     end
 
     factory :bike_admin do
+      username "bike_admin"
       first_name 'BikeAdmin'
       after_build do |r|
         r.roles << (Role.find_by_role("bike_admin") || FactoryGirl.create(:role_bike_admin))

@@ -1,16 +1,28 @@
 class Users < Netzke::Basepack::Grid
+  include Netzke::Basepack::ActionColumn
+
+  column :reset do |c|
+    c.type = :action
+    c.actions = [{name: :reset_password, icon: :lock_break}]
+    c.header = ""
+    c.width = 20
+  end
+
   def configure(c)
     super
     c.header = false
     c.model = "User"
 
     c.columns = [
+      :username,
       :first_name,
       :last_name,
       :nickname,
       :email,
       :bike__shop_id
     ]
+
+    c.columns << :reset if can? :manage, User
   end
 
   #override with nil to remove actions

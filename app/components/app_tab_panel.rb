@@ -3,12 +3,17 @@ class AppTabPanel < Netzke::Basepack::TabPanel
 
   action :sign_out do |c|
     c.icon = :door_out
-    c.text = "Sign out #{controller.current_user.email}" if controller.current_user
+    c.text = "Exit"
   end
 
   action :check_out do |c|
     c.icon = :door_out
     c.text = "CHECK OUT" if controller.current_user
+  end
+
+  action :change_account_info do |c|
+    c.icon = :user_edit
+    c.text = "Change Email/Password"
   end
 
   def configure(c)
@@ -48,7 +53,9 @@ class AppTabPanel < Netzke::Basepack::TabPanel
     if can? :manage, Role
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :user_role_joins,
-                                      title: "User Roles"}]
+                                      title: "User Roles"},
+                                      :check_ins
+                                      ]
     end
 
     @@app_tab_panel_items.each do |item|
@@ -59,7 +66,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
       end
     end
     c.prevent_header = true
-    c.tbar = [:sign_out, :check_out]
+    c.tbar = [:sign_out, :check_out, :change_account_info]
     c.items = @@app_tab_panel_items
     super
   end
