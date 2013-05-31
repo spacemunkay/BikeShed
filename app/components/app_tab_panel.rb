@@ -48,13 +48,12 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                       title: "Users/Transactions"}]
     end
     if can? :manage, ::ActsAsLoggable::Log.all
-      @@app_tab_panel_items.concat [:logs]
+      @@app_tab_panel_items.concat [:logs, :check_ins]
     end
     if can? :manage, Role
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :user_role_joins,
                                       title: "User Roles"},
-                                      :check_ins
                                       ]
     end
 
