@@ -21,31 +21,34 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                 title: "Brands/Models"}
                               ]
 
-    #for users
-    if controller.current_user.role?(:user)
-      # (had to use hash for borders to get the title to display properly)
+    #for users only
+    if not controller.current_user.role?(:admin)
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :user_profile_border,
-                                      title: "Profile"},
+                                      title: "My Profile"},
                                     { layout: :fit,
                                       wrappedComponent: :user_transactions_border,
-                                      title: "Transactions"}
+                                      title: "My Transactions"}
                                     ]
     end
     #for admins
-    if controller.current_user.role?(:admin)
-      # (had to use hash for borders to get the title to display properly)
+    if can? :manage, User
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :users_and_profiles_border,
-                                      title: "Users/Profiles"},
-                                      { layout: :fit,
+                                      title: "Users/Profiles"}]
+    end
+    if can? :manage, Transaction
+      @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :transactions_border,
-                                      title: "Transactions"},
-                                      :logs,
-                                      { layout: :fit,
+                                      title: "Users/Transactions"}]
+    end
+    if can? :manage, ::ActsAsLoggable::Log.all
+      @@app_tab_panel_items.concat [:logs]
+    end
+    if can? :manage, Role
+      @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :user_role_joins,
-                                      title: "User Roles"}
-                                      ]
+                                      title: "User Roles"}]
     end
 
     @@app_tab_panel_items.each do |item|

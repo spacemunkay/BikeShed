@@ -14,10 +14,16 @@ class UserLogs < Netzke::Basepack::Grid
       :copy_action_id => 4
     }
 
-    if can? :manage, ::ActsAsLoggable::Log
+    #this seems inefficient
+    if can? :manage, ::ActsAsLoggable::Log.where(:loggable_type => "User").all
       #admins and staff
-      user_log_scope = lambda { |rel| rel.where(:loggable_type => 'User',:loggable_id => session[:selected_user_id]);}
-      user_log_strong_default_attrs.merge!( { :loggable_id => session[:selected_user_id] } )
+
+      #if selected user nil, then the admin is viewing their own profile
+      selected_user = User.find_by_id(session[:selected_user_id])
+      selected_user = controller.current_user if selected_user.nil?
+
+      user_log_scope = lambda { |rel| rel.where(:loggable_type => 'User',:loggable_id => selected_user.id );}
+      user_log_strong_default_attrs.merge!( { :loggable_id => selected_user.id } )
       user_log_data_store = {auto_load: true }
     else
       #just users
@@ -54,6 +60,7 @@ class UserLogs < Netzke::Basepack::Grid
     current_user ||= User.find_by_id(session[:selected_user_id]) || controller.current_user
     bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
     [
+      { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Log for:", :value => "#{current_user.to_s}"},
       { :name => :start_date},
       { :name => :end_date},
       { :name => :description},
