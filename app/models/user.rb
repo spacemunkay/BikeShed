@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :first_name, :last_name, :nickname, :bike_id,
-    :user_profiles_attributes
+    :user_profiles_attributes, :username
 
   has_many :transactions
   has_many :user_profiles
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
 
   def to_s
     "#{first_name} #{last_name}"
+  end
+
+  def email_required?
+    false
   end
 
   def full_name

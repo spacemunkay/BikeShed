@@ -5,6 +5,7 @@ class Users < Netzke::Basepack::Grid
     c.model = "User"
 
     c.columns = [
+      :username,
       :first_name,
       :last_name,
       :nickname,

@@ -3,7 +3,7 @@ class AppTabPanel < Netzke::Basepack::TabPanel
 
   action :sign_out do |c|
     c.icon = :door_out
-    c.text = "Sign out #{controller.current_user.email}" if controller.current_user
+    c.text = "Exit"
   end
 
   action :check_out do |c|
