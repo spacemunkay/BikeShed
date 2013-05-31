@@ -3,8 +3,8 @@
 <h2>Velocipede</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-    <%= f.email_field :email %></div>
+  <div><%= f.label :username%><br />
+    <%= f.text_field :username%></div>
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password %></div>
@@ -28,9 +28,9 @@
 <% if Rails.env.development? %>
   <% User.all.each do |user| %>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <%= f.hidden_field :email, :value => user.email %></div>
+      <%= f.hidden_field :username, :value => user.username%></div>
       <%= f.hidden_field :password, :value => 'password' %></div>
-      <div><%= f.submit "Sign in as #{user.email}" %></div>
+      <div><%= f.submit "Sign in as #{user.username}" %></div>
     <% end %>
   <% end %>
 <% end %>

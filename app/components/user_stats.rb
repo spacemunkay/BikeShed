@@ -4,6 +4,7 @@ class UserStats < Netzke::Base
     bike = user.bike
     %Q(
       <div id="user_stats_page">
+        <p>Username: #{user.username}</p>
         <p>Total Hours Worked: #{user.total_hours}</p>
         <p>Hours worked in #{Time.now.strftime('%B')}: #{user.current_month_hours}</p>
         <p>Current bike Shop ID: #{bike.shop_id if bike}</p>
