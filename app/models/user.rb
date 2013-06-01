@@ -43,6 +43,19 @@ class User < ActiveRecord::Base
 
 ### TODO methods below probably belong somewhere else
 
+  def completed_build_bikes
+    status_id = BikeStatus.find_by_status("BUILDBIKE").id
+    Bike.find_by_sql("
+      SELECT * 
+      FROM bikes
+      LEFT JOIN( 
+        SELECT *
+        FROM transactions
+        WHERE customer_id = #{self.id}
+      ) AS transactions ON bikes.id = transactions.bike_id
+      WHERE bike_status_id = #{status_id}")
+  end
+
   def total_hours
     log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
     logs.where("log_action_id != ? AND log_action_type = ?", log_action.id, log_action.class.to_s).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
