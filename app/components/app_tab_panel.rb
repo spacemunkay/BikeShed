@@ -1,6 +1,5 @@
 class AppTabPanel < Netzke::Basepack::TabPanel
 
-
   action :sign_out do |c|
     c.icon = :door_out
     c.text = "Exit"
@@ -47,16 +46,15 @@ class AppTabPanel < Netzke::Basepack::TabPanel
                                       wrappedComponent: :transactions_border,
                                       title: "Users/Transactions"}]
     end
-    if can? :manage, ::ActsAsLoggable::Log.all
-      @@app_tab_panel_items.concat [:logs, :check_ins]
-    end
     if can? :manage, Role
       @@app_tab_panel_items.concat [{ layout: :fit,
                                       wrappedComponent: :user_role_joins,
                                       title: "User Roles"},
                                       ]
     end
-
+    if can? :manage, ::ActsAsLoggable::Log.all
+      @@app_tab_panel_items.concat [:check_ins, :logs]
+    end
     @@app_tab_panel_items.each do |item|
       if item.kind_of?(Symbol)
         self.class.component item
