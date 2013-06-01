@@ -38,11 +38,9 @@ Ext.define('Ext.ux.form.field.ColorCombo', {
             submitValue:false,
             readOnly: me.readOnly,
             onTriggerClick: function() {
-              //needs to be called twice because?
-              me.picker.alignTo(me.colorField.inputEl);
+              //show renders, so put first
               me.picker.show();
               me.picker.alignTo(me.colorField.inputEl);
-              me.picker.show();
             }
         });
         me.items.push(me.colorField);

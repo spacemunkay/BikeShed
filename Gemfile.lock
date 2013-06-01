@@ -161,6 +161,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    rb-fsevent (0.9.3)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec (2.8.0)
@@ -245,6 +246,7 @@ DEPENDENCIES
   netzke-core (~> 0.8.0)
   pry (~> 0.9.8)
   rails (= 3.2.13)
+  rb-fsevent
   rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)
   shoulda-matchers (~> 1.0.0)
