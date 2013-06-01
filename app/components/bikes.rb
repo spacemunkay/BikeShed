@@ -2,7 +2,6 @@ class Bikes < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "Bike"
-
     c.columns = [
       { :name => :shop_id, :text => 'Shop ID'},
       :serial_number,
@@ -32,11 +31,11 @@ class Bikes < Netzke::Basepack::Grid
       }
     ]
   end
-
   def default_fields_for_forms
+    # :field_label MUST be defined in order for search to work
     [
       { :name => :shop_id, :field_label => 'Shop ID'},
-      :serial_number,
+      { :name => :serial_number, :field_label => 'Serial Number'},
       { :name => :bike_brand__brand, :field_label => 'Brand' },
       { :name => :bike_model__model, :field_label => 'Model'},
       { :name => "color", :xtype => "xcolorcombo"},
@@ -44,12 +43,11 @@ class Bikes < Netzke::Basepack::Grid
       { :name => :seat_tube_height, :field_label => 'Seat Tube (in)'},
       { :name => :top_tube_length, :field_label => 'Top Tube (in)'},
       { :name => :wheel_size, :field_label => 'Wheel Size (in)'},
-      :value,
+      { :name => :value, :field_label => 'Value'},
       { :name => :bike_condition__condition, :field_label => 'Condition'},
       { :name => :bike_status__status, :field_label => 'Status'}
     ]
   end
-
   #override with nil to remove actions
   def default_bbar
     [ :apply, :add_in_form, :search ]
