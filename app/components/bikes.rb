@@ -30,6 +30,10 @@ class Bikes < Netzke::Basepack::Grid
                                            }
       }
     ]
+    @bike = Bike.all
+    c.prohibit_update = true if cannot? :update, @bike
+    c.prohibit_create = true if cannot? :create, @bike
+    c.prohibit_delete = true if cannot? :delete, @bike
   end
   def default_fields_for_forms
     # :field_label MUST be defined in order for search to work

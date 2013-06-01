@@ -31,13 +31,18 @@ class BikeLogs < Netzke::Basepack::Grid
       }
     ]
 
+    @bike_logs = ::ActsAsLoggable::Log.where(:loggable_type => "Bike").all
+    c.prohibit_update = true if cannot? :update, @bike_logs
+    c.prohibit_create = true if cannot? :create, @bike_logs
+    c.prohibit_delete = true if cannot? :delete, @bike_logs
+=begin
     #TODO: fix GUI so it actually respects this
     current_bike = Bike.find_by_id(session[:selected_bike_id]) 
     if cannot? :update, current_bike
       # if you can't update the bike, you can't do anything to the log
       c.prohibit_update = c.prohibit_create = c.prohibit_delete = true
     end
-
+=end
   end
 
   def default_fields_for_forms
@@ -50,7 +55,7 @@ class BikeLogs < Netzke::Basepack::Grid
     ]
   end
 
-=begin
+
   #override with nil to remove actions
   def default_bbar
     bbar = [ :search ]
@@ -58,5 +63,5 @@ class BikeLogs < Netzke::Basepack::Grid
     bbar.concat [ :add_in_form ] if can? :create, ::ActsAsLoggable::Log
     bbar
   end
-=end
+
 end
