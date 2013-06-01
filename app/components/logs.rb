@@ -22,4 +22,25 @@ class Logs < Netzke::Basepack::Grid
       { :name => :hours, :getter => lambda { |rec| (rec.end_date - rec.start_date)/3600 }, :sorting_scope => :sort_by_duration}
     ]
   end
+
+  def default_fields_for_forms
+    [
+      :loggable_id,
+      :loggable_type,
+      :logger_id,
+      :logger_type,
+      :context,
+      :start_date,
+      :end_date,
+      :description,
+      :log_action_id,
+      :log_action_type,
+      :created_at,
+      :updated_at
+    ].map{ |x| { :name => x, :field_label => x.to_s.humanize} }
+  end
+
+  def default_bbar
+    [ :apply, :add_in_form, :search ]
+  end
 end
