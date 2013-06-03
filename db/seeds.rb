@@ -24,7 +24,6 @@ if Rails.env.development?
   if User.all.empty?
     FactoryGirl.create(:user)
     FactoryGirl.create(:staff)
-    FactoryGirl.create(:admin)
     FactoryGirl.create(:bike_admin)
     FactoryGirl.create(:user_profile)
   end
@@ -35,4 +34,16 @@ if Rails.env.development?
       FactoryGirl.create(:bike)
     end
   end
+elsif Rails.env.production?
+
+  if User.all.empty?
+    #create an admin
+    admin = User.create!( :username => 'admin',
+                  :first_name => 'admin',
+                  :last_name => 'admin',
+                  :email=>'admin@example.com',
+                  :password=>'password')
+    admin.roles << Role.find_by_role('admin')
+  end
+
 end

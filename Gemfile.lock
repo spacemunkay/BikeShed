@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/spacemunkay/acts_as_loggable.git
-  revision: 6033fe5a44878bb374f73fe473fed9a3396ddc74
+  revision: 49e264849ed9018445fb999cacfc55e1e28d7faa
   specs:
     acts_as_loggable (0.0.7)
       activerecord (>= 3.0)
@@ -178,11 +178,6 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.8.0)
     rubyzip (0.9.9)
-    sass (3.2.7)
-    sass-rails (3.2.6)
-      railties (~> 3.2.0)
-      sass (>= 3.1.10)
-      tilt (~> 1.3)
     selenium-webdriver (2.31.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -248,7 +243,6 @@ DEPENDENCIES
   rails (= 3.2.13)
   rb-fsevent
   rspec-rails (~> 2.8.1)
-  sass-rails (~> 3.2.3)
   shoulda-matchers (~> 1.0.0)
   spork
   sqlite3 (~> 1.3.5)

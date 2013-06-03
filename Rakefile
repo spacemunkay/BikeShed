@@ -12,16 +12,20 @@ require File.expand_path('../config/application', __FILE__)
 
 Velocipede::Application.load_tasks
 
-namespace :spec do
-  desc 'Run all acceptance specs'
-  RSpec::Core::RakeTask.new(:acceptance => 'db:test:prepare') do |t|
-    t.pattern = '**/*.feature'
+unless Rails.env.production?
+
+  namespace :spec do
+    desc 'Run all acceptance specs'
+    RSpec::Core::RakeTask.new(:acceptance => 'db:test:prepare') do |t|
+      t.pattern = '**/*.feature'
+    end
   end
-end
 
-Rake.application.remove_task 'spec'
+  Rake.application.remove_task 'spec'
 
-desc 'Run all specs'
-RSpec::Core::RakeTask.new(:spec => 'db:test:prepare') do |t|
-  t.pattern = '**/*{_spec.rb,.feature}'
+  desc 'Run all specs'
+  RSpec::Core::RakeTask.new(:spec => 'db:test:prepare') do |t|
+    t.pattern = '**/*{_spec.rb,.feature}'
+  end
+
 end
