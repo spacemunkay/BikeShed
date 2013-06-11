@@ -19,5 +19,13 @@ class CheckIns < Netzke::Basepack::Grid
       :start_date,
       :end_date,
     ]
+    c.prohibit_update = true
+    c.prohibit_create = true
+    c.prohibit_delete = true
   end
+
+  def default_bbar
+    [ :search ]
+  end
+
 end
