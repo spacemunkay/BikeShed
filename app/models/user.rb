@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     Bike.find_by_sql("
       SELECT * 
       FROM bikes
-      LEFT JOIN( 
+      INNER JOIN( 
         SELECT *
         FROM transactions
         WHERE customer_id = #{self.id}
