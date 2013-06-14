@@ -17,7 +17,6 @@ class Users < Netzke::Basepack::Grid
       :username,
       :first_name,
       :last_name,
-      :nickname,
       :email,
       :bike__shop_id
     ]
