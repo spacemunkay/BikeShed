@@ -1,9 +1,12 @@
 user:
   id: 1
   role: user
-staff:
+bike_admin:
   id: 2
+  role: bike_admin
+staff:
+  id: 3
   role: staff
 admin:
-  id: 3
+  id: 4
   role: admin

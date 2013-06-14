@@ -25,6 +25,7 @@ if Rails.env.development?
     FactoryGirl.create(:user)
     FactoryGirl.create(:staff)
     FactoryGirl.create(:bike_admin)
+    FactoryGirl.create(:admin)
     FactoryGirl.create(:user_profile)
   end
 
