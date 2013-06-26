@@ -37,7 +37,7 @@ if Rails.env.development?
   end
 elsif Rails.env.production?
 
-  if User.all.empty?
+  unless User.find_by_username('admin')
     #create an admin
     admin = User.create!( :username => 'admin',
                   :first_name => 'admin',
