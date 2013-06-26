@@ -14,7 +14,7 @@ gem 'decent_exposure', '~> 1.0.1'
 gem 'devise', '~> 2.0.4'
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails', '~> 2.0'
-gem 'sqlite3', '~> 1.3.5'
+gem 'pg'
 gem 'will_paginate', '~> 3.0.3'
 
 # Gems used only for assets and not required
