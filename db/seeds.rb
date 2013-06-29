@@ -15,7 +15,9 @@ end
 #Load bike brands and models from sql
 if BikeBrand.all.empty? and BikeModel.all.empty?
   sql_path = File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')
-  system "sqlite3  db/development.sqlite3 < #{sql_path}" if Rails.env.development?
+  db_config = Rails.application.config.database_configuration[Rails.env]
+  cmd = "psql #{db_config["database"]} < #{sql_path}"
+  system cmd
 end
 
 if Rails.env.development?
