@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
     :first_name, :last_name, :bike_id,
     :user_profiles_attributes, :username
 
-  has_many :transactions
+  has_many :transactions, as: :customer
+  has_many :transaction_logs, through: :transactions, source: :logs
   has_many :user_profiles
   accepts_nested_attributes_for :user_profiles, allow_destroy: false
 
@@ -54,6 +55,43 @@ class User < ActiveRecord::Base
         WHERE customer_id = #{self.id}
       ) AS transactions ON bikes.id = transactions.bike_id
       WHERE bike_status_id = #{status_id}")
+  end
+
+  def total_credits
+    total_earned_credits - total_credits_spent
+  end
+
+  def total_credits_spent
+    log_action = ::ActsAsLoggable::TransactionAction.find_by_action("TIME")
+    transaction_logs.
+      where(  "log_action_id = ? AND log_action_type = ?",
+              log_action.id, log_action.class.to_s).
+      sum{ |r| r.description.to_i }.round(2)
+  end
+
+  def total_earned_credits
+    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+
+    # Find the first credit conversion which has a created_at date before the
+    # log's created_at date and join it to the log's row so we can calculate
+    # the credits earned from that log entry (each log could have a different
+    # conversion rate)
+    #
+    # The DISTINCT ON, and ORDER BY are important to getting the
+    # single conversion rate that applies to the respective log.
+    ::ActsAsLoggable::Log.find_by_sql("
+      SELECT DISTINCT ON (logs.created_at) start_date, end_date,
+        conversion.conversion, conversion.created_at
+      FROM logs
+      INNER JOIN(
+        SELECT conversion, created_at
+        FROM credit_conversions
+      ) AS conversion ON logs.created_at > conversion.created_at
+      WHERE logs.loggable_id = #{self.id}
+      AND logs.loggable_type = 'User'
+      AND (log_action_id != #{log_action.id} AND log_action_type = '#{log_action.class.to_s}')
+      ORDER BY logs.created_at, conversion.created_at DESC").
+        sum{ |l| ((l.end_date - l.start_date)/3600) * l.conversion.to_i}.round(2)
   end
 
   def total_hours
