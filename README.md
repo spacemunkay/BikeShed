@@ -35,3 +35,5 @@ Follow the instructions from http://mailcatcher.me/ to create an rvm wrapper so 
 
 # License
 Velocipede is released under the MIT license (http://opensource.org/licenses/MIT)
+
+<a href="http://madewithloveinbaltimore.org">Made with &hearts; in Baltimore</a>
