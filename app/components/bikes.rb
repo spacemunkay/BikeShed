@@ -38,10 +38,10 @@ class Bikes < Netzke::Basepack::Grid
   def default_fields_for_forms
     # :field_label MUST be defined in order for search to work
     [
-      { :name => :shop_id, :field_label => 'Shop ID'},
-      { :name => :serial_number, :field_label => 'Serial Number'},
       { :name => :bike_brand__brand, :field_label => 'Brand' },
       { :name => :bike_model__model, :field_label => 'Model'},
+      { :name => :shop_id, :field_label => 'Shop ID'},
+      { :name => :serial_number, :field_label => 'Serial Number'},
       { :name => "color", :xtype => "xcolorcombo"},
       { :name => :bike_style__style, :field_label => 'Style' },
       { :name => :seat_tube_height, :field_label => 'Seat Tube (in)'},
