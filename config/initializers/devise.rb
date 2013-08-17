@@ -224,7 +224,9 @@ end
 
 #Check in the user if they sign in. (Devise uses Warden)
 Warden::Manager.after_set_user do |user,auth,opts|
-  #this essentially gets called after every netzke request, but alas.
+  # this essentially gets called after every netzke request, but alas,
+  # only using the after_authenticaion callback doesn't get fired after
+  # user creation.
   user.checkin unless user.checked_in?
 end
 
