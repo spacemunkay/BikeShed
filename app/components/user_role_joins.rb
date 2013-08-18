@@ -19,7 +19,7 @@ class UserRoleJoins < Netzke::Basepack::Grid
 
   def default_fields_for_forms
     [
-      { :name => :user__username, :field_label => 'Username' },
+      { :name => :user__full_name, :field_label => 'Name'},
       { :name => :role__role, :field_label => 'Role' },
       { :name => :ends }
     ]
