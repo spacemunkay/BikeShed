@@ -14,7 +14,7 @@ class Bike < ActiveRecord::Base
   belongs_to :bike_status
 
   validates :shop_id, :presence => true, :uniqueness => true, :length => { :minimum => 3 }
-  validates :serial_number, :uniqueness => true, :length => { :minimum => 3 }
+  validates :serial_number, :length => { :minimum => 3 }
   validates :bike_brand_id, :presence => true
   validates :bike_model_id, :presence => true
   validates :color, :presence => true
