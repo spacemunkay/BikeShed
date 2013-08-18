@@ -19,11 +19,8 @@ class BikeLogs < Netzke::Basepack::Grid
     c.columns = [
       { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db)  },
       { :name => :end_date, :hidden => true, :default_value => Time.now.to_formatted_s(:db) },
-      { :name => :hours, :getter => lambda { |rec| (rec.end_date - rec.start_date)/3600 }, :sorting_scope => :sort_by_duration},
       :description,
       { :name => :bike_action__action, :text => 'Action'},
-      { :name => :created_at, :read_only => true},
-      { :name => :updated_at, :read_only => true},
       { :name => :logged_by, :getter => lambda{ |rec|
                                                 user = User.find_by_id(rec.logger_id)
                                                 user.nil? ? "" : "#{user.first_name} #{user.last_name}"
