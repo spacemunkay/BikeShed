@@ -7,5 +7,6 @@ tmp/
 .rbenv-version
 .DS_Store
 public/extjs
+public/assets
 public/images/icons
 config/database.yml
