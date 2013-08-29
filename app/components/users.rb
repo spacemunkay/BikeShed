@@ -18,7 +18,7 @@ class Users < Netzke::Basepack::Grid
       :first_name,
       :last_name,
       :email,
-      :bike__shop_id
+      { :id => :bike__shop_id, :name => :bike__shop_id}
     ]
 
     c.columns << :reset if can? :manage, User
