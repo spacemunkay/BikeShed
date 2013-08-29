@@ -43,7 +43,7 @@ class UserLogs < Netzke::Basepack::Grid
       { :name => :end_date, :format => "g:ia - D, M j - Y", :default_value => Time.now.to_formatted_s(:db) },
       { :name => :hours, :getter => lambda { |rec| (rec.end_date - rec.start_date)/3600 }, :sorting_scope => :sort_by_duration},
       :description,
-      { :name => :user_action__action, :text => 'Action', :default_value => ::ActsAsLoggable::UserAction.all.first.id },
+      { :id => :user_action__action, :name => :user_action__action, :text => 'Action', :default_value => ::ActsAsLoggable::UserAction.all.first.id },
       { :name => :logged_by, :getter => lambda{ |rec|
                                                 user = User.find_by_id(rec.logger_id)
                                                 user.nil? ? "" : "#{user.first_name} #{user.last_name}"
