@@ -3,6 +3,17 @@
     // calling superclass's initComponent
     this.callParent();
 
+    //due to Netzke bug, :min_chars attribute doesn't work
+    var min_char_columns = [
+      "bike_brand__brand",
+      "bike_model__model",
+      "bike_style__style",
+      "bike_condition__condition",
+      "bike_status__status"]
+    Ext.each(min_char_columns, function(column, index) {
+      Ext.ComponentManager.get(column).editor.minChars = 1;
+    });
+
     // setting the 'rowclick' event
     var view = this.getView();
     view.on('itemclick', function(view, record){

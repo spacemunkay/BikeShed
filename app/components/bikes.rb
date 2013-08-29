@@ -2,11 +2,14 @@ class Bikes < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "Bike"
+
+    # columns with :id set, have :min_chars set in init_component
+    # See: http://stackoverflow.com/questions/17738962/netzke-grid-filtering
     c.columns = [
       { :name => :shop_id, :text => 'Shop ID'},
       :serial_number,
-      { :name => :bike_brand__brand, :text => 'Brand' },
-      { :name => :bike_model__model, :text => 'Model',
+      { :id => :bike_brand__brand, :name => :bike_brand__brand, :text => 'Brand'},
+      { :id => :bike_model__model, :name => :bike_model__model, :text => 'Model',
         :scope => lambda { |rel|
                     if session[:selected_bike_brand_id]
                       rel.where(:bike_brand_id => session[:selected_bike_brand_id])
@@ -17,13 +20,13 @@ class Bikes < Netzke::Basepack::Grid
       },
       #needs to have type :action or else won't work in grid, because... netzke
       { :name => "color", :text => "Frame Color", :type => :action, :editor => { :xtype => "xcolorcombo"}, :renderer => :color_block},
-      { :name => :bike_style__style, :text => 'Style' },
+      { :id => :bike_style__style, :name => :bike_style__style, :text => 'Style' },
       { :name => :seat_tube_height, :text => 'Seat Tube (in)'},
       { :name => :top_tube_length, :text => 'Top Tube (in)'},
       { :name => :wheel_size, :text => 'Wheel Size (in)'},
       :value,
-      { :name => :bike_condition__condition, :text => 'Condition'},
-      { :name => :bike_status__status, :text => 'Status'},
+      { :id => :bike_condition__condition, :name => :bike_condition__condition, :text => 'Condition'},
+      { :id => :bike_status__status, :name => :bike_status__status, :text => 'Status'},
       { :name => :owner, :getter => lambda { |rec|
                                               user = rec.owner
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"
