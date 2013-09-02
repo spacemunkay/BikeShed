@@ -10,7 +10,7 @@ class Bikes < Netzke::Basepack::Grid
       { :name => :shop_id, :text => 'Shop ID'},
       :serial_number,
       { :id => :bike_brand__brand, :name => :bike_brand__brand, :text => 'Brand'},
-      { :id => :bike_model__model, :name => :bike_model__model, :text => 'Model',
+      { :name => :model, :text => 'Model',
         :scope => lambda { |rel|
                     if session[:selected_bike_brand_id]
                       rel.where(:bike_brand_id => session[:selected_bike_brand_id])
@@ -43,7 +43,7 @@ class Bikes < Netzke::Basepack::Grid
     # :field_label MUST be defined in order for search to work
     [
       { :name => :bike_brand__brand, :field_label => 'Brand' },
-      { :name => :bike_model__model, :field_label => 'Model'},
+      { :name => :model, :field_label => 'Model'},
       { :name => :shop_id, :field_label => 'Shop ID'},
       { :name => :serial_number, :field_label => 'Serial Number'},
       { :name => "color", :xtype => "xcolorcombo"},

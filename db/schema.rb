@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902164600) do
+ActiveRecord::Schema.define(:version => 20130902201853) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130902164600) do
   create_table "bikes", :force => true do |t|
     t.string   "serial_number"
     t.integer  "bike_brand_id",     :null => false
-    t.integer  "bike_model_id",     :null => false
+    t.integer  "bike_model_id"
     t.string   "color"
     t.integer  "bike_style_id",     :null => false
     t.float    "seat_tube_height"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20130902164600) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "shop_id"
+    t.string   "model"
   end
 
   add_index "bikes", ["shop_id"], :name => "index_bikes_on_shop_id", :unique => true
