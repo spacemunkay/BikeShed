@@ -28,7 +28,7 @@ class Bike < ActiveRecord::Base
 
   self.per_page = 15
 
-  after_save :create_task_list
+  after_create :create_task_list
 
   def brand
     self.bike_brand
