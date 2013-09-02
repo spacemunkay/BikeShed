@@ -6,7 +6,6 @@
     //due to Netzke bug, :min_chars attribute doesn't work
     var min_char_columns = [
       "bike_brand__brand",
-      "bike_model__model",
       "bike_style__style",
       "bike_condition__condition",
       "bike_purpose__purpose"]
