@@ -4,6 +4,7 @@ class UserRoleJoins < Netzke::Basepack::Grid
     c.model = "UserRoleJoin"
     c.header = false
     c.title = "User Roles"
+    c.data_store.sorters = [{ :property => :user__username, :direction => :ASC}]
     c.columns = [
       { :name => :user__username, :text => "Username", :read_only => true},
       { :name => :name, :getter => lambda{ |rec|
