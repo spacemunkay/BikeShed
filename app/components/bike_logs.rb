@@ -45,7 +45,6 @@ class BikeLogs < Netzke::Basepack::Grid
   def default_fields_for_forms
     [
       { :name => :start_date},
-      { :name => :end_date},
       { :name => :description},
       #had to hack acts_as_loggable/log.rb to get this to work
       { :name => :bike_action__action, :field_label => 'Action'}
