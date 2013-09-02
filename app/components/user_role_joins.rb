@@ -5,7 +5,7 @@ class UserRoleJoins < Netzke::Basepack::Grid
     c.header = false
     c.title = "User Roles"
     c.columns = [
-      { :name => :user__username, :text => "Username"},
+      { :name => :user__username, :text => "Username", :read_only => true},
       { :name => :name, :getter => lambda{ |rec|
                                                 user = User.find_by_id(rec.user_id)
                                                 user.nil? ? "" : "#{user.first_name} #{user.last_name}"

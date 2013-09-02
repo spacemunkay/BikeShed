@@ -14,7 +14,7 @@ class Users < Netzke::Basepack::Grid
     c.model = "User"
 
     c.columns = [
-      :username,
+      { :name => :username, :read_only => true },
       :first_name,
       :last_name,
       :email,
