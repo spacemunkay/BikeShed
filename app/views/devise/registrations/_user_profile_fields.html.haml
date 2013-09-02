@@ -1,24 +1,25 @@
 %fieldset
-  = f.label :addrStreet1
-  %br/
-  = f.text_field :addrStreet1
-  %br/
-  = f.label :addrStreet2
-  %br/
-  = f.text_field :addrStreet2
-  %br/
-  = f.label :addrCity
-  %br/
-  = f.text_field :addrCity
-  %br/
-  = f.label :addrState
-  %br/
-  = f.text_field :addrState
-  %br/
-  = f.label :addrZip
-  %br/
-  = f.text_field :addrZip
-  %br/
-  = f.label :phone
-  %br/
-  = f.text_field :phone
+  .control-group
+    = f.label :addrStreet1, :class => "control-label"
+    .controls
+      = f.text_field :addrStreet1, :class => "control-label"
+  .control-group
+    = f.label :addrStreet2, :class => "control-label"
+    .controls
+      = f.text_field :addrStreet2, :class => "control-label"
+  .control-group
+    = f.label :addrCity, :class => "control-label"
+    .controls
+      = f.text_field :addrCity, :class => "control-label"
+  .control-group
+    = f.label :addrState, :class => "control-label"
+    .controls
+      = f.text_field :addrState, :class => "control-label"
+  .control-group
+    = f.label :addrZip, :class => "control-label"
+    .controls
+      = f.text_field :addrZip, :class => "control-label"
+  .control-group
+    = f.label :phone, :class => "control-label"
+    .controls
+      = f.text_field :phone, :class => "control-label"
