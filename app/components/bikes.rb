@@ -2,6 +2,7 @@ class Bikes < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "Bike"
+    c.data_store.sorters = [{ :property => :shop_id, :direction => :ASC}]
 
     # columns with :id set, have :min_chars set in init_component
     # See: http://stackoverflow.com/questions/17738962/netzke-grid-filtering
