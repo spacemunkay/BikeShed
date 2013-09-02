@@ -1,0 +1,18 @@
+undetermined:
+  id: 1
+  purpose: UNDETERMINED
+scrap:
+  id: 2
+  purpose: SCRAP
+parts:
+  id: 3
+  purpose: PARTS
+storage:
+  id: 4
+  purpose: STORAGE
+buildbike:
+  id: 5
+  purpose: BUILDBIKE
+sale:
+  id: 6
+  purpose: SALE
