@@ -1,7 +1,6 @@
 class BikeModel < ActiveRecord::Base
   attr_accessible :model, :bike_brand_id
 
-  has_many :bikes
   belongs_to :bike_brand
 
   default_scope order('model ASC')
