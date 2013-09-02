@@ -13,7 +13,6 @@ class Users < Netzke::Basepack::Grid
     c.header = false
     c.model = "User"
 
-    c.data_store.sorters = [{ :property => :username, :direction => :ASC}]
     c.columns = [
       { :name => :username, :read_only => true },
       :first_name,

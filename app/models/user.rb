@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   belongs_to :bike
 
+  default_scope order('username ASC')
+
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 

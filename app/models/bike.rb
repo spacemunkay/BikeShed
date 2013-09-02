@@ -12,6 +12,8 @@ class Bike < ActiveRecord::Base
   belongs_to :bike_condition
   belongs_to :bike_purpose
 
+  default_scope order('shop_id ASC')
+
   validates :shop_id, :presence => true, :uniqueness => true, :length => { :minimum => 3 }
   validates :serial_number, :length => { :minimum => 3 }
   validates :model, :length => { :maximum => 50 }
