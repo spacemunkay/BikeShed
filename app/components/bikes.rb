@@ -26,7 +26,7 @@ class Bikes < Netzke::Basepack::Grid
       { :name => :wheel_size, :text => 'Wheel Size (in)'},
       :value,
       { :id => :bike_condition__condition, :name => :bike_condition__condition, :text => 'Condition'},
-      { :id => :bike_status__status, :name => :bike_status__status, :text => 'Status'},
+      { :id => :bike_purpose__purpose, :name => :bike_purpose__purpose, :text => 'Purpose'},
       { :name => :owner, :getter => lambda { |rec|
                                               user = rec.owner
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"
@@ -52,7 +52,7 @@ class Bikes < Netzke::Basepack::Grid
       { :name => :wheel_size, :field_label => 'Wheel Size (in)'},
       { :name => :value, :field_label => 'Value'},
       { :name => :bike_condition__condition, :field_label => 'Condition'},
-      { :name => :bike_status__status, :field_label => 'Status'}
+      { :name => :bike_purpose__purpose, :field_label => 'Purpose'}
     ]
   end
   #override with nil to remove actions

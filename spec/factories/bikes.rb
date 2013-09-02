@@ -17,6 +17,6 @@ FactoryGirl.define do
     wheel_size 27
     value 100
     bike_condition_id 1
-    bike_status_id 1
+    bike_purpose_id 1
   end
 end
