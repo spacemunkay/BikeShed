@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 ### TODO methods below probably belong somewhere else
 
   def completed_build_bikes
-    status_id = BikeStatus.find_by_status("BUILDBIKE").id
+    purpose_id = BikePurpose.find_by_purpose("BUILDBIKE").id
     Bike.find_by_sql("
       SELECT * 
       FROM bikes
@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
         FROM transactions
         WHERE customer_id = #{self.id}
       ) AS transactions ON bikes.id = transactions.bike_id
-      WHERE bike_status_id = #{status_id}")
+      WHERE bike_purpose_id = #{purpose_id}")
   end
 
   def total_credits

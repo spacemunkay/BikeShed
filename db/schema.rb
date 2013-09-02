@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816015219) do
+ActiveRecord::Schema.define(:version => 20130902164600) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20130816015219) do
     t.integer "bike_brand_id", :null => false
   end
 
-  create_table "bike_statuses", :force => true do |t|
-    t.string   "status",     :null => false
+  create_table "bike_purposes", :force => true do |t|
+    t.string   "purpose",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20130816015219) do
     t.integer  "wheel_size"
     t.float    "value"
     t.integer  "bike_condition_id", :null => false
-    t.integer  "bike_status_id",    :null => false
+    t.integer  "bike_purpose_id",   :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "shop_id"

@@ -9,7 +9,7 @@
       "bike_model__model",
       "bike_style__style",
       "bike_condition__condition",
-      "bike_status__status"]
+      "bike_purpose__purpose"]
     Ext.each(min_char_columns, function(column, index) {
       Ext.ComponentManager.get(column).editor.minChars = 1;
     });
