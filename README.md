@@ -28,11 +28,6 @@
 1. Download icons from http://www.famfamfam.com/lab/icons/silk/
 1. Link to the icons under `public/images/icons`: (From app root) `ln -s /MY/PATH/famfamfam_silk_icons/icons public/images/icons`
 
-## Mailcatcher
-
-Use mailcatcher to see what emails look like in development.
-Follow the instructions from http://mailcatcher.me/ to create an rvm wrapper so you don't install it all over your gemsets
-
 # License
 Velocipede is released under the MIT license (http://opensource.org/licenses/MIT)
 
