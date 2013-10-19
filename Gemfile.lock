@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/spacemunkay/acts_as_loggable.git
-  revision: 49e264849ed9018445fb999cacfc55e1e28d7faa
+  revision: 8484dc1f7a58699705c5ffb593ebdf700a9f374a
   specs:
     acts_as_loggable (0.0.7)
       activerecord (>= 3.0)
@@ -122,7 +122,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.22)
-    multi_json (1.7.9)
+    multi_json (1.8.2)
     netzke-basepack (0.8.4)
       netzke-core (~> 0.8.2)
     netzke-cancan (0.8.2)
@@ -162,6 +162,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.4)
+    rb-fsevent (0.9.3)
     rdoc (3.12.2)
       json (~> 1.4)
     rspec (2.8.0)
@@ -206,7 +207,7 @@ GEM
       less-rails (~> 2.2.2)
       railties (>= 3.1)
       therubyracer (~> 0.10.1)
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -241,6 +242,7 @@ DEPENDENCIES
   pg
   pry (~> 0.9.8)
   rails (= 3.2.13)
+  rb-fsevent
   rspec-rails (~> 2.8.1)
   shoulda-matchers (~> 1.0.0)
   spork
