@@ -3,6 +3,7 @@ class BikeBrands < Netzke::Basepack::Grid
     super
     c.model = "BikeBrand"
     c.title = "Brands"
+    c.force_fit = true
 
     c.prohibit_update = true if cannot? :update, BikeBrand
     c.prohibit_create = true if cannot? :create, BikeBrand

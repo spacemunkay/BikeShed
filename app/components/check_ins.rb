@@ -4,6 +4,7 @@ class CheckIns < Netzke::Basepack::Grid
     super
     c.header = false
     c.model = "ActsAsLoggable::Log"
+    c.force_fit = true
     c.scope = lambda { |rel| rel.where(:log_action_type => ::ActsAsLoggable::UserAction).
                                  where(:loggable_type => "User").
                                  where(:log_action_id => ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")).

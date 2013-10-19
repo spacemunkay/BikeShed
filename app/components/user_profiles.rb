@@ -19,6 +19,7 @@ class UserProfiles < Netzke::Basepack::Grid
 
     c.model = "UserProfile"
     c.title = "Profile"
+    c.force_fit = true
     c.data_store = user_profiles_data_store
     c.scope = user_profiles_scope
     c.strong_default_attrs = user_profile_strong_default_attrs

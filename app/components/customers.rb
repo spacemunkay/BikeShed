@@ -1,6 +1,7 @@
 class Customers < Netzke::Basepack::Grid
   def configure(c)
     c.model = "Customer"
+    c.force_fit = true
   end
 
   #override with nil to remove actions

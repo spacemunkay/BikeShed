@@ -2,6 +2,7 @@ class UserRoleJoins < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "UserRoleJoin"
+    c.force_fit = true
     c.header = false
     c.title = "User Roles"
     c.data_store.sorters = [{ :property => :user__username, :direction => :ASC}]

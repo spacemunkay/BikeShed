@@ -4,6 +4,7 @@ class Logs < Netzke::Basepack::Grid
     super
     c.header = false
     c.model = "ActsAsLoggable::Log"
+    c.force_fit = true
     c.columns = [
       :loggable_id,
       :loggable_type,

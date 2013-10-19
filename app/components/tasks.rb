@@ -9,6 +9,7 @@ class Tasks < Netzke::Basepack::Grid
 
     c.header = false
     c.model = "Task"
+    c.force_fit = true
     c.scope = lambda{ |rel|
                       if session[:selected_bike_id]
                         rel.where(:task_list_id => Bike.find_by_id(session[:selected_bike_id]).task_list.id)

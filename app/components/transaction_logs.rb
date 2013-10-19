@@ -5,6 +5,7 @@ class TransactionLogs < Netzke::Basepack::Grid
 
     c.model = "ActsAsLoggable::Log"
     c.title = "Transaction Payments"
+    c.force_fit = true
     c.data_store = {auto_load: false}
     c.scope = lambda { |rel| rel.where(:loggable_type => 'Transaction',:loggable_id => session[:selected_transaction_id]);}
     c.strong_default_attrs = {
