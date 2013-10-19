@@ -34,6 +34,7 @@ class UserLogs < Netzke::Basepack::Grid
 
     c.model = "ActsAsLoggable::Log"
     c.title = "User Timesheet"
+    c.force_fit = true
     c.data_store = user_log_data_store
     c.scope = user_log_scope
     c.strong_default_attrs = user_log_strong_default_attrs

@@ -5,6 +5,7 @@ class UserTransactions < Netzke::Basepack::Grid
 
     c.model = "Transaction"
     c.title = "Transactions"
+    c.force_fit = true
     c.scope = lambda { |rel| rel.where(:customer_id => controller.current_user.id, :customer_type => 'User');}
     c.data_store = { auto_load: true }
     c.columns = [

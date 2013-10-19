@@ -12,6 +12,7 @@ class Users < Netzke::Basepack::Grid
     super
     c.header = false
     c.model = "User"
+    c.force_fit = true
 
     c.columns = [
       { :name => :username, :read_only => true },
