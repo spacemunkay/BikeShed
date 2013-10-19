@@ -9,7 +9,5 @@
     Ext.each(min_char_columns, function(column, index) {
       Ext.ComponentManager.get(column).editor.minChars = 1;
     });
-
-
   }
 }
