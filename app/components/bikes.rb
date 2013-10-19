@@ -25,7 +25,7 @@ class Bikes < Netzke::Basepack::Grid
       { :id => :bike_style__style, :name => :bike_style__style, :text => 'Style', :default_value => BikeStyle.first.id},
       { :name => :seat_tube_height, :text => 'Seat Tube (in)'},
       { :name => :top_tube_length, :text => 'Top Tube (in)'},
-      { :name => :wheel_size, :text => 'Wheel Size (in)'},
+      { :name => :bike_wheel_size__display_string, :text => 'Wheel Size'},
       :value,
       { :id => :bike_condition__condition, :name => :bike_condition__condition, :text => 'Condition', :default_value => BikeCondition.first.id},
       { :id => :bike_purpose__purpose, :name => :bike_purpose__purpose, :text => 'Purpose', :default_value => BikePurpose.first.id},
@@ -55,7 +55,7 @@ class Bikes < Netzke::Basepack::Grid
       { :name => :bike_style__style, :field_label => 'Style', :min_chars => 1},
       { :name => :seat_tube_height, :field_label => 'Seat Tube (in)'},
       { :name => :top_tube_length, :field_label => 'Top Tube (in)'},
-      { :name => :wheel_size, :field_label => 'Wheel Size (in)'},
+      { :name => :bike_wheel_size__display_string, :field_label => 'Wheel Size'},
       { :name => :value, :field_label => 'Value'},
       { :name => :bike_condition__condition, :field_label => 'Condition', :min_chars => 1},
       { :name => :bike_purpose__purpose, :field_label => 'Purpose', :min_chars => 1}

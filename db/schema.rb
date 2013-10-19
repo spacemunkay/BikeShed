@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019023429) do
+ActiveRecord::Schema.define(:version => 20131019170248) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -46,22 +46,33 @@ ActiveRecord::Schema.define(:version => 20131019023429) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "bike_wheel_sizes", :force => true do |t|
+    t.string "twmm"
+    t.string "rdmm"
+    t.string "twin"
+    t.string "rdin"
+    t.string "twfr"
+    t.string "rdfr"
+    t.string "description"
+    t.string "tire_common_score"
+  end
+
   create_table "bikes", :force => true do |t|
     t.string   "serial_number"
-    t.integer  "bike_brand_id",     :null => false
+    t.integer  "bike_brand_id",      :null => false
     t.integer  "bike_model_id"
     t.string   "color"
-    t.integer  "bike_style_id",     :null => false
+    t.integer  "bike_style_id",      :null => false
     t.float    "seat_tube_height"
     t.float    "top_tube_length"
-    t.integer  "wheel_size"
     t.float    "value"
-    t.integer  "bike_condition_id", :null => false
-    t.integer  "bike_purpose_id",   :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "bike_condition_id",  :null => false
+    t.integer  "bike_purpose_id",    :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "model"
     t.integer  "shop_id"
+    t.integer  "bike_wheel_size_id"
   end
 
   create_table "credit_conversions", :force => true do |t|

@@ -12,7 +12,7 @@ FactoryGirl.define do
     bike_style_id 1
     seat_tube_height 5
     top_tube_length 6
-    wheel_size 27
+    bike_wheel_size_id 1
     value 100
     bike_condition_id 1
     bike_purpose_id 1
