@@ -1,7 +1,7 @@
 class Bike < ActiveRecord::Base
   acts_as_loggable
   attr_accessible :shop_id, :serial_number, :bike_brand_id, :model, :color, :bike_style_id, :seat_tube_height,
-    :top_tube_length, :wheel_size, :value, :bike_condition_id, :bike_purpose_id
+    :top_tube_length, :bike_wheel_size_id, :value, :bike_condition_id, :bike_purpose_id
 
   has_many :transactions
 
@@ -11,6 +11,7 @@ class Bike < ActiveRecord::Base
   belongs_to :bike_style
   belongs_to :bike_condition
   belongs_to :bike_purpose
+  belongs_to :bike_wheel_size
 
   validates :shop_id, :presence => true, :uniqueness => true, :numericality => { :only_integer => true }
   validates :serial_number, :length => { :minimum => 3 }
@@ -20,8 +21,7 @@ class Bike < ActiveRecord::Base
   validates :bike_style_id, :presence => true
   validates :seat_tube_height, :presence => true
   validates :top_tube_length, :presence => true
-  validates :wheel_size, :presence => true
-  #validates :value, :presence => true
+  validates :bike_wheel_size_id, :presence => true
   validates :bike_condition_id, :presence => true
   validates :bike_purpose_id, :presence => true
 
@@ -43,6 +43,10 @@ class Bike < ActiveRecord::Base
 
   def purpose
     self.bike_purpose
+  end
+
+  def wheel_size
+    self.bike_wheel_size
   end
 
   def to_s
