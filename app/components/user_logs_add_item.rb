@@ -10,9 +10,9 @@ class UserLogsAddItem < Netzke::Basepack::Form
     bike_id = current_user.bike.nil?  ? nil : current_user.bike.id
     c.items = [
       { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Log for:", :value => "#{current_user.to_s}"},
-      { :name => :start_date},
-      { :id => :user_logs_add_form_hours, :no_binding => true, :name => :hours, :xtype => 'field', :fieldLabel => "Hours:" },
-      { :id => :user_logs_add_form_end_date, :name => :end_date, :hidden => true },
+      { :id => :user_logs_add_form_start, :name => :start_date},
+      { :id => :user_logs_add_form_hours, :no_binding => true, :name => :hours, :xtype => 'field', :fieldLabel => "Hours:", :value => 0 },
+      { :id => :user_logs_add_form_end, :name => :end_date, :hidden => true },
       { :name => :description},
       #had to hack acts_as_loggable/log.rb to get this to work
       { :name => :user_action__action, :field_label => 'Action'},
