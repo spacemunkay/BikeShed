@@ -6,7 +6,7 @@ class BikeBrands < Netzke::Basepack::Grid
 
     c.prohibit_update = true if cannot? :update, BikeBrand
     c.prohibit_create = true if cannot? :create, BikeBrand
-    c.prohibit_delete = true if cannot? :delete, BikeBrand 
+    c.prohibit_delete = true if cannot? :delete, BikeBrand
   end
 
   #override with nil to remove actions
