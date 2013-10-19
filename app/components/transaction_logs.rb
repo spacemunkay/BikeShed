@@ -49,7 +49,7 @@ class TransactionLogs < Netzke::Basepack::Grid
       { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Payment for:", :value => "#{item.to_s}"},
       { :name => :description, :xtype => 'numberfield', :field_label => 'Amount'},
       #had to hack acts_as_loggable/log.rb to get this to work
-      { :name => :transaction_action__action, :field_label => 'Payment Method'}
+      { :name => :transaction_action__action, :field_label => 'Payment Method', :min_chars => 1}
     ]
   end
 

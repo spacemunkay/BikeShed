@@ -63,7 +63,7 @@ class UserLogs < Netzke::Basepack::Grid
       { :name => :end_date},
       { :name => :description},
       #had to hack acts_as_loggable/log.rb to get this to work
-      { :name => :user_action__action, :field_label => 'Action'},
+      { :name => :user_action__action, :field_label => 'Action', :min_chars => 1},
       { :name => :for_bike, :checkboxName => :copy_log, :inputValue => true, :title => "Copy description to a Bike's History?", :xtype => 'fieldset', :checkboxToggle => true, :collapsed => true, :items => [
           {:xtype => 'combo', :no_binding => true, :name => :copy_id, :title => 'Bike', :fieldLabel => 'Bike', :store => bike_store, :value => bike_id}
         ]
