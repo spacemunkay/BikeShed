@@ -4,6 +4,7 @@ class BikeModels < Netzke::Basepack::Grid
 
     c.model = "BikeModel"
     c.title = "Models"
+    c.force_fit = true
     c.data_store = {auto_load: false}
     c.scope = lambda { |rel| rel.where(:bike_brand_id => session[:selected_bike_brand_id]);}
     c.strong_default_attrs = {

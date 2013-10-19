@@ -5,6 +5,7 @@ class TransactionLogs < Netzke::Basepack::Grid
 
     c.model = "ActsAsLoggable::Log"
     c.title = "Transaction Payments"
+    c.force_fit = true
     c.data_store = {auto_load: false}
     c.scope = lambda { |rel| rel.where(:loggable_type => 'Transaction',:loggable_id => session[:selected_transaction_id]);}
     c.strong_default_attrs = {
@@ -20,7 +21,7 @@ class TransactionLogs < Netzke::Basepack::Grid
     c.columns = [
       { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db), :text => 'Date'  },
       { :name => :description, :text => "Amount"} ,
-      { :name => :transaction_action__action, :text => 'Method'},
+      { :name => :transaction_action__action, :text => 'Method', :default_value => ::ActsAsLoggable::TransactionAction.first.id},
       { :name => :logged_by, :getter => lambda{ |rec|
           user = User.find_by_id(rec.logger_id)
           user.nil? ? "" : "#{user.first_name} #{user.last_name}"

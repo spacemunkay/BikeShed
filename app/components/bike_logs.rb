@@ -6,6 +6,7 @@ class BikeLogs < Netzke::Basepack::Grid
 
     c.model = "ActsAsLoggable::Log"
     c.title = "Bike History"
+    c.force_fit = true
     c.data_store = {auto_load: false}
     c.scope = lambda { |rel| rel.where(:loggable_type => 'Bike',:loggable_id => session[:selected_bike_id]);}
     c.strong_default_attrs = {
@@ -20,7 +21,7 @@ class BikeLogs < Netzke::Basepack::Grid
       { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db)  },
       { :name => :end_date, :hidden => true, :default_value => Time.now.to_formatted_s(:db) },
       :description,
-      { :name => :bike_action__action, :text => 'Action'},
+      { :name => :bike_action__action, :text => 'Action', :default_value => ::ActsAsLoggable::BikeAction.first.id},
       { :name => :logged_by, :getter => lambda{ |rec|
                                                 user = User.find_by_id(rec.logger_id)
                                                 user.nil? ? "" : "#{user.first_name} #{user.last_name}"

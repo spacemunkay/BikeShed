@@ -2,6 +2,7 @@ class Transactions < Netzke::Basepack::Grid
   def configure(c)
     super
     c.model = "Transaction"
+    c.force_fit = true
     c.strong_default_attrs = {
       :vendor_id => controller.current_user.id,
       :customer_id => session[:selected_customer_id],

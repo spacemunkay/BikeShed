@@ -12,13 +12,14 @@ class Users < Netzke::Basepack::Grid
     super
     c.header = false
     c.model = "User"
+    c.force_fit = true
 
     c.columns = [
       { :name => :username, :read_only => true },
       :first_name,
       :last_name,
       :email,
-      { :id => :bike__shop_id, :name => :bike__shop_id}
+      { :text => "Bike - Shop ID", :id => :bike__shop_id, :name => :bike__shop_id, :default_value => Bike.exists? ? Bike.first.id : nil }
     ]
 
     c.columns << :reset if can? :manage, User
