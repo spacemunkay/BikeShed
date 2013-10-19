@@ -4,7 +4,7 @@ class AlterBikeWheelToId < ActiveRecord::Migration
 
     undetermined_id = BikeWheelSize.find_by_rdin("0")
     Bike.find_each do |bike|
-      wheel_size = BikeWheelSize.find_by_rdin(bike.wheel_size.to_s)
+      wheel_size = BikeWheelSize.find_by_rdin(bike['wheel_size'].to_s)
 
       if wheel_size.nil?
         wheel_size_id = undetermined_id
@@ -23,7 +23,7 @@ class AlterBikeWheelToId < ActiveRecord::Migration
     add_column :bikes, :wheel_size, :integer
 
     Bike.find_each do |bike|
-      wheel_size = BikeWheelSize.find_by_id(bike.bike_wheel_size_id)
+      wheel_size = BikeWheelSize.find_by_id(bike['bike_wheel_size_id'])
       bike.wheel_size = wheel_size.rdin.to_i
       bike.save
     end
