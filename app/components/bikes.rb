@@ -41,18 +41,18 @@ class Bikes < Netzke::Basepack::Grid
   def default_fields_for_forms
     # :field_label MUST be defined in order for search to work
     [
-      { :name => :bike_brand__brand, :field_label => 'Brand' },
+      { :name => :bike_brand__brand, :field_label => 'Brand', :min_chars => 1 },
       { :name => :model, :field_label => 'Model'},
       { :name => :shop_id, :field_label => 'Shop ID'},
       { :name => :serial_number, :field_label => 'Serial Number'},
       { :name => "color", :xtype => "xcolorcombo"},
-      { :name => :bike_style__style, :field_label => 'Style' },
+      { :name => :bike_style__style, :field_label => 'Style', :min_chars => 1},
       { :name => :seat_tube_height, :field_label => 'Seat Tube (in)'},
       { :name => :top_tube_length, :field_label => 'Top Tube (in)'},
       { :name => :wheel_size, :field_label => 'Wheel Size (in)'},
       { :name => :value, :field_label => 'Value'},
-      { :name => :bike_condition__condition, :field_label => 'Condition'},
-      { :name => :bike_purpose__purpose, :field_label => 'Purpose'}
+      { :name => :bike_condition__condition, :field_label => 'Condition', :min_chars => 1},
+      { :name => :bike_purpose__purpose, :field_label => 'Purpose', :min_chars => 1}
     ]
   end
   #override with nil to remove actions
