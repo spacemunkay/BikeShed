@@ -8,7 +8,7 @@ class Bikes < Netzke::Basepack::Grid
     c.columns = [
       { :name => :shop_id, :text => 'Shop ID', :default_value => Bike.last.id.to_i + 1},
       :serial_number,
-      { :id => :bike_brand__brand, :name => :bike_brand__brand, :text => 'Brand', :default_value => BikeBrand.first.id },
+      { :id => :bike_brand__brand, :name => :bike_brand__brand, :text => 'Brand'},
       { :name => :model, :text => 'Model',
         :scope => lambda { |rel|
                     if session[:selected_bike_brand_id]
