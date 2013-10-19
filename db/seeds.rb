@@ -14,6 +14,8 @@ end
 
 #Load bike brands and models from sql
 if BikeBrand.all.empty? and BikeModel.all.empty?
+  # Need to use DEFAULT instead of explicit IDs that are used in the sql file,
+  # so that the PG table ID sequence is incremented
   load_statements = File.readlines(File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')).drop(1).map do |statement|
     statement.sub(/VALUES\(\d+,/, 'VALUES(DEFAULT,').tap {|x| puts x }
   end
