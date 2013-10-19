@@ -3,6 +3,7 @@
     // calling superclass's initComponent
     this.callParent();
 
+    // something...
     //due to Netzke bug, :min_chars attribute doesn't work
     var min_char_columns = [
       "bike_brand__brand",
