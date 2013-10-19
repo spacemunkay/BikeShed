@@ -33,6 +33,10 @@ class Bikes < Netzke::Basepack::Grid
                                            }
       }
     ]
+
+    # Default the sorting to ASC on shop_id
+    c.data_store.sorters = [{ property: 'shop_id', direction: 'ASC' }]
+
     @bike = Bike.all
     c.prohibit_update = true if cannot? :update, @bike
     c.prohibit_create = true if cannot? :create, @bike
