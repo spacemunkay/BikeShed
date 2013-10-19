@@ -6,9 +6,9 @@ class Bikes < Netzke::Basepack::Grid
     # columns with :id set, have :min_chars set in init_component
     # See: http://stackoverflow.com/questions/17738962/netzke-grid-filtering
     c.columns = [
-      { :name => :shop_id, :text => 'Shop ID'},
+      { :name => :shop_id, :text => 'Shop ID', :default_value => Bike.last.id.to_i + 1},
       :serial_number,
-      { :id => :bike_brand__brand, :name => :bike_brand__brand, :text => 'Brand'},
+      { :id => :bike_brand__brand, :name => :bike_brand__brand, :text => 'Brand', :default_value => BikeBrand.first.id },
       { :name => :model, :text => 'Model',
         :scope => lambda { |rel|
                     if session[:selected_bike_brand_id]
@@ -19,14 +19,15 @@ class Bikes < Netzke::Basepack::Grid
                   }
       },
       #needs to have type :action or else won't work in grid, because... netzke
-      { :name => "color", :text => "Frame Color", :type => :action, :editor => { :xtype => "xcolorcombo"}, :renderer => :color_block},
-      { :id => :bike_style__style, :name => :bike_style__style, :text => 'Style' },
+      { :name => "color", :text => "Frame Color", :type => :action, :editor => { :xtype => "xcolorcombo"}, :renderer => :color_block,
+        :default_value => '000000'},
+      { :id => :bike_style__style, :name => :bike_style__style, :text => 'Style', :default_value => BikeStyle.first.id},
       { :name => :seat_tube_height, :text => 'Seat Tube (in)'},
       { :name => :top_tube_length, :text => 'Top Tube (in)'},
       { :name => :wheel_size, :text => 'Wheel Size (in)'},
       :value,
-      { :id => :bike_condition__condition, :name => :bike_condition__condition, :text => 'Condition'},
-      { :id => :bike_purpose__purpose, :name => :bike_purpose__purpose, :text => 'Purpose'},
+      { :id => :bike_condition__condition, :name => :bike_condition__condition, :text => 'Condition', :default_value => BikeCondition.first.id},
+      { :id => :bike_purpose__purpose, :name => :bike_purpose__purpose, :text => 'Purpose', :default_value => BikePurpose.first.id},
       { :name => :owner, :getter => lambda { |rec|
                                               user = rec.owner
                                               user.nil? ? "" : "#{user.first_name} #{user.last_name}"

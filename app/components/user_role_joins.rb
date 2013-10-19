@@ -10,9 +10,9 @@ class UserRoleJoins < Netzke::Basepack::Grid
       { :name => :name, :getter => lambda{ |rec|
                                                 user = User.find_by_id(rec.user_id)
                                                 user.nil? ? "" : "#{user.first_name} #{user.last_name}"
-                                              }
+                                              },
       },
-      { :name => :role__role, :text => "Role"},
+      { :name => :role__role, :text => "Role", :default_value => Role.exists? ? Role.first.id : nil},
       :created_at,
       :updated_at,
       :ends ]
