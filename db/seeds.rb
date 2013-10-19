@@ -14,10 +14,12 @@ end
 
 #Load bike brands and models from sql
 if BikeBrand.all.empty? and BikeModel.all.empty?
-  sql_path = File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')
-  db_config = Rails.application.config.database_configuration[Rails.env]
-  cmd = "psql #{db_config["database"]} < #{sql_path}"
-  system cmd
+  # Need to use DEFAULT instead of explicit IDs that are used in the sql file,
+  # so that the PG table ID sequence is incremented
+  load_statements = File.readlines(File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')).drop(1).map do |statement|
+    statement.sub(/VALUES\(\d+,/, 'VALUES(DEFAULT,').tap {|x| puts x }
+  end
+  ActiveRecord::Base.connection.execute(load_statements.join)
 end
 
 if Rails.env.development?
