@@ -12,9 +12,8 @@ class ChangeBikeShopId < ActiveRecord::Migration
       while bikes.map(&:shop_id).include? new_id
         new_id += 1
       end
-      bike.shop_id = new_id
+      bike.update_attribute(:shop_id, new_id)
     end
-    bikes.each(&:save)
   end
 
   def down
