@@ -189,7 +189,6 @@ Ext.define('Ext.ux.form.field.DateTime', {
     },
 
     setValue: function(value){
-        console.log("setValue: " + value);
         if (Ext.isString(value) || Ext.isDate(value)){
 
             if( Ext.isDate(value)){
