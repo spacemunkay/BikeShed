@@ -19,7 +19,7 @@ class BikeLogs < Netzke::Basepack::Grid
 
     c.columns = [
       { :name => :start_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db)  },
-      { :name => :end_date, :hidden => true, :default_value => Time.now.to_formatted_s(:db) },
+      { :name => :end_date, :format => "g:ia - D, M j - Y", :width => 165, :default_value => Time.now.to_formatted_s(:db)  },
       :description,
       { :name => :bike_action__action, :text => 'Action', :default_value => ::ActsAsLoggable::BikeAction.first.id},
       { :name => :logged_by, :getter => lambda{ |rec|
@@ -45,7 +45,7 @@ class BikeLogs < Netzke::Basepack::Grid
 
   def default_fields_for_forms
     [
-      { :name => :start_date, :xtype => 'xdateampmtime'},
+      { :name => :start_date},
       { :name => :description},
       #had to hack acts_as_loggable/log.rb to get this to work
       { :name => :bike_action__action, :field_label => 'Action', :min_chars => 1 }
