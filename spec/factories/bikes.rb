@@ -6,15 +6,15 @@ FactoryGirl.define do
     sequence :serial_number do |n|
       "#{Faker::Code.isbn}-#{n}"
     end
-    bike_brand_id { Random.rand(100) }
+    bike_brand_id { BikeBrand.all.sample.id }
     model { Faker::Commerce.product_name }
     color { sprintf("%06X", Random.rand(16777215) ) }
-    bike_style_id { Random.rand(2) }
+    bike_style_id { BikeStyle.all.sample.id }
     seat_tube_height { Random.rand(25) }
     top_tube_length { Random.rand(25) }
-    bike_wheel_size_id { Random.rand(10) }
+    bike_wheel_size_id { BikeWheelSize.all.sample.id }
     value { Random.rand(200) }
-    bike_condition_id { Random.rand(2) }
-    bike_purpose_id { Random.rand(2) }
+    bike_condition_id { BikeCondition.all.sample.id }
+    bike_purpose_id { BikePurpose.all.sample.id }
   end
 end
