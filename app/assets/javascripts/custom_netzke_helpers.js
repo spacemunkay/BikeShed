@@ -140,7 +140,7 @@ Ext.define('Ext.ux.form.field.DateTime', {
     mixins:{
         field:'Ext.form.field.Field'
     },
-    alias: 'widget.xdateampmtime',
+    alias: 'widget.xdatetime',
 
     //configurables
 
@@ -320,9 +320,15 @@ Ext.define('Ext.ux.form.field.DateTime', {
     },
 
     setValue: function(value){
-        if (Ext.isString(value)){
-            dt = new Date(value);
-            value = Ext.Date.parse(value, this.getFormat()); //this.dateTimeFormat
+        console.log("setValue: " + value);
+        if (Ext.isString(value) || Ext.isDate(value)){
+
+            if( Ext.isDate(value)){
+              dt = value;
+            }else{
+              dt = new Date(value);
+              value = Ext.Date.parse(value, this.getFormat()); //this.dateTimeFormat
+            }
             this.dateField.setValue(value);
 
             hour = Ext.Date.format(dt, 'g');
