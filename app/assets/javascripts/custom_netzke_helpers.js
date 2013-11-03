@@ -209,18 +209,14 @@ Ext.define('Ext.ux.form.field.DateTime', {
           });
         me.items.push(me.colon);
 
-        me.minuteField = Ext.create('Ext.form.field.Number', {
-                validateOnBlur: false,
+        me.minuteField = Ext.create('Ext.form.field.Text', {
                 maxWidth: 30,
                 allowBlank: false,
                 allowOnlyWhitespace: false,
                 blankText: "Minutes cannot be blank.",
-                allowDecimals: false,
-                maxValue: 59,
-                minValue: 0,
+                regex: /[012345]\d/,
                 maxLength: 2,
                 enforceMaxLength: 2,
-                hideTrigger: true,
                 submitValue:false,
                 flex:1,
                 isFormField:false, //exclude from field query's
