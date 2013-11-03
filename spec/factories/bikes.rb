@@ -4,17 +4,17 @@ FactoryGirl.define do
   factory :bike do
     sequence(:shop_id) {|n| n}
     sequence :serial_number do |n|
-      "S/N# #{n}"
+      "#{Faker::Code.isbn}-#{n}"
     end
-    bike_brand_id 1
-    bike_model_id 1
-    color "FFFFFF"
-    bike_style_id 1
-    seat_tube_height 5
-    top_tube_length 6
-    bike_wheel_size_id 1
-    value 100
-    bike_condition_id 1
-    bike_purpose_id 1
+    bike_brand_id { Random.rand(100) }
+    model { Faker::Commerce.product_name }
+    color { sprintf("%06X", Random.rand(16777215) ) }
+    bike_style_id { Random.rand(2) }
+    seat_tube_height { Random.rand(25) }
+    top_tube_length { Random.rand(25) }
+    bike_wheel_size_id { Random.rand(10) }
+    value { Random.rand(200) }
+    bike_condition_id { Random.rand(2) }
+    bike_purpose_id { Random.rand(2) }
   end
 end

@@ -26,13 +26,16 @@ end
 
 if Rails.env.development?
 
-  #create default admin user
+  #create default users
   if User.all.empty?
-    FactoryGirl.create(:user)
-    FactoryGirl.create(:staff)
-    FactoryGirl.create(:bike_admin)
-    FactoryGirl.create(:admin)
-    FactoryGirl.create(:user_profile)
+    u = FactoryGirl.create(:user)
+    FactoryGirl.create(:user_profile, user_id: u.id)
+    u = FactoryGirl.create(:staff)
+    FactoryGirl.create(:user_profile, user_id: u.id)
+    u = FactoryGirl.create(:bike_admin)
+    FactoryGirl.create(:user_profile, user_id: u.id)
+    u = FactoryGirl.create(:admin)
+    FactoryGirl.create(:user_profile, user_id: u.id)
   end
 
   #create fake bikes
