@@ -2,6 +2,8 @@ class Tasks < Netzke::Basepack::Grid
   def configure(c)
     super
 
+    #disable by default, will be enabled once bike is clicked
+    c.disabled = true
     task_list_id = nil
     if session[:selected_bike_id]
       task_list_id = Bike.find_by_id(session[:selected_bike_id]).task_list.id
