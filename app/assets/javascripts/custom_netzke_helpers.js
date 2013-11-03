@@ -163,7 +163,9 @@ Ext.define('Ext.ux.form.field.DateTime', {
 
     dateField: null,
 
-    timeField: null,
+    hourField: null,
+    minuteField: null,
+    ampmField: null,
 
     initComponent: function(){
         var me = this
@@ -182,11 +184,60 @@ Ext.define('Ext.ux.form.field.DateTime', {
             readOnly: me.readOnly
         }, me.dateConfig));
         me.items.push(me.dateField);
-        
 
-        //me.timeField = Ext.create('Ext.form.field.Text', {width: 20});
-        me.timeField = Ext.create('app.view.form.field.TimeField');
-        me.items.push(me.timeField);
+        me.hourField = Ext.create('Ext.form.field.Number', {
+                maxWidth: 20,
+                allowBlank: false,
+                allowOnlyWhitespace: false,
+                blankText: "Hour cannot be blank.",
+                allowDecimals: false,
+                maxValue: 12,
+                minValue: 1,
+                maxLength: 2,
+                enforceMaxLength: 2,
+                hideTrigger: true,
+                submitValue:false,
+                flex:1,
+                fieldStyle:     "text-align:right;",
+                isFormField:false, //exclude from field query's
+            });
+        me.items.push(me.hourField);
+
+        me.colon = Ext.create('Ext.draw.Text', {
+                text: ':',
+                padding: '3 3 0 3'
+          });
+        me.items.push(me.colon);
+
+        me.minuteField = Ext.create('Ext.form.field.Number', {
+                validateOnBlur: false,
+                maxWidth: 30,
+                allowBlank: false,
+                allowOnlyWhitespace: false,
+                blankText: "Minutes cannot be blank.",
+                allowDecimals: false,
+                maxValue: 59,
+                minValue: 0,
+                maxLength: 2,
+                enforceMaxLength: 2,
+                hideTrigger: true,
+                submitValue:false,
+                flex:1,
+                isFormField:false, //exclude from field query's
+            });
+        me.items.push(me.minuteField);
+
+
+        me.ampmField = Ext.create('Ext.form.ComboBox', {
+              maxWidth: 45,
+              value: 'PM',
+              store: ['AM', 'PM'],
+              forceSelection: true,
+              flex:1,
+              editable: false
+          });
+
+        me.items.push(me.ampmField);
 
         for (; i < me.items.length; i++) {
             me.items[i].on('focus', Ext.bind(me.onItemFocus, me));
@@ -241,8 +292,15 @@ Ext.define('Ext.ux.form.field.DateTime', {
     getValue: function(){
         var value = null
             ,date = this.dateField.getSubmitValue()
-            ,time = this.timeField.getSubmitValue()
+            ,time = null
             ,format;
+
+        hour = this.hourField.getValue();
+        minute = this.minuteField.getValue();
+        ampm = this.ampmField.getValue();
+        time = Ext.Date.parse(hour + " " + minute + " " + ampm, 'g i A');
+        time = Ext.Date.format(time, this.timeSubmitFormat);
+
         if (date){
             if (time){
                 format = this.getFormat();
@@ -267,14 +325,22 @@ Ext.define('Ext.ux.form.field.DateTime', {
 
     setValue: function(value){
         if (Ext.isString(value)){
+            dt = new Date(value);
             value = Ext.Date.parse(value, this.getFormat()); //this.dateTimeFormat
             this.dateField.setValue(value);
-            this.timeField.setValue(value);
+
+            hour = Ext.Date.format(dt, 'g');
+            minute = Ext.Date.format(dt, 'i');
+            ampm = Ext.Date.format(dt, 'A');
+
+            this.hourField.setValue(hour);
+            this.minuteField.setRawValue(minute);
+            this.ampmField.setValue(ampm);
         }
     },
 
     getFormat: function(){
-        value = (this.dateField.submitFormat || this.dateField.format) + " " + (this.timeField.submitFormat || this.timeField.format);
+        value = (this.dateField.submitFormat || this.dateField.format) + " " + (this.timeSubmitFormat || this.timeFormat);
         return value;
     },
 
