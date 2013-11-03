@@ -20,7 +20,6 @@ class Bike < ActiveRecord::Base
   validates :color, :presence => true
   validates :bike_style_id, :presence => true
   validates :seat_tube_height, :presence => true
-  validates :top_tube_length, :presence => true
   validates :bike_wheel_size_id, :presence => true
   validates :bike_condition_id, :presence => true
   validates :bike_purpose_id, :presence => true
