@@ -40,7 +40,7 @@ class UserStats < Netzke::Base
 
 private
   def user
-    controller.current_user
+    User.find_by_id(session[:selected_user_id]) || controller.current_user
   end
 
 end
