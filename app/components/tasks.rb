@@ -24,9 +24,9 @@ class Tasks < Netzke::Basepack::Grid
       :task_list_id => task_list_id
     }
     c.columns = [
+        :done,
         :task,
-        :notes,
-        :done
+        :notes
       ]
   end
 
@@ -34,9 +34,9 @@ class Tasks < Netzke::Basepack::Grid
     fields = []
     fields << { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "No Bike Selected", :value => "Select a Bike First!"}
     fields.concat( [
+        :done,
         :task,
-        :notes,
-        :done
+        :notes
       ])
   end
 
