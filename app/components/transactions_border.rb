@@ -4,7 +4,7 @@ class TransactionsBorder < Netzke::Base
   component :transactions
   component :transaction_logs
   #users and customers components are required for the transactions form
-  component :users_and_customers_accordian
+  component :users_and_customers_lower_tabs
 
   def configure(c)
     super
@@ -13,7 +13,7 @@ class TransactionsBorder < Netzke::Base
     c.items = [
      { netzke_component: :transactions, region: :center, height: 300, split: true },
      { netzke_component: :transaction_logs, region: :east, width: 300, split: true },
-     { netzke_component: :users_and_customers_accordian, region: :south, height: 300, split: true }
+     { netzke_component: :users_and_customers_lower_tabs, region: :south, height: 300, split: true }
     ]
   end
 
