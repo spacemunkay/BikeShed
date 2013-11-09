@@ -2,16 +2,14 @@ class UsersAndProfilesBorder < Netzke::Base
   # Remember regions collapse state and size
   include Netzke::Basepack::ItemPersistence
   component :users
-  component :user_profiles
-  component :user_logs
+  component :user_and_profiles_lower_tabs
 
   def configure(c)
     super
     c.header = false
     c.items = [
      { netzke_component: :users, header: "Users", region: :center, width: 350, split: true },
-     { netzke_component: :user_profiles, region: :south, height: 150, split: true},
-     { netzke_component: :user_logs, region: :east, split: true}
+     { netzke_component: :user_and_profiles_lower_tabs, region: :south, height: 300, split: true}
     ]
   end
 
