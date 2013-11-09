@@ -55,7 +55,7 @@ Ext.define('Ext.ux.form.field.DateTime', {
         me.items.push(me.dateField);
 
         me.hourField = Ext.create('Ext.form.field.Number', {
-                maxWidth: 20,
+                maxWidth: 25,
                 allowBlank: false,
                 allowOnlyWhitespace: false,
                 blankText: "Hour cannot be blank.",
