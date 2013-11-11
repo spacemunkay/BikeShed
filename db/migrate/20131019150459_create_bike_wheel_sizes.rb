@@ -1,8 +1,8 @@
 class CreateBikeWheelSizes < ActiveRecord::Migration
   def up
     create_table(:bike_wheel_sizes) do |t|
-      t.string :twmm
-      t.string :rdmm
+      t.integer :twmm
+      t.integer :rdmm
       t.string :twin
       t.string :rdin
       t.string :twfr
