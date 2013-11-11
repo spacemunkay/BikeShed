@@ -11,8 +11,7 @@ class AlterBikeWheelToId < ActiveRecord::Migration
       else
         wheel_size_id = wheel_size.id
       end
-      bike.bike_wheel_size_id = wheel_size_id
-      bike.save
+      bike.update_attribute(:bike_wheel_size_id, wheel_size_id)
     end
 
     remove_column :bikes, :wheel_size
@@ -24,8 +23,7 @@ class AlterBikeWheelToId < ActiveRecord::Migration
 
     Bike.find_each do |bike|
       wheel_size = BikeWheelSize.find_by_id(bike['bike_wheel_size_id'])
-      bike.wheel_size = wheel_size.rdin.to_i
-      bike.save
+      bike.update_attribute(:wheel_size, wheel_size["rdin"].to_i)
     end
 
     remove_column :bikes, :bike_wheel_size_id
