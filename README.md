@@ -1,3 +1,9 @@
+# About
+A web application for bicycle collectives to track bicycles, bicycle work history, volunteer hours, volunteer work history, and volunteers currently in the shop.
+
+See an overview video of what it looks like and how it works here: https://www.youtube.com/watch?v=0-JjM6d9nK4.
+
+
 # Developer Setup
 
 1. use rvm
