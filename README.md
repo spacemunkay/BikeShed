@@ -27,6 +27,8 @@ At Velocipede, with a mobile friendly UI for users, I'm hoping we can get donati
 1. `gem install bundler`
 1. `bundle`
 1. Install Postgres (Mac OSX instructions below)
+1. Copy over DB config:  `cp config/database.yml.example config/database.yml`
+1. Update config with your database (velocipede), user (velocipede), and password.
 1. `rake db:create db:migrate`
 1. `rake db:seed`
 1. Download extJS 4.1 (A version of 4.1 is hosted here: http://my.jasondenney.com/extjs-4.1.1.zip) Latest versions at http://www.sencha.com/products/extjs. Unzip and place where ever you like.
@@ -41,8 +43,6 @@ At Velocipede, with a mobile friendly UI for users, I'm hoping we can get donati
 1. Start Postgres `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
 1. Create your PG user `createuser -d -P velocipede`
 1. Create your database `createdb -U velocipede --owner=velocipede velocipede`
-1. Copy over DB config:  `cp config/database.yml.example config/database.yml`
-1. Update config with your database (velocipede), user (velocipede), and password.
 
 # Optional
  Add icons
