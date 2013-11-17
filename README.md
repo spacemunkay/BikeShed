@@ -18,7 +18,7 @@ The app has two different views.  One for "core" volunteers which I consider adm
 Currently, at the Velocipede collective we have it running on a computer in the shop on the local network.  The reason for this, is so that it's only accessible from within the shop.  I'm weighing out different methods for ensuring that users can only log in from within the shop (and not from home), such as a shop password that only admins can see and would make visible from within the physical bike shop.  I also don't have to worry about security issues while the app is in development.  In the future, I'd like to see the app hosted much like http://freehub.bikekitchen.org/.
 
 ## Ideas
-At Velocipede, with a mobile friendly UI for users, I'm hoping we can get donations of old, unused smart phones that can be used as stations to log volunteer work and hours, connected via local wifi.  They can be secured by gluing cables into the earphone jacks to deter theft if necessary.  This might be another way that the collective can promote reuse of materials.
+At Velocipede, with a mobile friendly UI for users, I'm hoping we can get donations of old, unused smart phones, connected via local wifi, that can be used as stations to log a volunteer's work and hours.  They can be secured by gluing cables into the earphone jacks to deter theft if necessary.  This might be another way that the collective can promote reuse of materials.
 
 # Developer Setup
 
