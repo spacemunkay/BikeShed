@@ -9,7 +9,7 @@ See an overview video of what it looks like and how it works here: https://www.y
 To add a user, a user must sign themselves up from the initial login screen.  An admin can later log in to grant that user admin privileges afterward, if desired.
 
 ### Adding a Bike
-I'll be making a video demonstrating how to add a bike to the system.
+How to add a bike to the database: https://www.youtube.com/watch?v=1IchWUdMQ90.
 
 ## Views
 The app has two different views.  One for "core" volunteers which I consider admins, and another for "customer" volunteers which I consider users.  Because of the Netzke/ExtJS framework I used, the current UI is non-intuitive and I feel like is only adequate for admins who can take the time to learn the system.  I'm in the process of designing a simpler mobile friendly UI with the essential functionality that's intended for users.
