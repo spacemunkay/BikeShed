@@ -47,14 +47,14 @@ ActiveRecord::Schema.define(:version => 20131019170248) do
   end
 
   create_table "bike_wheel_sizes", :force => true do |t|
-    t.string "twmm"
-    t.string "rdmm"
-    t.string "twin"
-    t.string "rdin"
-    t.string "twfr"
-    t.string "rdfr"
-    t.string "description"
-    t.string "tire_common_score"
+    t.integer "twmm"
+    t.integer "rdmm"
+    t.string  "twin"
+    t.string  "rdin"
+    t.string  "twfr"
+    t.string  "rdfr"
+    t.string  "description"
+    t.string  "tire_common_score"
   end
 
   create_table "bikes", :force => true do |t|
