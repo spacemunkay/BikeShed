@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  attr_accessible :task, :notes, :done
+  attr_accessible :task, :notes, :done, :task_list_id
 
   belongs_to :task_list
 

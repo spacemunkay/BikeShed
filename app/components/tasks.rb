@@ -29,13 +29,14 @@ class Tasks < Netzke::Basepack::Grid
   end
 
   def default_fields_for_forms
-    fields = []
-    fields << { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "No Bike Selected", :value => "Select a Bike First!"}
-    fields.concat( [
+    bike = Bike.find_by_id(session[:selected_bike_id])
+    bike = "Select a Bike First!" if bike.nil?
+    [
+        { :no_binding => true, :xtype => 'displayfield', :fieldLabel => "Bike Selected", :value => "#{bike.to_s}"},
         :done,
         :task,
-        :notes
-      ])
+        :notes,
+    ]
   end
 
   #override with nil to remove actions
