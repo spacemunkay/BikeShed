@@ -47,7 +47,8 @@ class User < ActiveRecord::Base
 ### TODO methods below probably belong somewhere else
 
   def completed_build_bikes
-    purpose_id = BikePurpose.find_by_purpose("BUILDBIKE").id
+    #default BUILDBIKE/CLASS ID is 5
+    purpose_id = 5
     Bike.find_by_sql("
       SELECT * 
       FROM bikes
