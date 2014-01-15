@@ -1,25 +1,14 @@
-%fieldset
-  .control-group
-    = f.label :addrStreet1, :class => "control-label"
-    .controls
-      = f.text_field :addrStreet1, :class => "control-label"
-  .control-group
-    = f.label :addrStreet2, :class => "control-label"
-    .controls
-      = f.text_field :addrStreet2, :class => "control-label"
-  .control-group
-    = f.label :addrCity, :class => "control-label"
-    .controls
-      = f.text_field :addrCity, :class => "control-label"
-  .control-group
-    = f.label :addrState, :class => "control-label"
-    .controls
-      = f.text_field :addrState, :class => "control-label"
-  .control-group
-    = f.label :addrZip, :class => "control-label"
-    .controls
-      = f.text_field :addrZip, :class => "control-label"
-  .control-group
-    = f.label :phone, :class => "control-label"
-    .controls
-      = f.text_field :phone, :class => "control-label"
+%p
+  %fieldset
+    .form-group
+      = f.text_field :addrStreet1, placeholder: "Street Address Line 1", :class => "form-control input-lg"
+    .form-group
+      = f.text_field :addrStreet2, placeholder: "Street Address Line 2",:class => "form-control input-lg"
+    .form-group
+      = f.text_field :addrCity, placeholder: "City", :class => "form-control input-lg"
+    .form-group
+      = f.text_field :addrState, placeholder: "State Abbreviation", :class => "form-control input-lg"
+    .form-group
+      = f.text_field :addrZip, placeholder: "Zip Code", :class => "form-control input-lg"
+    .form-group
+      = f.text_field :phone, placeholder: "Phone", :class => "form-control input-lg"
