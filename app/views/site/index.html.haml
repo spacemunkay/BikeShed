@@ -1,0 +1,21 @@
+= stylesheet_link_tag "bootstrap_and_overrides", :media => "all"
+%h2 Dashboard
+
+%p
+  %p
+    %a{class: "btn btn-lg btn-block btn-primary"} Add Time Entry
+  %p
+    %a{class: "btn btn-lg btn-block btn-primary"} View Timesheet
+  %p
+    %a{class: "btn btn-lg btn-block btn-primary"} Add Bike
+
+%p Your Bikes:
+%ol
+  %li Bike 1
+  %li Bike 2
+
+%p
+  %p
+    %a{class: "btn btn-lg btn-block btn-primary", href: admin_index_path} Admin View
+  %p
+    %input{id: "index_logout", value: "Logout", type: "button", class: "btn btn-lg btn-block btn-danger", "data-url" => destroy_user_session_path }
