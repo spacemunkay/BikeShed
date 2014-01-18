@@ -1,0 +1,45 @@
+= stylesheet_link_tag "bootstrap_and_overrides", :media => "all"
+%h2 Add Bike
+
+%p
+  %p
+    %input{id: "bike_shop_id", placeholder: "Shop ID", type: "number", min:0, class: "input-lg" }
+  %p
+    %select{id: "bike_brand_id"}
+      %option Select a brand
+      %option Huffy
+      %option Raleigh
+  %p
+    %input{id: "bike_model", placeholder: "Model", type: "text", class: "input-lg" }
+  %p
+    .btn-group{ "data-toggle" => "buttons"}
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} RD
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} MTN
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} HYB
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} OTHER
+  %p
+    %select{id: "bike_wheel_size"}
+      %option Selet a wheel size
+      %option 27 x 1,75
+      %option 26 x 1,75
+  %p
+    .btn-group{ "data-toggle" => "buttons"}
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} Poor
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} Fair
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} Good
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "options"} Excellent
+  %p
+    %input{id: "bike_seat_tube", placeholder: "Seat Tube", type: "number", min: 0, max: 100, class: "input-lg" }
+  %p
+    %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
+  %p
+    %input{id: "index_logout", value: "Add Bike", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "api_add_bike_path"}
+
