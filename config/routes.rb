@@ -4,6 +4,8 @@ Velocipede::Application.routes.draw do
   netzke
 
   root :to => 'site#index'
+  get 'admin/index' => 'panel#index', :as => "admin_index"
+
   ###########################
   # API Routes
   scope 'api', :module => :api do

@@ -12,4 +12,3 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require custom_netzke_helpers
