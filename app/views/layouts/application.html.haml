@@ -3,7 +3,6 @@
   %head
     %meta{:charset => "utf-8"}/
     %title= content_for?(:title) ? yield(:title) : "Velocipede"
-    = load_netzke
     = csrf_meta_tags
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
@@ -24,11 +23,11 @@
         - if flash[:alert]
           %p{:class => 'alert'}= flash[:alert]
         .row
-          .span13
+          .span12
             = yield
 
       %footer
-        %p &copy; Velocipede 2013
+        %p &copy; BikeShed 2014
 
     = javascript_include_tag "application"
     = javascript_include_tag params[:controller] 
