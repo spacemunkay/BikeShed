@@ -4,6 +4,7 @@
     %meta{:charset => "utf-8"}/
     %title= content_for?(:title) ? yield(:title) : "Velocipede"
     = csrf_meta_tags
+    = stylesheet_link_tag "bootstrap_and_overrides", :media => "all"
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
     :css

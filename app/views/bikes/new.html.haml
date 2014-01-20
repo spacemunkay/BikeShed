@@ -1,18 +1,14 @@
-= stylesheet_link_tag "bootstrap_and_overrides", :media => "all"
 %h2 Add Bike
 
 %p
   %p
     %input{id: "bike_shop_id", placeholder: "Shop ID", type: "number", min:0, class: "input-lg" }
   %p
-    %select{id: "bike_brand_id"}
-      %option Select a brand
-      %option Huffy
-      %option Raleigh
+    = select_tag(:bike_brand_id, options_for_select(@brands))
   %p
     %input{id: "bike_model", placeholder: "Model", type: "text", class: "input-lg" }
   %p
-    .btn-group{ "data-toggle" => "buttons"}
+    .btn-group{ "data-toggle" => "buttons-radio"}
       %label{ class: "btn btn-default"}
         %input{ type: "radio", name: "options"} RD
       %label{ class: "btn btn-default"}
@@ -22,12 +18,9 @@
       %label{ class: "btn btn-default"}
         %input{ type: "radio", name: "options"} OTHER
   %p
-    %select{id: "bike_wheel_size"}
-      %option Selet a wheel size
-      %option 27 x 1,75
-      %option 26 x 1,75
+    = select_tag(:bike_wheel_size, options_for_select(@wheel_sizes))
   %p
-    .btn-group{ "data-toggle" => "buttons"}
+    .btn-group{ "data-toggle" => "buttons-radio"}
       %label{ class: "btn btn-default"}
         %input{ type: "radio", name: "options"} Poor
       %label{ class: "btn btn-default"}
@@ -37,7 +30,7 @@
       %label{ class: "btn btn-default"}
         %input{ type: "radio", name: "options"} Excellent
   %p
-    %input{id: "bike_seat_tube", placeholder: "Seat Tube", type: "number", min: 0, max: 100, class: "input-lg" }
+    %input{id: "bike_seat_tube", placeholder: "Seat Tube (cm)", type: "number", min: 0, max: 100, class: "input-lg" }
   %p
     %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
   %p
