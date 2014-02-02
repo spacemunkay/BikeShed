@@ -11,7 +11,7 @@ class Api::V1::BaseController < ActionController::Base
 
         if @current_user.nil?
           msg = "Username/Password/Token invalid"
-          render :json => {:error => msg }, :status => 403 and return
+          render :json => {:error => msg }, :status => 401 and return
         end
       else
         authenticate_user!
