@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
     #default BUILDBIKE/CLASS ID is 5
     purpose_id = 5
     Bike.find_by_sql("
-      SELECT * 
+      SELECT *
       FROM bikes
-      INNER JOIN( 
+      INNER JOIN(
         SELECT *
         FROM transactions
         WHERE customer_id = #{self.id}
