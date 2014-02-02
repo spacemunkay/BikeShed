@@ -17,7 +17,7 @@ class Bike < ActiveRecord::Base
   validates :serial_number, :length => { :minimum => 3 }
   validates :model, :length => { :maximum => 50 }
   validates :bike_brand_id, :presence => true
-  validates :color, :presence => true
+  #validates :color, :presence => true
   validates :bike_style_id, :presence => true
   validates :seat_tube_height, :presence => true
   validates :bike_wheel_size_id, :presence => true
