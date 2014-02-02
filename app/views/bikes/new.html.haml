@@ -31,8 +31,9 @@
         %input{ type: "radio", name: "options"} Excellent
   %p
     %input{id: "bike_seat_tube", placeholder: "Seat Tube (cm)", type: "number", min: 0, max: 100, class: "input-lg" }
-  %p
-    %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
+  -# Commenting this out until description is added to Bike
+    %p
+      %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
   %p
     %input{id: "index_logout", value: "Add Bike", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "api_add_bike_path"}
 
