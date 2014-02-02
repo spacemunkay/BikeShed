@@ -16,6 +16,8 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
   end
 
+
+=begin  Is this here by accident? Commenting out for now (1/30/14)
   def checkout
     #must use @current_user since user may not have signed in
     if !@current_user.checked_in?
@@ -25,4 +27,5 @@ class Api::V1::UsersController < Api::V1::BaseController
       render :nothing => true, :status => 204 and return
     end
   end
+=end
 end
