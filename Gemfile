@@ -30,7 +30,7 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 2.8.1'
+  gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 1.2'
   gem 'pry', '~> 0.9.8'
   gem 'faker'
@@ -39,7 +39,6 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 1.0.0'
   gem 'capybara', '~> 1.1.2'
-  gem 'turnip', '~> 0.3.0'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'spork'
