@@ -17,7 +17,6 @@ class Api::V1::BikesController < Api::V1::BaseController
     else
         render json: { errors: ["Expected bike in submitted data" ]}, status: 422 and return
     end
-    render json: {}, status: 200 and return
   end
 
   private
