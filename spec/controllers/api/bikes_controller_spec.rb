@@ -29,7 +29,7 @@ describe Api::V1::BikesController do
       context "with no bike in json data" do
         it "returns 400" do
           post :create
-          expect(@response.code.to_i).to eql 400
+          expect(@response.code.to_i).to eql 422
         end
 
         it "returns an error message" do
@@ -64,6 +64,26 @@ describe Api::V1::BikesController do
           json = JSON.parse(@response.body)
           expect(json).to have_key("bike")
           expect(json.to_s).to include(@submit_json[:bike][:serial_number])
+        end
+      end
+
+      context "with invalid bike in json data" do
+        before(:each) do
+          @submit_json = { bike: {
+            serial_number: "XKCD",
+          }}
+        end
+
+        it "returns 422" do
+          post :create, @submit_json
+          expect(@response.code.to_i).to eql 422
+        end
+
+        it "returns the fields with errors" do
+          post :create, @submit_json
+          json = JSON.parse(@response.body)
+          expect(json).to have_key("errors")
+          expect(json.to_s).to include("can't be blank")
         end
       end
     end
