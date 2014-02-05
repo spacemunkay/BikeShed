@@ -33,7 +33,7 @@
               Ext.Msg.alert("Success", "New Password: "+data.password);
             },
             error: function(data,textStatus) {
-              Ext.Msg.alert( "Error", JSON.parse(data.responseText)["error"]);
+              Ext.Msg.alert( "Error", JSON.parse(data.responseText)["errors"][0]);
             }
           });
         }
