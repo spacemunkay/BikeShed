@@ -1,39 +1,56 @@
 %h2 Add Bike
 
 %p
-  %p
-    %input{id: "bike_shop_id", placeholder: "Shop ID", type: "number", min:0, class: "input-lg" }
-  %p
-    = select_tag(:bike_brand_id, options_for_select(@brands))
-  %p
-    %input{id: "bike_model", placeholder: "Model", type: "text", class: "input-lg" }
-  %p
-    .btn-group{ "data-toggle" => "buttons-radio"}
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} RD
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} MTN
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} HYB
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} OTHER
-  %p
-    = select_tag(:bike_wheel_size, options_for_select(@wheel_sizes))
+  .control-group
+    .controls
+      %input{id: "shop_id", placeholder: "Shop ID", type: "number", min:0, class: "input-lg" }
+      .help-block
+  .control-group
+    .controls
+      = select_tag(:bike_brand_id, options_for_select(@brands))
+      .help-block
+  .control-group
+    .controls
+      %input{id: "model", placeholder: "Model", type: "text", class: "input-lg" }
+      .help-block
+  .control-group
+    .controls
+      %input{id: "serial_number", placeholder: "Serial Number", type: "text", class: "input-lg" }
+      .help-block
   %p
     .btn-group{ "data-toggle" => "buttons-radio"}
       %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} Poor
+        %input{ type: "radio", name: "bike_style", value: 3} RD
       %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} Fair
+        %input{ type: "radio", name: "bike_style", value: 1} MTN
       %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} Good
+        %input{ type: "radio", name: "bike_style", value: 2} HYB
       %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "options"} Excellent
+        %input{ type: "radio", name: "bike_style", value: 4} OTHER
+      .help-block
+  .control-group
+    .controls
+      = select_tag(:bike_wheel_size, options_for_select(@wheel_sizes), id: :bike_wheel_size_id)
+      .help-block
   %p
-    %input{id: "bike_seat_tube", placeholder: "Seat Tube (cm)", type: "number", min: 0, max: 100, class: "input-lg" }
+    .btn-group{ "data-toggle" => "buttons-radio"}
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "bike_condition", value: 2} Poor
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "bike_condition", value: 3} Fair
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "bike_condition", value: 4} Good
+      %label{ class: "btn btn-default"}
+        %input{ type: "radio", name: "bike_condition", value: 5} Excellent
+      .help-block
+  .control-group
+    .controls
+      %input{id: "seat_tube_height", placeholder: "Seat Tube (cm)", type: "number", min: 0, max: 100, class: "input-lg" }
+      .help-block
   -# Commenting this out until description is added to Bike
     %p
       %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
-  %p
-    %input{id: "index_logout", value: "Add Bike", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "api_add_bike_path"}
+  .control-group
+    .controls
+      %input{id: "add_bike_submit", value: "Add Bike", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_bike_path}"}
 
