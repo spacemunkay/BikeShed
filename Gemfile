@@ -14,7 +14,7 @@ gem 'decent_exposure', '~> 1.0.1'
 gem 'devise', '~> 2.0.4'
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails', '~> 2.0'
-gem 'pg'
+gem 'pg', '~> 0.17.1'
 gem 'will_paginate', '~> 3.0.3'
 
 # Gems used only for assets and not required
@@ -33,17 +33,18 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 1.2'
   gem 'pry', '~> 0.9.8'
-  gem 'faker'
+  gem 'faker', '~> 1.2.0'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 1.0.0'
-  gem 'capybara', '~> 1.1.2'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'spork'
+  gem 'capybara', '~> 2.2.1'
+  gem 'poltergeist', '~> 1.5.0'
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'launchy', '~> 2.4.2'
+  gem 'spork', '~> 0.9.2'
   #guard dependency for Mac OS 10
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
-  gem 'guard-spork'
-  gem 'guard-rspec'
+  gem 'guard-spork', '~> 1.5.1'
+  gem 'guard-rspec', '~> 4.2.6'
 end

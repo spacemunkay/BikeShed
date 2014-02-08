@@ -44,6 +44,11 @@ At Velocipede, with a mobile friendly UI for users, I'm hoping we can get donati
 1. Create your PG user `createuser -d -P velocipede`
 1. Create your database `createdb -U velocipede --owner=velocipede velocipede`
 
+# Testing
+
+1. Install phantomjs `brew install phantomjs`
+1. Run tests with `rspec`
+
 # Optional
  Add icons
 
