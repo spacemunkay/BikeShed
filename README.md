@@ -43,6 +43,7 @@ At Velocipede, with a mobile friendly UI for users, I'm hoping we can get donati
 1. Start Postgres `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start`
 1. Create your PG user `createuser -d -P velocipede`
 1. Create your database `createdb -U velocipede --owner=velocipede velocipede`
+1. Create your test database `createdb -U velocipede --owner=velocipede velocipede_test`
 
 # Optional
  Add icons
