@@ -17,32 +17,36 @@
     .controls
       %input{id: "serial_number", placeholder: "Serial Number", type: "text", class: "input-lg" }
       .help-block
-  %p
-    .btn-group{ "data-toggle" => "buttons-radio"}
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 3} RD
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 1} MTN
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 2} HYB
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 4} OTHER
+  .control-group
+    .controls
+      .btn-group{ "data-toggle" => "buttons-radio"}
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_style", value: 3} RD
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_style", value: 1} MTN
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_style", value: 2} HYB
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_style", value: 4} OTHER
+    %input{ id: "bike_style_id", type: "hidden"}
+    .help-block
+  .control-group
+    .controls
+      = select_tag(:bike_wheel_size_id, options_for_select(@wheel_sizes), id: :bike_wheel_size_id)
       .help-block
   .control-group
     .controls
-      = select_tag(:bike_wheel_size, options_for_select(@wheel_sizes), id: :bike_wheel_size_id)
-      .help-block
-  %p
-    .btn-group{ "data-toggle" => "buttons-radio"}
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 2} Poor
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 3} Fair
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 4} Good
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 5} Excellent
-      .help-block
+      .btn-group{ "data-toggle" => "buttons-radio"}
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_condition", value: 2} Poor
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_condition", value: 3} Fair
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_condition", value: 4} Good
+        %label{ class: "btn btn-default"}
+          %input{ type: "radio", name: "bike_condition", value: 5} Excellent
+    %input{ id: "bike_condition_id", type: "hidden"}
+    .help-block
   .control-group
     .controls
       %input{id: "seat_tube_height", placeholder: "Seat Tube (cm)", type: "number", min: 0, max: 100, class: "input-lg" }

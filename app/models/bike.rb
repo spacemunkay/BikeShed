@@ -16,13 +16,13 @@ class Bike < ActiveRecord::Base
   validates :shop_id, :presence => true, :uniqueness => true, :numericality => { :only_integer => true }
   validates :serial_number, :length => { :minimum => 3 }
   validates :model, :length => { :maximum => 50 }
-  validates :bike_brand_id, :presence => true
+  validates :bike_brand_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid brand" }
   #validates :color, :presence => true
-  validates :bike_style_id, :presence => true
-  validates :seat_tube_height, :presence => true
-  validates :bike_wheel_size_id, :presence => true
-  validates :bike_condition_id, :presence => true
-  validates :bike_purpose_id, :presence => true
+  validates :bike_style_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid style" }
+  validates :seat_tube_height, :presence => true, :numericality => true
+  validates :bike_wheel_size_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid wheel size" }
+  validates :bike_condition_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid condition" }
+  validates :bike_purpose_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid purpose" }
 
   self.per_page = 15
 

@@ -23,6 +23,10 @@ feature "Bikes" do
     visit new_bike_path
     click_button "Add Bike"
     expect(page).to have_text(:all, "is not a number")
+    expect(page).to have_text(:all, "is not a valid brand")
     expect(page).to have_text(:all, "is too short")
+    expect(page).to have_text(:all, "is not a valid style")
+    expect(page).to have_text(:all, "is not a valid wheel size")
+    expect(page).to have_text(:all, "is not a valid condition")
   end
 end
