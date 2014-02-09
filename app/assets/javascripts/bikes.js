@@ -8,7 +8,7 @@ $("#add_bike_submit").click(function(){
       shop_id:            parseInt($("#shop_id").val()),
       model:              $("#model").val(),
       bike_style_id:      parseInt($('input[name=bike_style]:checked').val()),
-      seat_tube_height:   parseInt($("#seat_tube_height").val()),
+      seat_tube_height:   parseFloat($("#seat_tube_height").val()),
       bike_condition_id:  parseInt($('input[name=bike_condition]:checked').val()),
       bike_purpose_id:    1,
       bike_wheel_size_id: parseInt($("#bike_wheel_size_id").val()),
