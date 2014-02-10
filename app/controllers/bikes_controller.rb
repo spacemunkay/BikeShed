@@ -7,4 +7,8 @@ class BikesController < AuthenticatedController
     @wheel_sizes.unshift( ["Select a wheel size", -1] )
   end
 
+  def show
+    @bike = Bike.find_by_id(params[:id])
+  end
+
 end

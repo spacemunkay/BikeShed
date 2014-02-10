@@ -1,1 +1,24 @@
-Bike Show
+%h2 #{@bike.shop_id}: #{@bike.bike_brand} - #{@bike.model}
+
+%dl.dl-horizontal
+  %dt Shop ID
+  %dd #{@bike.shop_id}
+  %dt Brand
+  %dd #{@bike.bike_brand}
+  %dt Model
+  %dd #{@bike.model}
+  %dt Type
+  %dd #{@bike.bike_style}
+  %dt Wheel Size
+  %dd #{@bike.bike_wheel_size.display_string}
+  %dt Condition
+  %dd #{@bike.bike_condition}
+  %dt Seat Tube (cm)
+  %dd #{@bike.seat_tube_height}
+  %dt Purpose
+  %dd #{@bike.bike_purpose}
+  %dt Value
+  %dd #{@bike.value}
+  - if !@bike.color.nil?
+    %dt Color
+    %dd{ style: "background-color: ##{@bike.color}; border: black; border-width: 1px; border-style: solid;"} #{@bike.color}
