@@ -1,12 +1,7 @@
-%h2 #{@bike.shop_id}: #{@bike.bike_brand} - #{@bike.model}
+%h2 #{@bike.shop_id}: #{@bike.bike_brand}
+%h2 #{@bike.model}
 
 %dl.dl-horizontal
-  %dt Shop ID
-  %dd #{@bike.shop_id}
-  %dt Brand
-  %dd #{@bike.bike_brand}
-  %dt Model
-  %dd #{@bike.model}
   %dt Type
   %dd #{@bike.bike_style}
   %dt Wheel Size
@@ -21,4 +16,4 @@
   %dd #{@bike.value}
   - if !@bike.color.nil?
     %dt Color
-    %dd{ style: "background-color: ##{@bike.color}; border: black; border-width: 1px; border-style: solid;"} #{@bike.color}
+    %dd{ style: "width: 50px; background-color: ##{@bike.color}; border: black; border-width: 1px; border-style: solid;"} #{@bike.color}
