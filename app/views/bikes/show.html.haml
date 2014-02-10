@@ -12,8 +12,9 @@
   %dd #{@bike.seat_tube_height}
   %dt Purpose
   %dd #{@bike.bike_purpose}
-  %dt Value
-  %dd #{@bike.value}
+  - if !@bike.value.nil?
+    %dt Value
+    %dd #{@bike.value}
   - if !@bike.color.nil?
     %dt Color
     %dd{ style: "width: 50px; background-color: ##{@bike.color}; border: black; border-width: 1px; border-style: solid;"} #{@bike.color}

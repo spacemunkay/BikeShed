@@ -20,7 +20,7 @@ $("#add_bike_submit").click(function(){
     data: json_data,
     dataType: "json",
     success: function(data, status, xhr){
-      //window.location = "";
+      window.location = "/bikes/"+ data.bike.id;
     },
     error: function(data, status ){
       displayFormErrors(data.responseJSON);
