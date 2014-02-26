@@ -5,17 +5,13 @@ class Api::V1::BikesController < Api::V1::BaseController
   before_filter :check_bike_permission
 
   def create
-    if bike = params[:bike]
-
-      b = Bike.new(bike)
-      if !b.save
-        render json: { errors: b.errors }, status: 422 and return
-      else
-        render json: { bike: b.as_json }, status: 200 and return
+    if params[:bikes] && bike = params[:bikes].first
+      @bike = Bike.new(bike)
+      if !@bike.save
+        render json: { errors: @bike.errors }, status: 422 and return
       end
-
     else
-        render json: { errors: ["Expected bike in submitted data" ]}, status: 422 and return
+        render json: { errors: [EXPECTED_BIKE]}, status: 422 and return
     end
   end
 

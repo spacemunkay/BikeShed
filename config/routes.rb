@@ -18,6 +18,7 @@ Velocipede::Application.routes.draw do
       post 'reset' => "users#password_reset", :as => "api_password_reset"
 
       post 'bikes/create' => "bikes#create", as: "api_create_bike"
+      post 'bikes/:id' => "bikes#show", as: "api_bike"
     end
   end
 
