@@ -9,6 +9,8 @@ Velocipede::Application.routes.draw do
   get 'bikes/new', to: 'bikes#new', as: "new_bike"
   get 'bikes/:id', to: 'bikes#show', as: "bike"
 
+  get  'task_lists/:id/edit' => "task_lists#edit", as: "edit_task_list"
+
   ###########################
   # API Routes
   scope 'api', :module => :api, defaults: {format: :json} do
