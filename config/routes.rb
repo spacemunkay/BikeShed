@@ -11,14 +11,15 @@ Velocipede::Application.routes.draw do
 
   ###########################
   # API Routes
-  scope 'api', :module => :api do
+  scope 'api', :module => :api, defaults: {format: :json} do
     scope 'v1', :module => :v1 do
-      post 'checkin' => "logs#checkin", :as => "api_checkin"
+      post 'checkin'  => "logs#checkin",  :as => "api_checkin"
       post 'checkout' => "logs#checkout", :as => "api_checkout"
-      post 'reset' => "users#password_reset", :as => "api_password_reset"
 
+      post 'reset'    => "users#password_reset", :as => "api_password_reset"
+
+      get  'bikes/:id'    => "bikes#show",   as: "api_bike"
       post 'bikes/create' => "bikes#create", as: "api_create_bike"
-      post 'bikes/:id' => "bikes#show", as: "api_bike"
     end
   end
 
