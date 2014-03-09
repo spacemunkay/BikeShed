@@ -6,5 +6,8 @@
   .control-group
     - @task_list.tasks.each do |task|
       .controls
-        %input{class: "task_list_task", type: "checkbox", "data-id" => task.id}
+        %input{class: "task_list_task", type: "checkbox", "data-id" => task.id, checked: task.done}
         #{task.task}
+  .control-group
+    .controls
+      %input{id: "update_tasks_submit", value: "Save Changes", type: "button", class: "btn btn-lg btn-block btn-primary disabled", "data-url" => "#{api_update_task_path}"}

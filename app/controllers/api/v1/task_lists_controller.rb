@@ -8,13 +8,9 @@ class Api::V1::TaskListsController < Api::V1::BaseController
   def show
   end
 
-  def edit
-    #@task_list.update_attributes(params)
-  end
-
   private
     def get_task_list
-      @task_list = TaskList.find(params[:id])
+      @task_list = TaskList.find_by_id(params[:id])
       if @task_list.nil?
         render json: { errors: [NOT_FOUND] }, status: 404 and return
       end

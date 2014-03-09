@@ -4,7 +4,7 @@ class TaskList < ActiveRecord::Base
   attr_accessible :item_id, :item_type, :name
 
   belongs_to :item, :polymorphic => true
-  has_many :tasks
+  has_many :tasks, order: "id ASC"
 
   after_save :create_default_bike_tasks
 

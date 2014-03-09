@@ -23,7 +23,7 @@ Velocipede::Application.routes.draw do
       get  'bikes/:id'    => "bikes#show",   as: "api_bike"
       post 'bikes/create' => "bikes#create", as: "api_create_bike"
 
-      get  'task_lists/:id' => "task_lists#show", as: "api_task_list"
+      get  'task_lists/:id' => "task_lists#show",   as: "api_task_list"
     end
   end
 
