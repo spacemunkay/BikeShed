@@ -68,6 +68,7 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
     config.include FactoryGirlStepHelpers
     config.include FactoryGirl::Syntax::Methods
+    config.include ApiTestHelpers
     config.include Devise::TestHelpers, type: :controller
 
     #allows :focus tag to only run specific tests
@@ -80,7 +81,6 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-
   #Reload Factories
   #FYI make sure that Factories use strings instead of class constants
   FactoryGirl.reload

@@ -57,7 +57,6 @@ describe Api::V1::BikesController do
 
         it "returns 200" do
           post :create, @submit_json
-          puts @response.inspect
           expect(@response.code.to_i).to eql 200
         end
 
