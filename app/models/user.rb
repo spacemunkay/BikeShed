@@ -114,28 +114,31 @@ class User < ActiveRecord::Base
   end
 
   def checked_in?
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
-    checked = logs.where( log_action_id: log_action.id).
+    #default CHECKIN log action is id, yea yea should be a constant
+    log_action_id = 4
+    checked = logs.where( log_action_id: log_action_id).
       where("start_date >= ?", Time.zone.now.beginning_of_day).
       where("start_date = end_date")
     !checked.empty?
   end
 
   def checkin
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    #default CHECKIN log action is id, yea yea should be a constant
+    log_action_id = 4
     time = Time.now
     logs.create( logger_id: self.id,
                  logger_type: self.class.to_s,
                  start_date: time,
                  end_date: time,
-                 log_action_id: log_action.id,
-                 log_action_type: log_action.class.to_s)
+                 log_action_id: log_action_id,
+                 log_action_type: ::ActsAsLoggable::UserAction.to_s)
     save
   end
 
   def checkout
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
-    checked = logs.where( log_action_id: log_action.id).
+    #default CHECKIN log action is id, yea yea should be a constant
+    log_action_id = 4
+    checked = logs.where( log_action_id: log_action_id).
       where("start_date >= ?", Time.zone.now.beginning_of_day).
       where("start_date = end_date").first
     checked.end_date = Time.now
