@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#checkin_menu").show();
   $("#checkin").click( function(e){
-    var username = $("#user_email").val();
+    var username = $("#user_username").val();
     var password = $("#user_password").val();
     $.ajax({
       type: 'POST',
@@ -13,7 +13,7 @@ $(document).ready(function(){
       complete: function() { },
       success: function(data) {
         alert("Checked IN!");
-        $("#user_email").val('');
+        $("#user_username").val('');
         $("#user_password").val('');
       },
       error: function(data,textStatus) {
@@ -22,7 +22,7 @@ $(document).ready(function(){
     })
   });
   $("#checkout").click( function(e){
-    var username = $("#user_email").val();
+    var username = $("#user_username").val();
     var password = $("#user_password").val();
     $.ajax({
       type: 'POST',
@@ -34,7 +34,8 @@ $(document).ready(function(){
       complete: function() { },
       success: function(data) {
         alert("Checked OUT!");
-        $("#user_email").val('');
+
+        $("#user_username").val('');
         $("#user_password").val('');
       },
       error: function(data,textStatus) {
