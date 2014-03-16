@@ -20,3 +20,4 @@
   - if !@bike.color.nil?
     %dt Color
     %dd{ style: "width: 50px; background-color: ##{@bike.color}; border: black; border-width: 1px; border-style: solid;"} #{@bike.color}
+%a{class: "btn btn-lg btn-block btn-primary", href: edit_task_list_path(@task_list_id) } View Checklist

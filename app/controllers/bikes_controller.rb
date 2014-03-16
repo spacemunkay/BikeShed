@@ -9,6 +9,7 @@ class BikesController < AuthenticatedController
 
   def show
     @bike = Bike.find_by_id(params[:id])
+    @task_list_id = @bike.task_list.id
   end
 
 end
