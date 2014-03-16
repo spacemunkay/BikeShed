@@ -9,10 +9,10 @@
   %p
     %a{class: "btn btn-lg btn-block btn-primary", href: new_bike_path} Add Bike
 
-%p Your Bikes:
-%ol
-  %li Bike 1
-  %li Bike 2
+- if !@bike.nil?
+  %p
+    %a{class: "btn btn-lg btn-block btn-primary", href: bike_path(@bike)} View Your Bike
+
 
 %p
   %p
