@@ -11,6 +11,8 @@ Velocipede::Application.routes.draw do
 
   get  'task_lists/:id/edit' => "task_lists#edit", as: "edit_task_list"
 
+  get  'time_entries/new' => "time_entries#new", as: "new_time_entry"
+
   ###########################
   # API Routes
   scope 'api', :module => :api, defaults: {format: :json} do

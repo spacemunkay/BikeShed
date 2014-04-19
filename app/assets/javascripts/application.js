@@ -14,3 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap/bootstrap-button
 //= require utils
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
