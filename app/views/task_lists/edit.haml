@@ -1,5 +1,8 @@
+%a{ class: "btn btn-default btn-lg", href: root_path}
+  %span{ class:"icon-home"}
 %h2 Task List
-%h3 #{@task_list.item.shop_id} #{@task_list.item.bike_brand}
+%h3
+  %a{ href: bike_path(@task_list.item)}#{@task_list.item.shop_id} #{@task_list.item.bike_brand}
 %h4 #{@task_list.item.model}
 
 %p
