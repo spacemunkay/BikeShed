@@ -31,8 +31,7 @@
   .control-group
     .controls
       %label
-        Worked on a bike?
-        %input{ type: "checkbox"}
+        = select_tag(:bike_brand_id, options_for_select(@bikes))
   .control-group
     .controls
       %textarea{id: "work_description", placeholder: "Work description", class: "input-lg" }
