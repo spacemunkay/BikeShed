@@ -28,6 +28,8 @@ Velocipede::Application.routes.draw do
       get  'task_lists/:id' => "task_lists#show",   as: "api_task_list"
 
       put  'tasks/update' => "tasks#update", as: "api_update_task"
+
+      post 'time_entries/create' => "time_entries#create", as: "api_create_time_entry"
     end
   end
 

@@ -11,11 +11,13 @@
     .controls{ class: "bootstrap-timepicker"}
       %label Start
       %input{id: "start_time_id", placeholder: "Time ID", type: "text", class: "input-small" }
+      .hidden{ id: "start_date" }
       .help-block
   .control-group
     .controls
       %label End
       %input{id: "end_time_id", placeholder: "Time ID", type: "text", class: "input-small" }
+      .hidden{ id: "end_date" }
       .help-block
   .control-group
     .controls
@@ -26,15 +28,15 @@
           %input{ type: "radio", name: "action_id", value: 1} Personal
         %label{ class: "btn btn-default"}
           %input{ type: "radio", name: "action_id", value: 2} Staff
-    %input{ id: "bike_style_id", type: "hidden"}
+    .hidden{ id: "log_action_id" }
     .help-block
   .control-group
     .controls
       %label
-        = select_tag(:bike_brand_id, options_for_select(@bikes))
+        = select_tag(:bike_id, options_for_select(@bikes))
   .control-group
     .controls
-      %textarea{id: "work_description", placeholder: "Work description", class: "input-lg" }
+      %textarea{id: "description_id", placeholder: "Work description", class: "input-lg" }
   .control-group
     .controls
-      %input{id: "add_bike_submit", value: "Add Time Entry", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_bike_path}"}
+      %input{id: "add_time_entry_submit", value: "Add Time Entry", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_time_entry_path}"}
