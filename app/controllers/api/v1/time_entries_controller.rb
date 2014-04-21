@@ -6,7 +6,7 @@ class Api::V1::TimeEntriesController < Api::V1::BaseController
         loggable_type: "User",
         loggable_id: current_user.id,
         log_action_type: "ActsAsLoggable::UserAction"}
-      time_entry.merge(time_entry_defaults)
+      time_entry.merge!(time_entry_defaults)
 
       if time_entry[:bike_id] >= 0
         copy_defaults = {
@@ -16,7 +16,7 @@ class Api::V1::TimeEntriesController < Api::V1::BaseController
           copy_action_type: 'ActsAsLoggable::BikeAction',
           copy_action_id: 4
         }
-        time_entry.merge( copy_defaults )
+        time_entry.merge!( copy_defaults )
       end
 
       @time_entry = ::ActsAsLoggable::Log.new(time_entry.except(:bike_id))
