@@ -14,11 +14,20 @@ $(document).ready(function(){
     start_date = new Date(date + " " + $("#start_time_id").val());
     end_date = new Date(date + " " + $("#end_time_id").val());
 
+    forward = $("#add_time_entry_submit").data("forward");
+
+    // If a bike is selected, forward to the bike
+    // checklist.
+    bike_id = parseInt($("#bike_id").val());
+    if( bike_id >= 0 ){
+      forward = "/task_lists/" + bike_id + "/edit";
+    }
+
     json_data = { time_entries: [{
         start_date:    start_date.toISOString(),
         end_date:      end_date.toISOString(),
         log_action_id: parseInt($('input[name=action_id]:checked').val()),
-        bike_id:       parseInt($("#bike_id").val()),
+        bike_id:       bike_id,
         description:   $("#description_id").val(),
       }]};
     console.log(json_data);
@@ -31,7 +40,7 @@ $(document).ready(function(){
       dataType: "json",
       success: function(data, status, xhr){
         console.log(data);
-        //window.location = data.bikes[0].id;
+        window.location = forward;
       },
       error: function(data, status ){
         console.log(data);
