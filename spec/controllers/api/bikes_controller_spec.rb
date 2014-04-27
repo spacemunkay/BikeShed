@@ -28,7 +28,7 @@ describe Api::V1::BikesController do
       end
 
       context "with no bike in json data" do
-        it "returns 400" do
+        it "returns error status" do
           post :create
           expect(@response.code.to_i).to eql 422
         end
