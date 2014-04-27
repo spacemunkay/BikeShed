@@ -9,6 +9,8 @@ class TimeEntriesController < AuthenticatedController
   end
 
   def index
-
+    @user_time_entries = TimeEntry.where(loggable_id: current_user.id)
+    @credits_available = current_user.total_credits
+    @hours_worked = current_user.total_hours
   end
 end

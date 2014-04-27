@@ -12,4 +12,12 @@ class TimeEntry < ActsAsLoggable::Log
           copy_action_id: 4
         })
   end
+
+  def duration
+    end_date - start_date
+  end
+
+  def duration_in_hours
+    (duration / 1.hour).round(2)
+  end
 end

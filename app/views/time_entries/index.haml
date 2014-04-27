@@ -5,5 +5,27 @@
 %p Total Hours Worked: #{@hours_worked}
 %p Total Credits Available: #{@credits_available}
 
+%table.table
+  %tbody
+    - @user_time_entries.each do |entry|
+      %tr
+        %td #{entry.start_date.to_date.to_formatted_s(:rfc822)}
+        %td #{entry.duration_in_hours}
+        %td #{truncate(entry.description)}
+        %td
+          %button{ class: "btn icon-remove btn-danger", role: "button", "data-toggle" => "modal", "data-target" => "#confirmation" }
+
 %a{class: "btn btn-lg btn-block btn-primary", href: new_time_entry_path } Add Time Entry
+
+.modal{ id: "confirmation", class: "hide", role: "dialog", "aria-labelledby" => "confirmation_title", "aria-hidden" => "true", tabindex: -1 }
+  .modal-header
+    %button{ class: "close", "data-dismiss" => "modal", "aria-hidden" => "true"}x
+    %h4{ id: "confirmation_title" } header
+  .modal-body
+    Are you sure?
+  .modal-footer
+    %button{ class: "btn", "data-dismiss" => "modal", "aria-hidden" => "true"} Close
+    %button{ class: "btn btn-primary" } Delete
+
+
 
