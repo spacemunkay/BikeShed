@@ -1,0 +1,9 @@
+%a{ class: "btn btn-default btn-lg", href: root_path}
+  %span{ class:"icon-home"}
+%h2 Your Timesheet
+
+%p Total Hours Worked: #{@hours_worked}
+%p Total Credits Available: #{@credits_available}
+
+%a{class: "btn btn-lg btn-block btn-primary", href: new_time_entry_path } Add Time Entry
+
