@@ -19,7 +19,7 @@ $(document).ready(function(){
     // If a bike is selected, forward to the bike
     // checklist.
     bike_id = parseInt($("#bike_id").val());
-    if( bike_id >= 0 ){
+    if( bike_id > 0 ){
       forward = "/task_lists/" + bike_id + "/edit";
     }
 
@@ -30,7 +30,6 @@ $(document).ready(function(){
         bike_id:       bike_id,
         description:   $("#description_id").val(),
       }]};
-    console.log(json_data);
 
     $.ajax({
       url: $("#add_time_entry_submit").data("url"),
@@ -39,11 +38,9 @@ $(document).ready(function(){
       contentType: 'application/json',
       dataType: "json",
       success: function(data, status, xhr){
-        console.log(data);
         window.location = forward;
       },
       error: function(data, status ){
-        console.log(data);
         displayFormErrors(data.responseJSON);
       }
     });

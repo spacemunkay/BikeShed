@@ -39,4 +39,4 @@
       %textarea{id: "description_id", placeholder: "Work description", class: "input-lg" }
   .control-group
     .controls
-      %input{id: "add_time_entry_submit", value: "Add Time Entry", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_time_entry_path}"}
+      %input{id: "add_time_entry_submit", value: "Add Time Entry", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_time_entry_path}", "data-forward" => "#{"."}"}
