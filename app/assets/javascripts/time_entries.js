@@ -45,4 +45,35 @@ $(document).ready(function(){
       }
     });
   });
+
+  $(".work_entry-delete-btn").click(function(){
+    row = $(this).closest("tr");
+    entry_id = row.data("id");
+    start_date = row.data("start_date");
+    duration = row.data("duration");
+    description = row.data("description");
+    $("#work_entry_start_date").html(start_date);
+    $("#work_entry_duration").html(duration);
+    $("#work_entry_description").html(description);
+    $("#confirmation_delete").data("entry_id", entry_id);
+  });
+
+  $("#confirmation_delete").click(function(){
+    console.log($(this).data("entry_id"));
+    /**
+    $.ajax({
+      url: $("#confirmation_delete").data("url"),
+      type: "delete",
+      data: JSON.stringify(json_data),
+      contentType: 'application/json',
+      dataType: "json",
+      success: function(data, status, xhr){
+        window.location = forward;
+      },
+      error: function(data, status ){
+        displayFormErrors(data.responseJSON);
+      }
+    });
+    */
+  });
 });
