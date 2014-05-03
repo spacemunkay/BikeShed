@@ -1,7 +1,7 @@
 class TimeEntry < ActsAsLoggable::Log
   default_scope where( loggable_type: "User",
                        logger_type: "User",
-                       log_action_type: "ActsAsLoggable::UserAction")
+                       log_action_type: "ActsAsLoggable::UserAction").where("log_action_id != 4").order("start_date DESC")
 
   def copy_to_bike_history(bike_id)
     self.assign_attributes({
