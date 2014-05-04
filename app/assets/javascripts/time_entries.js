@@ -59,21 +59,18 @@ $(document).ready(function(){
   });
 
   $("#confirmation_delete").click(function(){
-    console.log($(this).data("entry_id"));
-    /**
+    entry_id = $(this).data("entry_id");
+    url = $("#confirmation_delete").data("url") + entry_id;
     $.ajax({
-      url: $("#confirmation_delete").data("url"),
+      url: url,
       type: "delete",
-      data: JSON.stringify(json_data),
       contentType: 'application/json',
-      dataType: "json",
       success: function(data, status, xhr){
-        window.location = forward;
+        location.reload();
       },
       error: function(data, status ){
         displayFormErrors(data.responseJSON);
       }
     });
-    */
   });
 });

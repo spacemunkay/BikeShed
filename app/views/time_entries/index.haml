@@ -18,6 +18,7 @@
           "data-start_date" => entry.start_date.to_date.to_formatted_s(:rfc822)}
         %td #{entry.start_date.to_date.to_formatted_s(:rfc822)}
         %td #{entry.duration_in_hours}
+        %td #{entry.type}
         %td #{truncate(entry.description)}
         %td
           %button{ class: "btn icon-remove btn-danger work_entry-delete-btn", role: "button", "data-toggle" => "modal", "data-target" => "#confirmation" }
@@ -37,7 +38,7 @@
       Description
   .modal-footer
     %button{ class: "btn", "data-dismiss" => "modal", "aria-hidden" => "true"} Close
-    %button{ id: "confirmation_delete", class: "btn btn-primary" } Delete
+    %button{ id: "confirmation_delete", class: "btn btn-primary", "data-url" => "api/v1/time_entries/" } Delete
 
 
 

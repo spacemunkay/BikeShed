@@ -20,4 +20,8 @@ class TimeEntry < ActsAsLoggable::Log
   def duration_in_hours
     (duration / 1.hour).round(2)
   end
+
+  def type
+    log_action.action
+  end
 end
