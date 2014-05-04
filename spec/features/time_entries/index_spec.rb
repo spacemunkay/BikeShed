@@ -13,7 +13,6 @@ feature "TimeEntries" do
 
   scenario "User deletes a time entry", js: true do
     visit time_entries_path
-    puts TimeEntry.where(loggable_id: user.id).inspect
     save_screenshot("/tmp/testingpoop.png")
     find('button.work_entry-delete-btn').trigger('click')
     click_button "Delete"
