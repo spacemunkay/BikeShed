@@ -17,13 +17,15 @@ describe "Index Page" do
     page.should have_button 'CHECK OUT'
   end
 
-  it 'clicking check in should check in a user' do
+  it 'clicking check in should check in a user', js: true do
+    pending
     expect{click_button 'CHECK IN'}.
       to change{@user.checked_in?}.
       from(false).to(true)
   end
 
-  it 'clicking check out should check out a user' do
+  it 'clicking check out should check out a user', js: true do
+    pending
     @user.checkin
     expect{click_button 'CHECK OUT'}.
       to change{@user.checked_in?}.
