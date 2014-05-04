@@ -22,6 +22,6 @@ class TimeEntry < ActsAsLoggable::Log
   end
 
   def type
-    log_action.action
+    log_action.try(:action)
   end
 end
