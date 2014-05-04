@@ -77,4 +77,41 @@ describe Api::V1::TimeEntriesController do
       end
     end
   end
+
+  describe "#delete" do
+    context "as a user" do
+      let!(:user){ FactoryGirl.create(:user) }
+
+      before(:each) do
+        sign_in user
+      end
+
+      context "entry does not exist" do
+        it "returns 404" do
+          delete :delete, id: 9000
+          expect(@response.code.to_i).to eql 404
+        end
+
+        it "returns not found" do
+          delete :delete, id: 9000
+          json = JSON.parse(@response.body)
+          expect(json).to have_key("errors")
+          expect(json.to_s).to include("not found")
+        end
+      end
+
+      context "entry exists" do
+        let!(:entry){ FactoryGirl.create(:time_entry) }
+
+        it "deletes the time entry" do
+          expect{delete :delete, id: entry.id}.to change{TimeEntry.count}
+        end
+
+        it "returns 204" do
+          delete :delete, id: entry.id
+          expect(@response.code.to_i).to eql 204
+        end
+      end
+    end
+  end
 end

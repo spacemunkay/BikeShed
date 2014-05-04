@@ -31,6 +31,7 @@ Velocipede::Application.routes.draw do
       put  'tasks/update' => "tasks#update", as: "api_update_task"
 
       post 'time_entries/create' => "time_entries#create", as: "api_create_time_entry"
+      delete 'time_entries/:id' => "time_entries#delete", as: "api_delete_time_entry"
     end
   end
 

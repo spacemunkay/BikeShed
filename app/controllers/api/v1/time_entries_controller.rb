@@ -1,5 +1,6 @@
 class Api::V1::TimeEntriesController < Api::V1::BaseController
   EXPECTED_TIME_ENTRY = "Expected time entry in submitted data"
+  NOT_FOUND = "Time entry not found"
 
   def create
     if params[:time_entries] && time_entry = params[:time_entries].first
@@ -17,6 +18,15 @@ class Api::V1::TimeEntriesController < Api::V1::BaseController
       end
     else
       render json: { errors: [EXPECTED_TIME_ENTRY]}, status: 422 and return
+    end
+  end
+
+  def delete
+    if time_entry = TimeEntry.find_by_id(params[:id])
+      time_entry.delete
+      render nothing: true, status: 204 and return
+    else
+      render json: { errors: [NOT_FOUND]}, status: 404 and return
     end
   end
 end
