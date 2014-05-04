@@ -74,6 +74,8 @@ class User < ActiveRecord::Base
 
   def total_earned_credits
     log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    volunteer_id = 1
+    staff_id = 3
 
     # Find the first credit conversion which has a created_at date before the
     # log's created_at date and join it to the log's row so we can calculate
@@ -82,7 +84,7 @@ class User < ActiveRecord::Base
     #
     # The DISTINCT ON, and ORDER BY are important to getting the
     # single conversion rate that applies to the respective log.
-    ::ActsAsLoggable::Log.find_by_sql("
+    ::ActsAsLoggable::Log.find_by_sql(["
       SELECT DISTINCT ON (logs.created_at) start_date, end_date,
         conversion.conversion, conversion.created_at
       FROM logs
@@ -90,10 +92,13 @@ class User < ActiveRecord::Base
         SELECT conversion, created_at
         FROM credit_conversions
       ) AS conversion ON logs.created_at > conversion.created_at
-      WHERE logs.loggable_id = #{self.id}
+      WHERE logs.loggable_id = :id
       AND logs.loggable_type = 'User'
-      AND (log_action_id != #{log_action.id} AND log_action_type = '#{log_action.class.to_s}')
-      ORDER BY logs.created_at, conversion.created_at DESC").
+      AND (log_action_id IN (:credit_actions) AND log_action_type = :log_action_type)
+      ORDER BY logs.created_at, conversion.created_at DESC",
+        {id: self.id,
+         credit_actions: [volunteer_id, staff_id],
+         log_action_type: log_action.class.to_s}]).
         sum{ |l| ((l.end_date - l.start_date)/3600) * l.conversion.to_i}.round(2)
   end
 
