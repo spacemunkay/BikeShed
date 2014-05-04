@@ -8,11 +8,12 @@ class Api::V1::TimeEntriesController < Api::V1::BaseController
                           logger_id: current_user.id  })
       bike_id = time_entry[:bike_id].to_i
 
+      @time_entry = TimeEntry.new(time_entry.except(:bike_id))
+
       if bike_id > 0
-        time_entry.copy_to_bike_history(bike_id)
+        @time_entry.copy_to_bike_history(bike_id)
       end
 
-      @time_entry = TimeEntry.new(time_entry.except(:bike_id))
       if !@time_entry.save
         render json: { errors: @time_entry.errors }, status: 422 and return
       end
