@@ -22,6 +22,7 @@ Ext.define('Ext.ux.form.field.DateTime', {
     dateSubmitFormat: 'Y-m-d',
     timeFormat: 'H:i:s',
     timeSubmitFormat: 'H:i:s',
+    submitFormat: 'c',
     dateConfig:{},
     timeConfig:{},
 
@@ -184,8 +185,10 @@ Ext.define('Ext.ux.form.field.DateTime', {
         var me = this
             ,format = me.getFormat()
             ,value = me.getValue();
-
-        return value ? Ext.Date.format(value, format) : null;
+        console.log(value);
+        console.log(format);
+        console.log("formatted: " + Ext.Date.format(value, this.submitFormat));
+        return value ? Ext.Date.format(value, this.submitFormat) : null;
     },
 
     setValue: function(value){
