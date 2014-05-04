@@ -21,7 +21,7 @@ $("#add_bike_submit").click(function(){
     contentType: 'application/json',
     dataType: "json",
     success: function(data, status, xhr){
-      window.location = data.bikes[0].id;
+      window.location = data.bikes[0].id + "?add_bike=1";
     },
     error: function(data, status ){
       displayFormErrors(data.responseJSON);
