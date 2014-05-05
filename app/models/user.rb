@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
     #default BUILDBIKE/CLASS ID is 5
     purpose_id = 5
     Bike.find_by_sql("
-      SELECT * 
+      SELECT *
       FROM bikes
-      INNER JOIN( 
+      INNER JOIN(
         SELECT *
         FROM transactions
         WHERE customer_id = #{self.id}
@@ -65,15 +65,16 @@ class User < ActiveRecord::Base
   end
 
   def total_credits_spent
-    log_action = ::ActsAsLoggable::TransactionAction.find_by_action("TIME")
+    log_action_id = 1 #TIME
     transaction_logs.
       where(  "log_action_id = ? AND log_action_type = ?",
-              log_action.id, log_action.class.to_s).
+              log_action_id, ::ActsAsLoggable::TransactionAction.to_s).
       sum{ |r| r.description.to_i }.round(2)
   end
 
   def total_earned_credits
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    volunteer_id = 1
+    staff_id = 3
 
     # Find the first credit conversion which has a created_at date before the
     # log's created_at date and join it to the log's row so we can calculate
@@ -82,7 +83,7 @@ class User < ActiveRecord::Base
     #
     # The DISTINCT ON, and ORDER BY are important to getting the
     # single conversion rate that applies to the respective log.
-    ::ActsAsLoggable::Log.find_by_sql("
+    ::ActsAsLoggable::Log.find_by_sql(["
       SELECT DISTINCT ON (logs.created_at) start_date, end_date,
         conversion.conversion, conversion.created_at
       FROM logs
@@ -90,23 +91,26 @@ class User < ActiveRecord::Base
         SELECT conversion, created_at
         FROM credit_conversions
       ) AS conversion ON logs.created_at > conversion.created_at
-      WHERE logs.loggable_id = #{self.id}
+      WHERE logs.loggable_id = :id
       AND logs.loggable_type = 'User'
-      AND (log_action_id != #{log_action.id} AND log_action_type = '#{log_action.class.to_s}')
-      ORDER BY logs.created_at, conversion.created_at DESC").
+      AND (log_action_id IN (:credit_actions) AND log_action_type = :log_action_type)
+      ORDER BY logs.created_at, conversion.created_at DESC",
+        {id: self.id,
+         credit_actions: [volunteer_id, staff_id],
+         log_action_type: ::ActsAsLoggable::UserAction.to_s}]).
         sum{ |l| ((l.end_date - l.start_date)/3600) * l.conversion.to_i}.round(2)
   end
 
   def total_hours
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
-    logs.where("log_action_id != ? AND log_action_type = ?", log_action.id, log_action.class.to_s).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
+    log_action_id = 4 #CHECKIN
+    logs.where("log_action_id != ? AND log_action_type = ?", log_action_id, ::ActsAsLoggable::UserAction.to_s).sum { |l| (l.end_date - l.start_date)/3600 }.round(2)
   end
 
   def current_month_hours
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    log_action_id = 4 #CHECKIN
     #TODO need to prevent users from saving logs across months, force to create a new log if crossing month
     current_month_range = (Time.now.beginning_of_month..Time.now.end_of_month)
-    logs.where("log_action_id != ? AND log_action_type = ?", log_action.id, log_action.class.to_s)
+    logs.where("log_action_id != ? AND log_action_type = ?", log_action_id, ::ActsAsLoggable::UserAction.to_s)
       .where( :start_date => current_month_range)
       .where( :end_date => current_month_range)
       .sum { |l| (l.end_date - l.start_date)/3600 }
@@ -114,28 +118,31 @@ class User < ActiveRecord::Base
   end
 
   def checked_in?
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
-    checked = logs.where( log_action_id: log_action.id).
+    #default CHECKIN log action is id, yea yea should be a constant
+    log_action_id = 4
+    checked = logs.where( log_action_id: log_action_id).
       where("start_date >= ?", Time.zone.now.beginning_of_day).
       where("start_date = end_date")
     !checked.empty?
   end
 
   def checkin
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
+    #default CHECKIN log action is id, yea yea should be a constant
+    log_action_id = 4
     time = Time.now
     logs.create( logger_id: self.id,
                  logger_type: self.class.to_s,
                  start_date: time,
                  end_date: time,
-                 log_action_id: log_action.id,
-                 log_action_type: log_action.class.to_s)
+                 log_action_id: log_action_id,
+                 log_action_type: ::ActsAsLoggable::UserAction.to_s)
     save
   end
 
   def checkout
-    log_action = ::ActsAsLoggable::UserAction.find_by_action("CHECKIN")
-    checked = logs.where( log_action_id: log_action.id).
+    #default CHECKIN log action is id, yea yea should be a constant
+    log_action_id = 4
+    checked = logs.where( log_action_id: log_action_id).
       where("start_date >= ?", Time.zone.now.beginning_of_day).
       where("start_date = end_date").first
     checked.end_date = Time.now

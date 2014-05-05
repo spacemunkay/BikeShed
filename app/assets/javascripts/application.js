@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require custom_netzke_helpers
+//= require twitter/bootstrap/bootstrap-button
+//= require twitter/bootstrap/bootstrap-modal
+//= require utils
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
+//= require jquery-date-format

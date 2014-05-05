@@ -36,5 +36,9 @@ FactoryGirl.define do
       end
     end
 
+    factory :user_with_bike do
+      bike { FactoryGirl.create(:bike) }
+    end
+
   end
 end

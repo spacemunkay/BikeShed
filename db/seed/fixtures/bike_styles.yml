@@ -7,3 +7,6 @@ hybrid:
 road:
   id: 3
   style: ROAD
+other:
+  id: 4
+  style: OTHER

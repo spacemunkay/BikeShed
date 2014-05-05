@@ -41,7 +41,7 @@ if Rails.env.development?
   #create fake bikes
   if Bike.all.empty?
     42.times do |n|
-      FactoryGirl.create(:bike)
+      FactoryGirl.create(:seed_bike)
     end
   end
 elsif Rails.env.production?
