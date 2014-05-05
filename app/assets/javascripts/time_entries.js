@@ -23,9 +23,13 @@ $(document).ready(function(){
       forward = "/task_lists/" + bike_id + "/edit";
     }
 
+    //FIXME: Ideally, we'd submit the dates as ISO, but I can't figure out
+    // how to get Netzke to render UTC dates correctly (it calls to_json
+    // somewhere and drops off the timezone).  For the time being, save dates
+    // in locale like Netzke.
     json_data = { time_entries: [{
-        start_date:    start_date.toISOString(),
-        end_date:      end_date.toISOString(),
+        start_date:    $.format.date(start_date, "dd-MM-yyyy hh:mm a"),
+        end_date:      $.format.date(end_date, "dd-MM-yyyy hh:mm a"),
         log_action_id: parseInt($('input[name=action_id]:checked').val()),
         bike_id:       bike_id,
         description:   $("#description_id").val(),
@@ -44,6 +48,7 @@ $(document).ready(function(){
         displayFormErrors(data.responseJSON);
       }
     });
+
   });
 
   $(".work_entry-delete-btn").click(function(){

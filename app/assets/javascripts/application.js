@@ -17,3 +17,4 @@
 //= require utils
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
+//= require jquery-date-format
