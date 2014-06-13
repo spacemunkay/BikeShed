@@ -19,6 +19,6 @@
     });
   },
   onChangeAccountInfo: function(){
-    window.location.href="users/edit";
+    window.location.href="/users/edit";
   }
 }
