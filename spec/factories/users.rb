@@ -8,14 +8,14 @@ FactoryGirl.define do
     first_name 'Michael'
     last_name 'Scott'
     sequence(:bike_id) { |n| n }
-    after_build do |r|
+    after(:build) do |r|
       r.roles << (Role.find_by_role("user") || FactoryGirl.create(:role_user))
     end
 
     factory :staff do
       username "staff"
       first_name 'Staff'
-      after_build do |r|
+      after(:build) do |r|
         r.roles << (Role.find_by_role("staff") || FactoryGirl.create(:role_staff))
       end
     end
@@ -23,7 +23,7 @@ FactoryGirl.define do
     factory :admin do
       username "admin"
       first_name 'Admin'
-      after_build do |r|
+      after(:build) do |r|
         r.roles << (Role.find_by_role("admin") || FactoryGirl.create(:role_admin))
       end
     end
@@ -31,7 +31,7 @@ FactoryGirl.define do
     factory :bike_admin do
       username "bike_admin"
       first_name 'BikeAdmin'
-      after_build do |r|
+      after(:build) do |r|
         r.roles << (Role.find_by_role("bike_admin") || FactoryGirl.create(:role_bike_admin))
       end
     end
