@@ -10,3 +10,5 @@ public/extjs
 public/assets
 public/images/icons
 config/database.yml
+vendor/
+.sass-cache/
