@@ -22,27 +22,28 @@
           %a{class:"navbar-brand", href:"/"}
           = image_tag 'velo_logo.png'
 
-        /[Collect the nav links, forms, and other content for toggling]
-        %div{class: "collapse navbar-collapse", id:"bs-example-navbar-collapse-1"}
-          %ul{class: "nav navbar-nav"}
-            %li
-              %a{href: new_time_entry_path} Add Time Entry
-            %li
-              %a{href: time_entries_path} View Timesheet
-            %li
-              %a{href: new_bike_path} Add Bike
-            %li
-              %a{href: bike_path(@bike)} View Your Bike
-          %ul{class: "nav navbar-nav navbar-right"}
-          - if user_signed_in?
-            %li
-              %input{id: "index_logout", value: "Logout", "data-url" => destroy_user_session_path }
+        - if user_signed_in?
+          /[Collect the nav links, forms, and other content for toggling]
+          %div{class: "collapse navbar-collapse", id:"bs-example-navbar-collapse-1"}
+            %ul{class: "nav navbar-nav"}
+              %li
+                %a{href: new_time_entry_path} Add Time Entry
+              %li
+                %a{href: time_entries_path} View Timesheet
+              %li
+                %a{href: new_bike_path} Add Bike
+              %li
+                %a{href: bike_path(@bike)} View Your Bike
+            %ul{class: "nav navbar-nav navbar-right"}
+              %li
+                %input{id: "index_logout", value: "Logout", "data-url" => destroy_user_session_path }
 
     .container
       - if flash[:notice]
         %p{:class => 'notice'}= flash[:notice]
       - if flash[:alert]
         %p{:class => 'alert'}= flash[:alert]
+      = yield
 
     %footer
       %p &copy; BikeShed #{Time.now.year}
