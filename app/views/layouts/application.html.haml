@@ -5,31 +5,47 @@
     %meta{ name: "viewport", content: "width=device-width", "initial-scale" => "1.0"}
     %title= content_for?(:title) ? yield(:title) : "Velocipede"
     = csrf_meta_tags
-    = stylesheet_link_tag "bootstrap_and_overrides", "datepicker", "bootstrap-timepicker", :media => "all"
+    = stylesheet_link_tag "bootstrap", "application", :media => "all"
     /[if lt IE 9]
       = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
-    :css
-      body {
-        padding-top: 5px;
-      }
-      .x-boundlist-item {
-        white-space: nowrap;
-      }
-
+      
   %body
+    %nav{class: "navbar navbar-default", role: "navigation"}
+      %div{class: "container-fluid"}
+      /[Brand and toggle get grouped for better mobile display]
+        %div{class: "navbar-header"}
+          %button{type: "button", class: "navbar-toggle", 'data-toggle' => "collapse", 'data-target' => "#bs-example-navbar-collapse-1"}
+            %span{class: "sr-only"} Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a{class:"navbar-brand", href:"/"}
+          = image_tag 'velo_logo.png'
+
+        /[Collect the nav links, forms, and other content for toggling]
+        %div{class: "collapse navbar-collapse", id:"bs-example-navbar-collapse-1"}
+          %ul{class: "nav navbar-nav"}
+            %li
+              %a{href: new_time_entry_path} Add Time Entry
+            %li
+              %a{href: time_entries_path} View Timesheet
+            %li
+              %a{href: new_bike_path} Add Bike
+            %li
+              %a{href: bike_path(@bike)} View Your Bike
+          %ul{class: "nav navbar-nav navbar-right"}
+          - if user_signed_in?
+            %li
+              %input{id: "index_logout", value: "Logout", "data-url" => destroy_user_session_path }
+
     .container
+      - if flash[:notice]
+        %p{:class => 'notice'}= flash[:notice]
+      - if flash[:alert]
+        %p{:class => 'alert'}= flash[:alert]
 
-      .content
-        - if flash[:notice]
-          %p{:class => 'notice'}= flash[:notice]
-        - if flash[:alert]
-          %p{:class => 'alert'}= flash[:alert]
-        .row
-          .span12
-            = yield
-
-      %footer
-        %p &copy; BikeShed #{Time.now.year}
+    %footer
+      %p &copy; BikeShed #{Time.now.year}
 
     = javascript_include_tag "application"
     = javascript_include_tag params[:controller] 

@@ -9,11 +9,29 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require datepicker
  *= require bootstrap
+ *= require datepicker
  *= require bootstrap-timepicker
  *= require bootstrap_and_overrides
 */
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.x-boundlist-item {
+  white-space: nowrap;
+}
 
 .container {
 	max-width: 940px;
@@ -30,6 +48,10 @@ p {
 	padding: 20px 0;
 }
 
+a {
+text-decoration: none;
+}
+
 .check_box {
 	width: 30px;
 	height: 30px;
@@ -38,4 +60,37 @@ p {
 
 label {
 	font-size: x-large;
+}
+
+/* navigation styling */
+
+.navbar-default {
+  background-color: #428bca;
+  border-color: #428bca;
+	border-radius: 0px;
+}
+
+.navbar > .container-fluid .navbar-brand {
+margin-left: -15px;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+  list-style: none;
+}
+
+.navbar-brand {
+	float: left;
+	padding: 15px 15px;
+	font-size: 18px;
+	line-height: 20px;
+	height: 50px;
+}
+
+.navbar-default a:hover {
+  color: #d1b84a !important;
 }
