@@ -3,7 +3,8 @@ Velocipede::Application.routes.draw do
   devise_for :users
   netzke
 
-  root :to => 'site#index'
+  root :to => 'time_entries#new'
+
   get 'admin/index', to: 'panel#index', as: "admin_index"
 
   get 'bikes/new', to: 'bikes#new', as: "new_bike"
