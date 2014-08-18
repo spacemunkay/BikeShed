@@ -2,30 +2,31 @@
 
 %p
   .control-group
-    .controls
-      %input{id: "date_id", placeholder: "Date", type: "text", class: "datepicker input-small" }
+    .controls{ class: "bootstrap-timepicker col-xs-12 col-sm-12 col-md-12 input-group"}
+      .span{ class: "input-group-addon", style: "min-width: 100px; font-size: large"} Date
+      %input{id: "date_id", placeholder: "Date", type: "text", class: "datepicker input-large col-xs-12 col-sm-12 col-md-12 form-control" }
       .help-block
   .control-group
-    .controls{ class: "bootstrap-timepicker"}
-      %label Start
-      %input{id: "start_time_id", placeholder: "Time ID", type: "text", class: "input-small" }
+    .controls{ class: "bootstrap-timepicker col-xs-12 col-sm-12 col-md-12 input-group"}
+      .span{ class: "input-group-addon", style: "min-width: 100px; font-size: large"} Start
+      %input{id: "start_time_id", placeholder: "Time ID", type: "text", class: "input-large col-xs-12 col-sm-12 col-md-12 form-control" }
       .hidden{ id: "start_date" }
       .help-block
   .control-group
-    .controls
-      %label End
-      %input{id: "end_time_id", placeholder: "Time ID", type: "text", class: "input-small" }
+    .controls{ class: "bootstrap-timepicker col-xs-12 col-sm-12 col-md-12 input-group"}
+      .span{ class: "input-group-addon", style: "min-width: 100px; font-size: large"} End
+      %input{id: "end_time_id", placeholder: "Time ID", type: "text", class: "input-large col-xs-9 col-sm-9 col-md-9 form-control"}
       .hidden{ id: "end_date" }
       .help-block
-  .control-group
+  .control-group{ class: "col-xs-12 col-sm-12 col-md-12"}
     .controls
-      .btn-group{ "data-toggle" => "buttons-radio"}
-        %label{ class: "btn btn-default"}
-          %input{ type: "radio", name: "action_id", value: 1} Volunteer
-        %label{ class: "btn btn-default"}
-          %input{ type: "radio", name: "action_id", value: 2} Personal
-        %label{ class: "btn btn-default"}
-          %input{ type: "radio", name: "action_id", value: 3} Staff
+      .btn-group{ "data-toggle" => "buttons-radio", class: "btn-group btn-group-justified"}
+        %label{ class: "btn-lg col-xs-4 col-sm-4 col-md-4"}
+          %input{ type: "radio", name: "action_id", value: 1, radius: 20} Volunteer
+        %label{ class: "btn-lg col-xs-4 col-sm-4 col-md-4"}
+          %input{ type: "radio", name: "action_id", value: 2, radius: 20} Personal
+        %label{ class: "btn-lg col-xs-4 col-sm-4 col-md-4"}
+          %input{ type: "radio", name: "action_id", value: 3, radius: 20} Staff
     .hidden{ id: "log_action_id" }
     .help-block
   .control-group
@@ -34,7 +35,7 @@
         = select_tag(:bike_id, options_for_select(@bikes))
   .control-group
     .controls
-      %textarea{id: "description_id", placeholder: "Work description", class: "input-lg" }
+      %textarea{id: "description_id", placeholder: "Work description", class: "input-lg col-xs-12 col-sm-12 col-md-12" }
   .control-group
     .controls
       %input{id: "add_time_entry_submit", value: "Add Time Entry", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_time_entry_path}", "data-forward" => "#{"."}"}

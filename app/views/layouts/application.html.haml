@@ -36,7 +36,7 @@
                 %a{href: bike_path(@bike)} View Your Bike
             %ul{class: "nav navbar-nav navbar-right"}
               %li
-                %input{id: "index_logout", value: "Logout", "data-url" => destroy_user_session_path }
+                %a{href: destroy_user_session_path } Log Out
 
     .container
       - if flash[:notice]
