@@ -15,6 +15,9 @@
  *= require bootstrap_and_overrides
 */
 
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
 * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
