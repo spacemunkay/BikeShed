@@ -45,7 +45,6 @@ group :test do
   gem 'launchy', '~> 2.4.2'
   gem 'spork', '~> 0.9.2'
   #guard dependency for Mac OS 10
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-spork', '~> 1.5.1'
   gem 'guard-rspec', '~> 4.2.6'
 end

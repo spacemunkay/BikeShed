@@ -1,0 +1,13 @@
+db:
+  image: postgres
+  ports:
+    - "5432"
+web:
+  volumes:
+    - .:/usr/src/app
+  build: .
+  #command: bundle exec rake db:migrate
+  ports:
+    - "8080:3000"
+  links:
+    - db
