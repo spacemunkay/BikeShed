@@ -18,7 +18,7 @@ FactoryGirl.define do
     bike_purpose { FactoryGirl.create(:bike_purpose) }
   end
 
-  factory :seed_bike do
+  factory :seed_bike, class: Bike do
     sequence(:shop_id) {|n| n}
     sequence :serial_number do |n|
       "#{Faker::Code.isbn}-#{n}"
