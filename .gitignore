@@ -7,5 +7,4 @@ tmp/
 .rbenv-version
 .DS_Store
 public/assets
-public/images/icons
 config/database.yml

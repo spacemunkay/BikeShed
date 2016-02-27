@@ -19,5 +19,8 @@ RUN bundle install
 COPY install_extjs.rb /usr/src/app/
 RUN /usr/src/app/install_extjs.rb
 
+COPY install_famfamfam.rb /usr/src/app/
+RUN /usr/src/app/install_famfamfam.rb
+
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
