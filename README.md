@@ -18,7 +18,7 @@ See [guides](doc/guides.md)
 1. Execute `docker-compose run web rake db:create db:migrate`
 1. Execute `docker-compose up`
 1. If using Docker Toolbox, use `docker-machine ip default` to get the IP where the server is running.
-1. Test the Rails server is running with by visiting `<INSERT IP>:3000` in your browser.
+1. Test the Rails server is running with by visiting `<INSERT IP>:8080` in your browser.
 
 ### Developer Workflow
 The project directory should already be mounted inside the container, so you should be able to make live changes. However, since the project is running in the 'web' container, you need to prepend commands with `docker-compose run web`.
