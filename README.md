@@ -1,6 +1,8 @@
 # About
 A web application for bicycle collectives to track bicycles, bicycle work history, volunteer hours, volunteer work history, and volunteers currently in the shop.
 
+See a live demo here: <http://bikeshed.wvcompletestreets.org/>  Thanks @fspc for setting that up!
+
 See an overview video of what the desktop view looks like and how it works here: https://www.youtube.com/watch?v=0-JjM6d9nK4.
 
 ## Overview/Instructions/Guides
@@ -19,6 +21,10 @@ See [guides](doc/guides.md)
 1. Execute `docker-compose up`
 1. If using Docker Toolbox, use `docker-machine ip default` to get the IP where the server is running.
 1. Test the Rails server is running with by visiting `<INSERT IP>:8080` in your browser.
+
+### Alternative Dockerfile
+
+See <https://github.com/fspc/bikeshed> for an alternative docker setup.
 
 ### Developer Workflow
 The project directory should already be mounted inside the container, so you should be able to make live changes. However, since the project is running in the 'web' container, you need to prepend commands with `docker-compose run web`.
