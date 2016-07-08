@@ -1,50 +1,41 @@
-# About
+﻿# About
 A web application for bicycle collectives to track bicycles, bicycle work history, volunteer hours, volunteer work history, and volunteers currently in the shop.
 
-See a live demo here: <http://bikeshed.wvcompletestreets.org/>  Thanks @fspc for setting that up!
+See a live demo here: <http://bikeshed.wvcompletestreets.org/>
 
-See an overview video of what the desktop view looks like and how it works here: https://www.youtube.com/watch?v=0-JjM6d9nK4.
+# Version
+  
+  - Rails 3.2.18 / Ruby 2.1.1
 
-## Overview/Instructions/Guides
-
-See [guides](doc/guides.md)
+  - jquery 1.10.1 / bootstrap 3.2.2
 
 # Developer Setup
 
-## Running with Docker (recommended)
+1.git clone https://github.com/deimos620/bikeshed.git
 
-1. These instructions haven't been tested, please provide corrections!
-1. Install Docker Toolbox <https://www.docker.com/toolbox>
-1. Make sure you have a machine running: `docker-machine start default && eval "$(docker-machine env default)"`
-1. Execute `docker-compose build`
-1. Execute `docker-compose run web rake db:create db:migrate db:seed`
-1. Execute `docker-compose up`
-1. If using Docker Toolbox, use `docker-machine ip default` to get the IP where the server is running.
-1. Test the Rails server is running with by visiting `<INSERT IP>:8080` in your browser.
+2.rvm gemset create bikeshed 
 
-### Alternative Dockerfile
+3.rvm gemset use ruby-2.1.1@bikeshed
 
-See <https://github.com/fspc/bikeshed> for an alternative docker setup.
+4.bundle install
 
-### Developer Workflow
-The project directory should already be mounted inside the container, so you should be able to make live changes. However, since the project is running in the 'web' container, you need to prepend commands with `docker-compose run web`.
+5.install bootstrap 3.2 to assets and layouts
+   
+   - rails generate bootstrap:install less
+   
+   - rails generate bootstrap:layouts
 
-You'll likely want to add the following aliases:
-```
-alias dm='docker-machine'
-alias dc='docker-compose'
-alias dcrw='docker-compose run web'
-```
+6.Custom database.yml
 
-That way your commands can be shortened to:
-```
-dcrw rake routes
-dcrw rails console
-dcrw rspec
-```
-If there's a better way, I'm all ears. Alternatively you could ssh into the machine with `dcrw bash`.
+7.Create Postgresql db
+  
+  - sudo postgres -p sql
 
-# License
-Velocipede is released under the MIT license (http://opensource.org/licenses/MIT)
+8.start application
+  
+  - Rails server.
 
-<a href="http://madewithloveinbaltimore.org">Made with &hearts; in Baltimore</a>
+
+Thanks!
+ 
+ ---- Deimos -----
