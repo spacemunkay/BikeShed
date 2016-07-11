@@ -1,5 +1,5 @@
 %a{ class: "btn btn-default btn-lg", href: root_path}
-  %span{ class:"icon-home"}
+  %span{ class:"fa fa-home"}
 %h2 Your Timesheet
 
 %dl.dl-horizontal
@@ -22,23 +22,24 @@
         %td #{truncate(entry.description)}
         %td
           %button{ class: "btn icon-remove btn-danger work_entry-delete-btn", role: "button", "data-toggle" => "modal", "data-target" => "#confirmation" }
-
-%a{class: "btn btn-lg btn-block btn-primary", href: new_time_entry_path } Add Time Entry
-
-.modal{ id: "confirmation", class: "hide", role: "dialog", "aria-labelledby" => "confirmation_title", "aria-hidden" => "true", tabindex: -1 }
-  .modal-header
-    %button{ class: "close", "data-dismiss" => "modal", "aria-hidden" => "true"}x
-    %h4{ id: "confirmation_title" } Are you sure you want to delete?
-  .modal-body
-    %div{ id: "work_entry_start_date" }
-      Start Date
-    %div{ id: "work_entry_duration" }
-      Duration
-    %div{ id: "work_entry_description" }
-      Description
-  .modal-footer
-    %button{ class: "btn", "data-dismiss" => "modal", "aria-hidden" => "true"} Close
-    %button{ id: "confirmation_delete", class: "btn btn-primary", "data-url" => "api/v1/time_entries/" } Delete
+%a{class: "btn btn-block btn-primary", href: new_time_entry_path } Add Time Entry
+%br
+.modal{ id: "confirmation", class: "modal-fade", role: "dialog", "aria-labelledby" => "confirmation_title", "aria-hidden" => "true", tabindex: -1 }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button{ class: "close", "data-dismiss" => "modal", "aria-hidden" => "true"}x
+        %h4{ id: "confirmation_title" } Are you sure you want to delete?
+      .modal-body
+        %div{ id: "work_entry_start_date" }
+          Start Date
+        %div{ id: "work_entry_duration" }
+          Duration
+        %div{ id: "work_entry_description" }
+          Description
+      .modal-footer
+        %button{ class: "btn", "data-dismiss" => "modal", "aria-hidden" => "true"} Close
+        %button{ id: "confirmation_delete", class: "btn btn-primary", "data-url" => "api/v1/time_entries/" } Delete
 
 
 

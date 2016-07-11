@@ -21,9 +21,11 @@ gem 'jbuilder', '~> 2.0.3'
 # Gems used only for assets and not required
 # in production environments by default.
 
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'less-rails'
-  gem "twitter-bootstrap-rails", "3.2.2"
+gem 'coffee-rails', '~> 3.2.1'
+gem 'less-rails'
+gem "twitter-bootstrap-rails", "3.2.2"
+gem 'bootstrap-datepicker-rails', '>= 0.6.21'
+gem 'bootstrap-timepicker-rails', '0.1.3'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer'
