@@ -1,11 +1,12 @@
 %a{ class: "btn btn-default btn-lg", href: root_path}
   %span{ class:"fa fa-home"}
-%h2 Your Timesheet
-
+%h2{style:"text-align:center"}Your Timesheet
+%br
 %dl.dl-horizontal
   %dd
     %span.badge #{@hours_worked}
     Total Hours Worked
+  %br
   %dd
     %span.badge #{@credits_available}
     Total Credits Available
