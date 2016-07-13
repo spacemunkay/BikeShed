@@ -8,3 +8,5 @@ tmp/
 .DS_Store
 public/assets
 config/database.yml
+.idea
+.idea/*

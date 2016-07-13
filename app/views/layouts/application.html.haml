@@ -1,35 +1,42 @@
 !!! 5
-%html{:lang => "en"}
+%html(lang="en")
   %head
-    %meta{:charset => "utf-8"}/
-    %meta{ name: "viewport", content: "width=device-width", "initial-scale" => "1.0"}
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     %title= content_for?(:title) ? yield(:title) : "Velocipede"
     = csrf_meta_tags
-    = stylesheet_link_tag "bootstrap_and_overrides", "datepicker", "bootstrap-timepicker", :media => "all"
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = stylesheet_link_tag "bootstrap_and_overrides", "bootstrap-datepicker", "bootstrap-timepicker", :media => "all"
     /[if lt IE 9]
-      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
-    :css
-      body {
-        padding-top: 5px;
-      }
-      .x-boundlist-item {
-        white-space: nowrap;
-      }
-
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
   %body
-    .container
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand(href="#") Samaritan
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          %ul.nav.navbar-nav
+            %li= link_to "Link 1", "/path1"
+            %li= link_to "Link 2", "/path2"
+            %li= link_to "Link 3", "/path3"
+            %li= link_to "Link 4", "/path4"
+    .container.panel-body
+      .row
+        .col-lg-6.col-lg-offset-3
+          = bootstrap_flash
+          = yield
+          %footer
+            %p &copy; Company 2016
 
-      .content
-        - if flash[:notice]
-          %p{:class => 'notice'}= flash[:notice]
-        - if flash[:alert]
-          %p{:class => 'alert'}= flash[:alert]
-        .row
-          .span12
-            = yield
-
-      %footer
-        %p &copy; BikeShed #{Time.now.year}
-
-    = javascript_include_tag "application"
-    = javascript_include_tag params[:controller] 
+        = javascript_include_tag "application"
+        = javascript_include_tag params[:controller]
