@@ -16,6 +16,8 @@
 //= require twitter/bootstrap/modal
 //= require twitter/bootstrap/collapse
 //= require twitter/bootstrap/alert
+//= require twitter/bootstrap/tooltip
+//= require twitter/bootstrap/popover
 //= require utils
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
