@@ -16,30 +16,20 @@
     %input{id: "serial_number", placeholder: "Serial Number", type: "text" ,class:"form-control"}
     .help-block
   .form-group
-    .btn-group{ "data-toggle" => "buttons-radio"}
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 3} RD
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 1} MTN
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 2} HYB
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_style", value: 4} OTHER
+    %input{ type: "radio", name: "bike_style", value: 3} RD
+    %input{ type: "radio", name: "bike_style", value: 1} MTN
+    %input{ type: "radio", name: "bike_style", value: 2} HYB
+    %input{ type: "radio", name: "bike_style", value: 4} OTHER
     %input{ id: "bike_style_id", type: "hidden"}
     .help-block
   .form-group
     = select_tag(:bike_wheel_size_id, options_for_select(@wheel_sizes), id: :bike_wheel_size_id,class:"form-control")
     .help-block
   .form-group
-    .btn-group{ "data-toggle" => "buttons-radio"}
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 2} Poor
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 3} Fair
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 4} Good
-      %label{ class: "btn btn-default"}
-        %input{ type: "radio", name: "bike_condition", value: 5} Excellent
+    %input{ type: "radio", name: "bike_condition", value: 2} Poor
+    %input{ type: "radio", name: "bike_condition", value: 3} Fair
+    %input{ type: "radio", name: "bike_condition", value: 4} Good
+    %input{ type: "radio", name: "bike_condition", value: 5} Excellent
     %input{ id: "bike_condition_id", type: "hidden"}
     .help-block
   .form-group

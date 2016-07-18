@@ -22,7 +22,7 @@
         %td #{entry.type}
         %td #{truncate(entry.description)}
         %td
-          %button{ class: "btn icon-remove btn-danger work_entry-delete-btn", role: "button", "data-toggle" => "modal", "data-target" => "#confirmation" }
+          %button{ class: "btn fa fa-remove btn-danger work_entry-delete-btn", role: "button", "data-toggle" => "modal", "data-target" => "#confirmation" }
 %a{class: "btn btn-block btn-primary", href: new_time_entry_path } Add Time Entry
 %br
 .modal{ id: "confirmation", class: "modal-fade", role: "dialog", "aria-labelledby" => "confirmation_title", "aria-hidden" => "true", tabindex: -1 }
