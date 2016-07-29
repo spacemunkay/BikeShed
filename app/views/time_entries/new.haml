@@ -18,10 +18,13 @@
       %input{id: "end_time_id", placeholder: "Time ID", type: "text", class: "input-small form-control" }
       .hidden{ id: "end_date" }
       .help-block
-  .form-group
-    %input{ type: "radio", name: "action_id", value: 1} Volunteer
-    %input{ type: "radio", name: "action_id", value: 2} Personal
-    %input{ type: "radio", name: "action_id", value: 3} Staff
+  .form-group.btn-group{"data-toggle"=>"buttons"}
+    %label{ class:"btn btn-primary" }
+      %input{ type: "radio", name: "action_id", value: 1} Volunteer
+    %label{ class:"btn btn-primary" }
+      %input{ type: "radio", name: "action_id", value: 2} Personal
+    %label{ class:"btn btn-primary" }
+      %input{ type: "radio", name: "action_id", value: 3} Stuff
     .hidden{ id: "log_action_id" }
     .help-block
   .form-group
