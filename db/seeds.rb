@@ -49,10 +49,10 @@ elsif Rails.env.production?
   unless User.find_by_username('admin')
     #create an admin
     admin = User.create!( :username => 'admin',
-                  :first_name => 'admin',
-                  :last_name => 'admin',
-                  :email=>'admin@example.com',
-                  :password=>'password')
+                          :first_name => 'admin',
+                          :last_name => 'admin',
+                          :email=>'admin@example.com',
+                          :password=>'password')
     admin.roles << Role.find_by_role('admin')
   end
 

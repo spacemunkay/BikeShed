@@ -10,10 +10,12 @@ Velocipede::Application.configure do
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
+  #config.assets.compile = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = false
-  config.assets.debug = true
+  config.assets.debug = false
+  #config.assets.debug = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH

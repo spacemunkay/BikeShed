@@ -8,7 +8,7 @@ gem 'netzke-basepack', '~>0.8.0'
 
 
 gem 'acts_as_loggable', :git => 'https://github.com/spacemunkay/acts_as_loggable.git'
-gem 'bootstrap-will_paginate', '~> 0.0.6'
+gem 'bootstrap-will_paginate', '0.0.10'
 gem 'cancan'
 gem 'decent_exposure', '~> 1.0.1'
 gem 'devise', '~> 2.0.4'
@@ -20,13 +20,16 @@ gem 'jbuilder', '~> 2.0.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  gem "twitter-bootstrap-rails", "~> 2.0.3"
+
+gem 'coffee-rails', '~> 3.2.1'
+gem 'less-rails'
+gem "twitter-bootstrap-rails", "3.2.2"
+gem 'bootstrap-datepicker-rails', '>= 0.6.21'
+gem 'bootstrap-timepicker-rails', '0.1.3'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
+  gem 'therubyracer'
+group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
