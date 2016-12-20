@@ -19,18 +19,12 @@ gem 'pg', '~> 0.17.1'
 gem 'will_paginate', '~> 3.0.3'
 gem 'jbuilder', '~> 2.0.3'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', '~> 3.0'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 3.1.1'
+# Assets
+gem 'sass-rails', '~> 3.0'
+gem 'coffee-rails', '~> 3.2.1'
+gem 'bootstrap-sass', '~> 3.1.1'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
-
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'uglifier', '>= 1.0.3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'

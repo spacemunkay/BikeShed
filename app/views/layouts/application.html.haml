@@ -1,29 +1,22 @@
 !!! 5
-%html{:lang => "en"}
+%html{lang: 'en'}
   %head
-    %meta{:charset => "utf-8"}/
-    %meta{ name: "viewport", content: "width=device-width", "initial-scale" => "1.0"}
-    %title= content_for?(:title) ? yield(:title) : "Velocipede"
+    %meta{charset: 'utf-8'}/
+    %meta{name: 'viewport', content: 'width=device-width', "initial-scale": '1.0'}
+    %title= content_for?(:title) ? yield(:title) : 'Velocipede'
     = csrf_meta_tags
-    = stylesheet_link_tag "bootstrap_and_overrides", "datepicker", "bootstrap-timepicker", :media => "all"
+    = stylesheet_link_tag 'application', media: 'all'
     /[if lt IE 9]
-      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
-    :css
-      body {
-        padding-top: 5px;
-      }
-      .x-boundlist-item {
-        white-space: nowrap;
-      }
+      = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
 
   %body
     .container
 
       .content
         - if flash[:notice]
-          %p{:class => 'notice'}= flash[:notice]
+          %p{class: 'notice'}= flash[:notice]
         - if flash[:alert]
-          %p{:class => 'alert'}= flash[:alert]
+          %p{class: 'alert'}= flash[:alert]
         .row
           .span12
             = yield
@@ -31,5 +24,5 @@
       %footer
         %p &copy; BikeShed #{Time.now.year}
 
-    = javascript_include_tag "application"
+    = javascript_include_tag 'application'
     = javascript_include_tag params[:controller] 
