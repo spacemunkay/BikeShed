@@ -1,0 +1,41 @@
+%h1 Velocipede
+%p= link_to 'Made with &hearts; in Baltimore'.html_safe, 'http://madewithloveinbaltimore.org'
+
+.row
+  .col-xs-12.col-sm-6.col-lg-4
+    = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+
+      %fieldset
+        .form-group
+          = f.text_field :username, placeholder: 'Username', class: 'form-control'
+
+        .form-group
+          = f.password_field :password, placeholder: 'Password', class: 'form-control'
+
+        - if devise_mapping.rememberable?
+          .form-group
+            .checkbox
+              = f.label :remember_me do
+                = f.check_box :remember_me
+                Remember Me
+
+        .form-group
+          .pull-left
+            = f.submit 'Sign in', class: 'btn btn-primary'
+
+          .pull-right
+            %span.btn-group
+              = f.button 'CHECK IN', id: 'checkin', name: 'checkin', type: 'button', value: 'CHECK IN', class: 'btn btn-xsя btn-success'
+              = f.button 'CHECK OUT', id: 'checkout', name: 'checkout', type: 'button', value: 'CHECK OUT', class: 'btn btn-xsя btn-danger'
+
+          .clearfix
+
+    = render 'links'
+
+    - if false && Rails.env.development?
+      %hr
+        - User.all.each do |user|
+          = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
+            = f.hidden_field :username, value: user.username
+            = f.hidden_field :password, value: 'password'
+            %p= f.submit "Sign in as #{user.username}", class: 'btn btn-sm btn-info'

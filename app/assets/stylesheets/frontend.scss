@@ -5,3 +5,8 @@ body {
 .x-boundlist-item {
   white-space: nowrap;
 }
+
+fieldset {
+  margin-top: $line-height-computed;
+  margin-bottom: $line-height-computed;
+}

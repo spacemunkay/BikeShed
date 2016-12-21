@@ -11,18 +11,17 @@
 
   %body
     .container
-
       .content
         - if flash[:notice]
-          %p{class: 'notice'}= flash[:notice]
+          %div.alert.alert-info= flash[:notice]
         - if flash[:alert]
-          %p{class: 'alert'}= flash[:alert]
-        .row
-          .span12
-            = yield
+          %div.alert.alert-danger= flash[:alert]
+
+        = yield
 
       %footer
-        %p &copy; BikeShed #{Time.now.year}
+        %hr
+        %p.text-muted &copy; BikeShed #{Time.now.year}
 
     = javascript_include_tag 'application'
     = javascript_include_tag params[:controller] 
