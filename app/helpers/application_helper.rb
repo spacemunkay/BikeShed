@@ -8,6 +8,16 @@ module ApplicationHelper
     link_to(name, '#', id: "add_#{association.to_s.singularize}" , class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
+  def top_menu(left, right = nil)
+    content_tag :div do
+      [
+        content_tag(:div, left, class: 'pull-left'),
+        content_tag(:div, right, class: 'pull-right'),
+        content_tag(:div, nil, class: 'clearfix'),
+      ].join.html_safe
+    end
+  end
+
   def link_to_dashboard
     content_tag :p do
       content_tag :a, href: root_path, class: 'btn btn-default', title: 'Back to dashboard' do

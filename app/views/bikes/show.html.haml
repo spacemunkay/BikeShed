@@ -1,8 +1,8 @@
-- if @show_add_bike
-  %p
-    %a{class: "btn btn-lg btn-block btn-info", href: new_bike_path} Add Another Bike?
+- btn = if @show_add_bike
+  - capture do
+    = link_to 'Add Another Bike?', new_bike_path, class: 'btn btn-default'
 
-= link_to_dashboard
+= top_menu link_to_dashboard, btn
 
 %h2 #{@bike.shop_id}: #{@bike.bike_brand}
 %h2 #{@bike.model}
