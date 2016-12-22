@@ -12,7 +12,7 @@
       .form-group.bootstrap-timepicker.form-inline
         .form-group
           %label.visible-xs Start time
-          = text_field_tag '', '', id: 'start_time_id', placeholder: 'Start time', class: 'form-control', size: 8
+          = text_field_tag nil, nil, id: 'start_time_id', placeholder: 'Start time', class: 'form-control', size: 8
           .hidden#start_date
           .help-block
 
@@ -21,7 +21,7 @@
 
         .form-group
           %label.visible-xs End time
-          = text_field_tag '', '', id: 'end_time_id', placeholder: 'End time', class: 'form-control', size: 8
+          = text_field_tag nil, nil, id: 'end_time_id', placeholder: 'End time', class: 'form-control', size: 8
           .hidden#end_date
           .help-block
 
@@ -43,7 +43,7 @@
         = select_tag :bike_id, options_for_select(@bikes), class: 'form-control'
 
       .form-group
-        = text_area_tag '', '', id: 'description_id', placeholder: 'Work description', class: 'form-control', rows: 5
+        = text_area_tag nil, nil, id: 'description_id', placeholder: 'Work description', class: 'form-control', rows: 5
 
       .control-group
         .controls

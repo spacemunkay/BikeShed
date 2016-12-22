@@ -6,7 +6,7 @@
   .col-xs-12.col-sm-6.col-lg-4
     %fieldset
       .form-group
-        = number_field_tag '', '', id: 'shop_id', placeholder: 'Shop ID', min: 0, class: 'form-control'
+        = number_field_tag nil, nil, id: 'shop_id', placeholder: 'Shop ID', min: 0, class: 'form-control'
         .help-block
 
       .form-group
@@ -14,11 +14,11 @@
         .help-block
 
       .form-group
-        = text_field_tag '', '', id: 'model', placeholder: 'Model', class: 'form-control'
+        = text_field_tag nil, nil, id: 'model', placeholder: 'Model', class: 'form-control'
         .help-block
 
       .form-group
-        = text_field_tag '', '', id: 'serial_number', placeholder: 'Serial Number', class: 'form-control'
+        = text_field_tag nil, nil, id: 'serial_number', placeholder: 'Serial Number', class: 'form-control'
         .help-block
 
       .form-group
@@ -35,7 +35,7 @@
           %label.btn.btn-default
             = radio_button_tag 'bike_style', 4
             OTHER
-        = hidden_field_tag '', '', id: 'bike_style_id'
+        = hidden_field_tag nil, nil, id: 'bike_style_id'
         .help-block
 
       .form-group
@@ -56,12 +56,12 @@
           %label.btn.btn-default
             = radio_button_tag 'bike_condition', 5
             Excellent
-        = hidden_field_tag '', '', id: 'bike_condition_id'
+        = hidden_field_tag nil, nil, id: 'bike_condition_id'
         .help-block
 
       .form-group
         .input-group
-          = number_field_tag '', '', id: 'seat_tube_height', placeholder: 'Seat Tube', min: 0, max: 100, class: "form-control"
+          = number_field_tag nil, nil, id: 'seat_tube_height', placeholder: 'Seat Tube', min: 0, max: 100, class: "form-control"
           .input-group-addon cm
         .help-block
 

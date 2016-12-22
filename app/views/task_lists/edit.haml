@@ -13,7 +13,7 @@
     - @task_list.tasks.each do |task|
       .checkbox
         %label
-          = check_box_tag '', '', task.done, class: 'task_list_task', type: 'checkbox', "data-id": task.id
+          = check_box_tag nil, nil, task.done, class: 'task_list_task', type: 'checkbox', "data-id": task.id
           = task.task
 
   .form-group
