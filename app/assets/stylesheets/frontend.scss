@@ -10,3 +10,9 @@ fieldset, .fieldset {
   margin-top: $line-height-computed;
   margin-bottom: $line-height-computed;
 }
+
+.bootstrap-timepicker {
+  .form-group {
+    vertical-align: top;
+  }
+}
