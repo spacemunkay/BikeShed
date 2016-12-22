@@ -6,7 +6,7 @@
   .col-xs-12.col-sm-6.col-lg-4
     %fieldset
       .form-group.form-inline
-        = text_field_tag '', '', id: 'date_id', placeholder: 'Date', class: 'form-control datepicker', size: 12
+        = text_field_tag '', Date.today.strftime('%m/%d/%Y'), id: 'date_id', placeholder: 'Date', class: 'form-control', size: 12
         .help-block
 
       .form-group.bootstrap-timepicker.form-inline

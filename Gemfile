@@ -24,6 +24,9 @@ gem 'sass-rails', '~> 3.0'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'bootstrap-sass', '~> 3.1.1'
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
+
 gem 'uglifier', '>= 1.0.3'
 
 group :development, :test do
