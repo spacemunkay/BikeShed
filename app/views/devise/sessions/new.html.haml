@@ -32,7 +32,7 @@
 
     = render 'links'
 
-    - if false && Rails.env.development?
+    - if Rails.env.development?
       %hr
         - User.all.each do |user|
           = form_for resource, as: resource_name, url: session_path(resource_name) do |f|
