@@ -6,7 +6,7 @@ body {
   white-space: nowrap;
 }
 
-fieldset {
+fieldset, .fieldset {
   margin-top: $line-height-computed;
   margin-bottom: $line-height-computed;
 }
