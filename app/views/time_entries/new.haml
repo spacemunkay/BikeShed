@@ -1,42 +1,50 @@
-%a{ class: "btn btn-default btn-lg", href: root_path}
-  %span{ class:"icon-home"}
-%h2 Add Time Entry
+= link_to_dashboard
 
-%p
-  .control-group
-    .controls
-      %input{id: "date_id", placeholder: "Date", type: "text", class: "datepicker input-small" }
-      .help-block
-  .control-group
-    .controls{ class: "bootstrap-timepicker"}
-      %label Start
-      %input{id: "start_time_id", placeholder: "Time ID", type: "text", class: "input-small" }
-      .hidden{ id: "start_date" }
-      .help-block
-  .control-group
-    .controls
-      %label End
-      %input{id: "end_time_id", placeholder: "Time ID", type: "text", class: "input-small" }
-      .hidden{ id: "end_date" }
-      .help-block
-  .control-group
-    .controls
-      .btn-group{ "data-toggle" => "buttons-radio"}
-        %label{ class: "btn btn-default"}
-          %input{ type: "radio", name: "action_id", value: 1} Volunteer
-        %label{ class: "btn btn-default"}
-          %input{ type: "radio", name: "action_id", value: 2} Personal
-        %label{ class: "btn btn-default"}
-          %input{ type: "radio", name: "action_id", value: 3} Staff
-    .hidden{ id: "log_action_id" }
-    .help-block
-  .control-group
-    .controls
-      %label
-        = select_tag(:bike_id, options_for_select(@bikes))
-  .control-group
-    .controls
-      %textarea{id: "description_id", placeholder: "Work description", class: "input-lg" }
-  .control-group
-    .controls
-      %input{id: "add_time_entry_submit", value: "Add Time Entry", type: "button", class: "btn btn-lg btn-block btn-primary", "data-url" => "#{api_create_time_entry_path}", "data-forward" => "#{"."}"}
+%h1 Add Time Entry
+
+.row
+  .col-xs-12.col-sm-6.col-lg-4
+    %fieldset
+      .form-group.form-inline
+        = text_field_tag '', '', id: 'date_id', placeholder: 'Date', class: 'form-control datepicker', size: 12
+        .help-block
+
+      .form-group.bootstrap-timepicker.form-inline
+        .form-group
+          %label.visible-xs Start time
+          = text_field_tag '', '', id: 'start_time_id', placeholder: 'Start time', class: 'form-control', size: 8
+          .hidden#start_date
+          .help-block
+
+        .form-group.hidden-xs
+          &mdash;
+
+        .form-group
+          %label.visible-xs End time
+          = text_field_tag '', '', id: 'end_time_id', placeholder: 'End time', class: 'form-control', size: 8
+          .hidden#end_date
+          .help-block
+
+      .form-group
+        .btn-group{"data-toggle": 'buttons'}
+          %label{class: 'btn btn-default'}
+            = radio_button_tag 'action_id', 1, false, autocomplete: 'off'
+            Volunteer
+          %label{class: 'btn btn-default'}
+            = radio_button_tag 'action_id', 2, false, autocomplete: 'off'
+            Personal
+          %label{class: 'btn btn-default'}
+            = radio_button_tag 'action_id', 3, false, autocomplete: 'off'
+            Staff
+        .hidden#log_action_id
+        .help-block
+
+      .form-group
+        = select_tag :bike_id, options_for_select(@bikes), class: 'form-control'
+
+      .form-group
+        = text_area_tag '', '', id: 'description_id', placeholder: 'Work description', class: 'form-control', rows: 5
+
+      .control-group
+        .controls
+          = button_tag 'Add Time Entry', id: 'add_time_entry_submit', class: 'btn btn-primary', data: {url: "#{api_create_time_entry_path}", forward: "#{"."}"}
