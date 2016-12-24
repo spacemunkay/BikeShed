@@ -1,27 +1,33 @@
 = top_menu link_to_dashboard
 
 %h1 Add Time Entry
+- time = Time.now
+- date_format, time_format = '%m/%d/%Y', '%l:%M %p'
+- mjs_date_format, mjs_time_format = 'MM/DD/YYYY', 'h:mm A'
 
 .row
   .col-xs-12.col-sm-6.col-lg-4
     %fieldset
       .form-group.form-inline
-        = text_field_tag '', Date.today.strftime('%m/%d/%Y'), id: 'date_id', placeholder: 'Date', class: 'form-control', size: 12
+        = text_field_tag nil, time.strftime(date_format), id: 'date_id', placeholder: 'Date', class: 'form-control',
+                                                          size: 12, data: {format: mjs_date_format}
         .help-block
 
-      .form-group.bootstrap-timepicker.form-inline
+      .form-group.timepickers.form-inline
         .form-group
           %label.visible-xs Start time
-          = text_field_tag nil, nil, id: 'start_time_id', placeholder: 'Start time', class: 'form-control', size: 8
+          = text_field_tag nil, time.strftime(time_format), id: 'start_time_id', placeholder: 'Start time',
+                                                            class: 'form-control', size: 8, data: {format: mjs_time_format}
           .hidden#start_date
           .help-block
 
-        .form-group.hidden-xs
+        .form-group.dash.hidden-xs
           &mdash;
 
         .form-group
           %label.visible-xs End time
-          = text_field_tag nil, nil, id: 'end_time_id', placeholder: 'End time', class: 'form-control', size: 8
+          = text_field_tag nil, time.strftime(time_format), id: 'end_time_id', placeholder: 'End time',
+                                                            class: 'form-control', size: 8, data: {format: mjs_time_format}
           .hidden#end_date
           .help-block
 
