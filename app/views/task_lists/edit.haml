@@ -13,8 +13,8 @@
     - @task_list.tasks.each do |task|
       .checkbox
         %label
-          = check_box_tag nil, nil, task.done, class: 'task_list_task', type: 'checkbox', "data-id": task.id
+          = check_box_tag nil, nil, task.done, class: 'task_list_task', type: 'checkbox', data: {id: task.id}
           = task.task
 
   .form-group
-    = button_tag 'Save Changes', id: 'update_tasks_submit', class: 'btn btn-primary disabled', "data-url": "#{api_update_task_path}"
+    = button_tag 'Save Changes', id: 'update_tasks_submit', class: 'btn btn-primary disabled', data: {url: api_update_task_path}
