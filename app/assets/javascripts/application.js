@@ -16,4 +16,4 @@
 //= require utils
 //= require moment
 //= require bootstrap-datetimepicker
-//= require jquery-date-format
+

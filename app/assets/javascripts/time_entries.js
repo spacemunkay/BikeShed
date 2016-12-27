@@ -29,8 +29,8 @@ $(document).ready(function () {
         // in locale like Netzke.
         json_data = {
             time_entries: [{
-                start_date: $.format.date(start_date, "dd-MM-yyyy hh:mm a"),
-                end_date: $.format.date(end_date, "dd-MM-yyyy hh:mm a"),
+                start_date: moment(start_date).format("DD-MM-YYYY h:mm A"),
+                end_date: moment(end_date).format("DD-MM-YYYY h:mm A"),
                 log_action_id: parseInt($('input[name=action_id]:checked').val()),
                 bike_id: bike_id,
                 description: $("#description_id").val(),
