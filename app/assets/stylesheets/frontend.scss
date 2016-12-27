@@ -1,0 +1,60 @@
+body {
+  padding-top: $grid-gutter-width / 2;
+}
+
+.x-boundlist-item {
+  white-space: nowrap;
+}
+
+fieldset, .fieldset {
+  margin-top: $line-height-computed;
+  margin-bottom: $line-height-computed;
+}
+
+.timepickers {
+  .form-group {
+    vertical-align: top;
+    &.dash {
+      line-height: 2.4em;
+    }
+  }
+
+  .bootstrap-datetimepicker-widget.dropdown-menu {
+    width: auto;
+  }
+
+  .bootstrap-datetimepicker-widget .timepicker-hour,
+  .bootstrap-datetimepicker-widget .timepicker-minute,
+  .bootstrap-datetimepicker-widget .timepicker-second {
+    width: 40px;
+  }
+
+  .bootstrap-datetimepicker-widget table td {
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    padding: 0 !important;
+  }
+
+  .bootstrap-datetimepicker-widget table td.separator {
+    width: 10px;
+  }
+
+  .bootstrap-datetimepicker-widget table td span {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+  }
+
+  .bootstrap-datetimepicker-widget a[data-action] {
+    padding: 0;
+    color: #000;
+  }
+}
+
+.bike-color {
+  display: inline-block;
+  padding-left: 6px;
+  padding-right: 6px;
+}

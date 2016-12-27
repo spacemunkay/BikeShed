@@ -1,0 +1,19 @@
+%h1 Change your password
+
+.row
+  .col-xs-12.col-sm-6.col-lg-4
+    = form_for resource, as: resource_name, url: password_path(resource_name), html: {method: :put} do |f|
+      = devise_error_messages!
+      = f.hidden_field :reset_password_token
+
+      %fieldset
+        .form-group
+          = f.password_field :password, placeholder: 'New password', class: 'form-control'
+
+        .form-group
+          = f.password_field :password_confirmation, placeholder: 'Confirm new password', class: 'form-control'
+
+        .form-group
+          = f.submit 'Change my password', class: 'btn btn-primary'
+
+    = render 'links'

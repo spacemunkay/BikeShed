@@ -1,14 +1,17 @@
-%p
-  %fieldset
-    .form-group
-      = f.text_field :addrStreet1, placeholder: "Street Address Line 1", :class => "form-control input-lg"
-    .form-group
-      = f.text_field :addrStreet2, placeholder: "Street Address Line 2",:class => "form-control input-lg"
-    .form-group
-      = f.text_field :addrCity, placeholder: "City", :class => "form-control input-lg"
-    .form-group
-      = f.text_field :addrState, placeholder: "State Abbreviation", :class => "form-control input-lg"
-    .form-group
-      = f.text_field :addrZip, placeholder: "Zip Code", :class => "form-control input-lg"
-    .form-group
-      = f.text_field :phone, placeholder: "Phone", :class => "form-control input-lg"
+.form-group
+  = f.text_field :addrStreet1, placeholder: 'Street Address Line 1', class: 'form-control'
+
+.form-group
+  = f.text_field :addrStreet2, placeholder: 'Street Address Line 2',class: 'form-control'
+
+.form-group
+  = f.text_field :addrCity, placeholder: 'City', class: 'form-control'
+
+.form-group
+  = f.text_field :addrState, placeholder: 'State Abbreviation', class: 'form-control'
+
+.form-group
+  = f.text_field :addrZip, placeholder: 'Zip Code', class: 'form-control'
+
+.form-group
+  = f.text_field :phone, placeholder: 'Phone', class: 'form-control'

@@ -1,21 +1,31 @@
-= stylesheet_link_tag "bootstrap_and_overrides", :media => "all"
-%h2 Dashboard
+%h1 Dashboard
 
-%p
-  %p
-    %a{class: "btn btn-lg btn-block btn-primary", href: new_time_entry_path} Add Time Entry
-  %p
-    %a{class: "btn btn-lg btn-block btn-primary", href: time_entries_path} View Timesheet
-- if can? :manage, Bike
-  %p
-    %a{class: "btn btn-lg btn-block btn-primary", href: new_bike_path} Add Bike
+.row.fieldset
+  .col-xs-12.col-sm-3.col-lg-2
+    %p= link_to 'Add Time Entry', new_time_entry_path, class: 'btn btn-default btn-block'
+  .col-xs-12.col-sm-3.col-lg-2
+    %p= link_to 'View Timesheet', time_entries_path, class: 'btn btn-default btn-block'
 
-- if !@bike.nil?
-  %p
-    %a{class: "btn btn-lg btn-block btn-primary", href: bike_path(@bike)} View Your Bike
+- can_manage_bike = can? :manage, Bike
+- has_bike = !@bike.nil?
+- if can_manage_bike || has_bike
+  .row.fieldset
+    - if can_manage_bike
+      .col-xs-12.col-sm-3.col-lg-2
+        %p
+          = link_to 'Add Bike', new_bike_path, class: 'btn btn-default btn-block'
 
-%p
-  %p
-    %a{class: "btn btn-lg btn-block btn-primary hidden-xs", href: admin_index_path} Desktop View
-  %p
-    %input{id: "index_logout", value: "Logout", type: "button", class: "btn btn-lg btn-block btn-danger", "data-url" => destroy_user_session_path }
+    - if has_bike
+      .col-xs-12.col-sm-3.col-lg-2
+        %p
+          = link_to 'View Your Bike', bike_path(@bike), class: 'btn btn-default btn-block'
+
+.row.fieldset
+  .col-xs-12.col-sm-3.col-lg-2
+    %p
+      = link_to 'Desktop View', admin_index_path, class: 'btn btn-default btn-block'
+
+.row.fieldset
+  .col-xs-12.col-sm-3.col-lg-2
+    %p
+      = button_tag 'Logout', id: 'index_logout', class: 'btn btn-danger btn-block', data: {url: destroy_user_session_path}

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
+gem 'rake', '< 11.0'
 
 gem 'netzke-cancan'
 gem 'netzke-core', '~>0.8.0'
@@ -12,23 +13,21 @@ gem 'bootstrap-will_paginate', '~> 0.0.6'
 gem 'cancan'
 gem 'decent_exposure', '~> 1.0.1'
 gem 'devise', '~> 2.0.4'
-gem 'haml-rails', '~> 0.3.4'
+gem 'haml-rails'
 gem 'jquery-rails', '~> 2.0'
 gem 'pg', '~> 0.17.1'
 gem 'will_paginate', '~> 3.0.3'
 gem 'jbuilder', '~> 2.0.3'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  gem "twitter-bootstrap-rails", "~> 2.0.3"
+# Assets
+gem 'sass-rails', '~> 3.0'
+gem 'coffee-rails', '~> 3.2.1'
+gem 'bootstrap-sass', '~> 3.1.1'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'uglifier', '>= 1.0.3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'

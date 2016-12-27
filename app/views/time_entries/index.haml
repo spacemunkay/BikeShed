@@ -1,44 +1,47 @@
-%a{ class: "btn btn-default btn-lg", href: root_path}
-  %span{ class:"icon-home"}
-%h2 Your Timesheet
+= top_menu link_to_dashboard
 
-%dl.dl-horizontal
-  %dd
-    %span.badge #{@hours_worked}
-    Total Hours Worked
-  %dd
-    %span.badge #{@credits_available}
-    Total Credits Available
+%h1 Your Timesheet
+
+.row
+  .col-xs-12.col-sm-6.col-lg-3
+    %p
+      %span.badge= @hours_worked
+      Total Hours Worked
+
+  .col-xs-12.col-sm-6.col-lg-3
+    %p
+      %span.badge= @credits_available
+      Total Credits Available
 
 %table.table
   %tbody
     - @user_time_entries.each do |entry|
-      %tr{ "data-id" => entry.id, "data-description" => entry.description,
-          "data-duration" => entry.duration_in_hours,
-          "data-start_date" => entry.start_date.to_date.to_formatted_s(:rfc822)}
-        %td #{entry.start_date.to_date.to_formatted_s(:rfc822)}
-        %td #{entry.duration_in_hours}
-        %td #{entry.type}
-        %td #{truncate(entry.description)}
+      -# data: {start_date: ..} gets transformed to data-start-date instead of data-start_date, we don't want this
+      %tr{data: {id: entry.id, description: entry.description, duration: entry.duration_in_hours},
+          'data-start_date' => entry.start_date.to_date.to_formatted_s(:rfc822)}
+        %td= entry.start_date.to_date.to_formatted_s(:rfc822)
+        %td= entry.duration_in_hours
+        %td= entry.type
+        %td= link_to truncate(entry.description).presence || '<em>No title</em>'.html_safe, edit_task_list_path(entry)
         %td
-          %button{ class: "btn icon-remove btn-danger work_entry-delete-btn", role: "button", "data-toggle" => "modal", "data-target" => "#confirmation" }
+          = link_to '#modal', class: 'text-danger work_entry-delete-btn', role: 'button', data: {toggle: 'modal', target: '#confirmation'} do
+            %i.glyphicon.glyphicon-remove
 
-%a{class: "btn btn-lg btn-block btn-primary", href: new_time_entry_path } Add Time Entry
+= link_to 'Add Time Entry', new_time_entry_path, class: 'btn btn-primary'
 
-.modal{ id: "confirmation", class: "hide", role: "dialog", "aria-labelledby" => "confirmation_title", "aria-hidden" => "true", tabindex: -1 }
-  .modal-header
-    %button{ class: "close", "data-dismiss" => "modal", "aria-hidden" => "true"}x
-    %h4{ id: "confirmation_title" } Are you sure you want to delete?
-  .modal-body
-    %div{ id: "work_entry_start_date" }
-      Start Date
-    %div{ id: "work_entry_duration" }
-      Duration
-    %div{ id: "work_entry_description" }
-      Description
-  .modal-footer
-    %button{ class: "btn", "data-dismiss" => "modal", "aria-hidden" => "true"} Close
-    %button{ id: "confirmation_delete", class: "btn btn-primary", "data-url" => "api/v1/time_entries/" } Delete
+.modal#confirmation(role="dialog" aria-labelledby="confirmation_title" aria-hidden="true" tabindex="-1")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close(data-dismiss="modal" aria-hidden="true") &times;
+        %h4#confirmation_title Are you sure you want to delete?
+      .modal-body
+        #work_entry_start_date Start Date
+        #work_entry_duration Duration
+        #work_entry_description Description
+      .modal-footer
+        %button.btn.btn-default(data-dismiss="modal" aria-hidden="true") Cancel
+        %button.btn.btn-danger#confirmation_delete(data-url="api/v1/time_entries/") Delete
 
 
 

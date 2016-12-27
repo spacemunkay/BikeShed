@@ -1,0 +1,15 @@
+%h1 Forgot your password?
+
+.row
+  .col-xs-12.col-sm-6.col-lg-4
+    = form_for resource, as: resource_name, url: password_path(resource_name), html: {method: :post} do |f|
+      = devise_error_messages!
+
+      %fieldset
+        .form-group
+          = f.email_field :email, placeholder: 'Email', class: 'form-control'
+
+        .form-group
+          = f.submit 'Reset Password', class: 'btn btn-primary'
+
+    = render 'links'
