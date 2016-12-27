@@ -30,7 +30,7 @@
   - unless @bike.color.nil?
     %dt Color
     %dd
-      .bike-color{style: "background-color: ##{@bike.color}"} #{@bike.color}
+      .bike-color(style="background-color: ##{@bike.color}")= @bike.color
 
   - if @task_list
     - tasks = @task_list.tasks.to_a

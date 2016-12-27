@@ -6,7 +6,7 @@
   = link_to bike_path(@task_list.item) do
     #{@task_list.item.shop_id}: #{@task_list.item.bike_brand}
 
-%h4 #{@task_list.item.model}
+%h4= @task_list.item.model
 
 %fieldset
   .form-group

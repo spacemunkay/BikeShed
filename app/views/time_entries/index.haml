@@ -18,7 +18,7 @@
     - @user_time_entries.each do |entry|
       -# data: {start_date: ..} gets transformed to data-start-date instead of data-start_date, we don't want this
       %tr{data: {id: entry.id, description: entry.description, duration: entry.duration_in_hours},
-          "data-start_date" => entry.start_date.to_date.to_formatted_s(:rfc822)}
+          'data-start_date' => entry.start_date.to_date.to_formatted_s(:rfc822)}
         %td= entry.start_date.to_date.to_formatted_s(:rfc822)
         %td= entry.duration_in_hours
         %td= entry.type

@@ -28,4 +28,4 @@
 .row.fieldset
   .col-xs-12.col-sm-3.col-lg-2
     %p
-      %input{id: 'index_logout', value: 'Logout', type: 'button', class: 'btn btn-danger btn-block', 'data-url' => destroy_user_session_path}
+      = button_tag 'Logout', id: 'index_logout', class: 'btn btn-danger btn-block', data: {url: destroy_user_session_path}
