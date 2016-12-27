@@ -1,9 +1,9 @@
 %h1 Dashboard
 
 .row.fieldset
-  .col-xs-8.col-sm-3.col-lg-2
+  .col-xs-12.col-sm-3.col-lg-2
     %p= link_to 'Add Time Entry', new_time_entry_path, class: 'btn btn-default btn-block'
-  .col-xs-8.col-sm-3.col-lg-2
+  .col-xs-12.col-sm-3.col-lg-2
     %p= link_to 'View Timesheet', time_entries_path, class: 'btn btn-default btn-block'
 
 - can_manage_bike = can? :manage, Bike
@@ -11,21 +11,21 @@
 - if can_manage_bike || has_bike
   .row.fieldset
     - if can_manage_bike
-      .col-xs-8.col-sm-3.col-lg-2
+      .col-xs-12.col-sm-3.col-lg-2
         %p
           = link_to 'Add Bike', new_bike_path, class: 'btn btn-default btn-block'
 
     - if has_bike
-      .col-xs-8.col-sm-3.col-lg-2
+      .col-xs-12.col-sm-3.col-lg-2
         %p
           = link_to 'View Your Bike', bike_path(@bike), class: 'btn btn-default btn-block'
 
 .row.fieldset
-  .col-xs-8.col-sm-3.col-lg-2
+  .col-xs-12.col-sm-3.col-lg-2
     %p
       = link_to 'Desktop View', admin_index_path, class: 'btn btn-default btn-block'
 
 .row.fieldset
-  .col-xs-8.col-sm-3.col-lg-2
+  .col-xs-12.col-sm-3.col-lg-2
     %p
       %input{id: 'index_logout', value: 'Logout', type: 'button', class: 'btn btn-danger btn-block', 'data-url' => destroy_user_session_path}
