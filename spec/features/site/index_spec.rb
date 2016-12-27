@@ -10,16 +10,16 @@ describe "Index Page" do
   end
 
   it 'should have a link to check in' do
-    page.should have_button 'CHECK IN'
+    page.should have_button 'Check in'
   end
 
   it 'should have a link to check out' do
-    page.should have_button 'CHECK OUT'
+    page.should have_button 'Check out'
   end
 
   it 'clicking check in should check in a user', js: true do
     pending
-    expect{click_button 'CHECK IN'}.
+    expect{click_button 'Check in'}.
       to change{@user.checked_in?}.
       from(false).to(true)
   end
@@ -27,7 +27,7 @@ describe "Index Page" do
   it 'clicking check out should check out a user', js: true do
     pending
     @user.checkin
-    expect{click_button 'CHECK OUT'}.
+    expect{click_button 'Check out'}.
       to change{@user.checked_in?}.
       from(true).to(false)
   end

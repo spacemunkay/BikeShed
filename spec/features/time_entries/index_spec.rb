@@ -14,7 +14,7 @@ feature "TimeEntries" do
   scenario "User deletes a time entry", js: true do
     visit time_entries_path
     save_screenshot("/tmp/testingpoop.png")
-    find('button.work_entry-delete-btn').trigger('click')
+    find('.work_entry-delete-btn').trigger('click')
     click_button "Delete"
     expect(page).to have_text("Your Timesheet")
     expect(TimeEntry.count).to eql 0
