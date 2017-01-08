@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap/bootstrap-button
-//= require twitter/bootstrap/bootstrap-modal
+// require twitter/bootstrap/bootstrap-button
+// require twitter/bootstrap/bootstrap-modal
 //= require utils
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker

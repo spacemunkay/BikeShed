@@ -10,6 +10,32 @@
  *
  *= require_self
  *= require datepicker
+ *= require bootstrap
  *= require bootstrap-timepicker
  *= require bootstrap_and_overrides
 */
+
+.container {
+	max-width: 940px;
+	margin: 0 auto;
+}
+
+.container img {
+	display: block;
+	margin: 0 auto;
+}
+
+p {
+	text-align: center;
+	padding: 20px 0;
+}
+
+.check_box {
+	width: 30px;
+	height: 30px;
+	background-color: white;
+}
+
+label {
+	font-size: x-large;
+}
