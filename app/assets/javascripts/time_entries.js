@@ -59,9 +59,9 @@ $(document).ready(function () {
         var start_date = row.data("start_date");
         var duration = row.data("duration");
         var description = row.data("description");
-        $("#work_entry_start_date").html(start_date);
-        $("#work_entry_duration").html(duration);
-        $("#work_entry_description").html(description);
+        $("#work_entry_start_date").text(start_date);
+        $("#work_entry_duration").text(duration);
+        $("#work_entry_description").text(description);
         $("#confirmation_delete").data("entry_id", entry_id);
     });
 
