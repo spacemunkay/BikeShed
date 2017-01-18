@@ -41,7 +41,7 @@
         #work_entry_description Description
       .modal-footer
         %button.btn.btn-default(data-dismiss="modal" aria-hidden="true") Cancel
-        %button.btn.btn-danger#confirmation_delete(data-url="api/v1/time_entries/") Delete
+        %button.btn.btn-danger#confirmation_delete{data: {url_template: api_delete_time_entry_path('__ID__')}} Delete
 
 
 

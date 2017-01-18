@@ -67,7 +67,7 @@ $(document).ready(function () {
 
     $("#confirmation_delete").click(function () {
         var entry_id = $(this).data("entry_id");
-        var url = $("#confirmation_delete").data("url") + entry_id;
+        var url = $("#confirmation_delete").data("url-template").replace(/__ID__/, entry_id);
         $.ajax({
             url: url,
             type: "delete",
