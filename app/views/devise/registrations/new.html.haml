@@ -25,6 +25,12 @@
 
       %fieldset
         .form-group
+          %label You may upload your photo to be used as an avatar
+          = f.file_field :avatar
+          .help-block #{User::MAX_AVATAR_SIZE_KB} Kb max
+
+      %fieldset
+        .form-group
           = f.password_field :password, placeholder: 'Password', class: 'form-control'
 
         .form-group

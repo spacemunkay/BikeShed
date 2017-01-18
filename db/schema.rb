@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019170248) do
+ActiveRecord::Schema.define(:version => 20170118110330) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -198,6 +198,10 @@ ActiveRecord::Schema.define(:version => 20131019170248) do
     t.string   "first_name",             :default => "", :null => false
     t.string   "last_name",              :default => "", :null => false
     t.string   "username"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["bike_id"], :name => "index_users_on_bike_id", :unique => true
