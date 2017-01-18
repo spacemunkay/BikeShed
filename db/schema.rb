@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170118110330) do
+ActiveRecord::Schema.define(:version => 20170118112258) do
 
   create_table "bike_actions", :force => true do |t|
     t.string   "action",     :limit => 128, :null => false
@@ -73,6 +73,10 @@ ActiveRecord::Schema.define(:version => 20170118110330) do
     t.string   "model"
     t.integer  "shop_id"
     t.integer  "bike_wheel_size_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "credit_conversions", :force => true do |t|
