@@ -10,15 +10,15 @@ $(document).ready(function () {
     })
 
     $("#add_time_entry_submit").click(function () {
-        date = $date_input.val();
-        start_date = new Date(date + " " + $start_time_input.val());
-        end_date = new Date(date + " " + $end_time_input.val());
+        var date = $date_input.val();
+        var start_date = new Date(date + " " + $start_time_input.val());
+        var end_date = new Date(date + " " + $end_time_input.val());
 
-        forward = $("#add_time_entry_submit").data("forward");
+        var forward = $("#add_time_entry_submit").data("forward");
 
         // If a bike is selected, forward to the bike
         // checklist.
-        bike_id = parseInt($("#bike_id").val());
+        var bike_id = parseInt($("#bike_id").val());
         if (bike_id > 0) {
             forward = "/task_lists/" + bike_id + "/edit";
         }
@@ -27,7 +27,7 @@ $(document).ready(function () {
         // how to get Netzke to render UTC dates correctly (it calls to_json
         // somewhere and drops off the timezone).  For the time being, save dates
         // in locale like Netzke.
-        json_data = {
+        var json_data = {
             time_entries: [{
                 start_date: moment(start_date).format("DD-MM-YYYY h:mm A"),
                 end_date: moment(end_date).format("DD-MM-YYYY h:mm A"),
@@ -54,11 +54,11 @@ $(document).ready(function () {
     });
 
     $(".work_entry-delete-btn").click(function () {
-        row = $(this).closest("tr");
-        entry_id = row.data("id");
-        start_date = row.data("start_date");
-        duration = row.data("duration");
-        description = row.data("description");
+        var row = $(this).closest("tr");
+        var entry_id = row.data("id");
+        var start_date = row.data("start_date");
+        var duration = row.data("duration");
+        var description = row.data("description");
         $("#work_entry_start_date").html(start_date);
         $("#work_entry_duration").html(duration);
         $("#work_entry_description").html(description);
@@ -66,8 +66,8 @@ $(document).ready(function () {
     });
 
     $("#confirmation_delete").click(function () {
-        entry_id = $(this).data("entry_id");
-        url = $("#confirmation_delete").data("url") + entry_id;
+        var entry_id = $(this).data("entry_id");
+        var url = $("#confirmation_delete").data("url") + entry_id;
         $.ajax({
             url: url,
             type: "delete",
