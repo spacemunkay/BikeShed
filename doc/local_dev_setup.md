@@ -7,8 +7,7 @@
 1. Install Postgres (Mac OSX instructions below)
 1. Copy over DB config:  `cp config/database.yml.example config/database.yml`
 1. Update config with your database (velocipede), user (velocipede), and password.
-1. `rake db:create db:migrate`
-1. `rake db:seed`
+1. `rake db:setup`
 1. Download extJS 4.1 (A version of 4.1 is hosted here: http://my.jasondenney.com/extjs-4.1.1.zip) Latest versions at http://www.sencha.com/products/extjs. Unzip and place where ever you like.
 1. Link to your extJS folder path under `public/extjs`: (From app root) `ln -s /MY/PATH/extjs/ public/extjs`
 1. `rails s`
