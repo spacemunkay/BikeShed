@@ -1,3 +1,6 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (0,0,0,0,0,0,'UNDETERMINED',0);
 INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (54,110,'8 1/2','2','','','',1);
 INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (62,203,'12','1/2 x 2 1/4','320 ','57','',1);
 INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (47,305,'16','1,75 [x 2]','','','',1);
@@ -35,3 +38,4 @@ INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_co
 INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (28,630,'27','1 1/8 [1 1/4 fifty]','','','',1);
 INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (32,630,'27','1 1/4','','','',1);
 INSERT INTO bike_wheel_sizes (TWMM, RDMM,RDIN,TWIN,RDFR,TWFR,DESCRIPTION,tire_common_score) values (40,635,'28','1 1/2 [1 3/8]','700 ','38B [35B]','',1);
+COMMIT;

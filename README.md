@@ -17,7 +17,7 @@ See [guides](doc/guides.md)
 1. Install Docker Toolbox <https://www.docker.com/toolbox>
 1. Make sure you have a machine running: `docker-machine start default && eval "$(docker-machine env default)"`
 1. Execute `docker-compose build`
-1. Execute `docker-compose run web rake db:create db:migrate db:seed`
+1. Execute `docker-compose run web rake db:setup`
 1. Execute `docker-compose up`
 1. If using Docker Toolbox, use `docker-machine ip default` to get the IP where the server is running.
 1. Test the Rails server is running with by visiting `<INSERT IP>:8080` in your browser.

@@ -18,10 +18,12 @@ if BikeBrand.all.empty? and BikeModel.all.empty?
   # so that the PG table ID sequence is incremented
   #
   # Note the drop(1) which assumes we have a junk PRAGMA line at the top
-  load_statements = File.readlines(File.join(Rails.root, 'db', 'seed', 'sql', 'bike_brands_and_models.sql')).drop(1).map do |statement|
-    statement.sub(/VALUES\(\d+,/, 'VALUES(DEFAULT,')
+  ['common_wheel_sizes.sql', 'bike_brands_and_models.sql'].each do |sql|
+    load_statements = File.readlines(File.join(Rails.root, 'db', 'seed', 'sql', sql)).drop(1).map do |statement|
+      statement.sub(/VALUES\(\d+,/, 'VALUES(DEFAULT,')
+    end
+    ActiveRecord::Base.connection.execute(load_statements.join)
   end
-  ActiveRecord::Base.connection.execute(load_statements.join)
 end
 
 if Rails.env.development?
