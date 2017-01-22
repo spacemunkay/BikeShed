@@ -4,7 +4,7 @@ $(".task_list_task").click(function(){
 
 $("#update_tasks_submit").click(function(){
 
-  tasks = [];
+  var tasks = [];
   $(".task_list_task").each(function(){
     tasks.push({
       id: parseInt($(this).data("id")),
@@ -12,7 +12,7 @@ $("#update_tasks_submit").click(function(){
     });
   });
 
-  json_data = { tasks: tasks };
+  var json_data = {tasks: tasks};
 
   $.ajax({
     url: $("#update_tasks_submit").data("url"),
