@@ -58,3 +58,12 @@ fieldset, .fieldset {
   padding-left: 6px;
   padding-right: 6px;
 }
+
+.navbar-default {
+  .navbar-text {
+    width: 100%;
+    font-size: 150%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}

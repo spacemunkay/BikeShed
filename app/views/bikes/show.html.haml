@@ -1,8 +1,10 @@
 - btn = if @show_add_bike
   - capture do
-    = link_to 'Add Another Bike?', new_bike_path, class: 'btn btn-default'
+    = link_to 'Add Another Bike?', new_bike_path, class: 'btn btn-default navbar-btn hidden-xs'
+    = link_to new_bike_path, class: 'navbar-brand visible-xs', title: 'Add Another Bike?' do
+      %i.glyphicon.glyphicon-plus
 
-= top_menu link_to_dashboard, btn
+= top_menu btn
 
 %h1 #{@bike.shop_id}: #{@bike.bike_brand}
 %h4= @bike.model
