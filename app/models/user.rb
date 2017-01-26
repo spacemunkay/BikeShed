@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   default_scope order('username ASC')
 
+  validates :username, :presence => true, uniqueness: true
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 
