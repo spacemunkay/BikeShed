@@ -22,7 +22,7 @@ $(document).ready(function(){
       }
       if( contact_vals.length >= MIN_LEN || submit_count > MAX_SUBMITS){
 
-          if( submit_count > MAX_SUBMITS ){
+          if( submit_count == MAX_SUBMITS + 1 ){
               alert("Fine.");
           }
           return true;
