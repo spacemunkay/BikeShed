@@ -16,4 +16,5 @@
 //= require utils
 //= require moment
 //= require bootstrap-datetimepicker
+//= require jquery.form
 

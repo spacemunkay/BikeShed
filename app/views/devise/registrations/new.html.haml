@@ -7,13 +7,16 @@
 
       %fieldset
         .form-group
-          = f.text_field :username, placeholder: 'Username', class: 'form-control'
+          = f.text_field :username, placeholder: 'Username', class: 'form-control', required: true
+          .help-block
 
         .form-group
-          = f.text_field :first_name, placeholder: 'First Name', class: 'form-control'
+          = f.text_field :first_name, placeholder: 'First Name', class: 'form-control', required: true
+          .help-block
 
         .form-group
-          = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control'
+          = f.text_field :last_name, placeholder: 'Last Name', class: 'form-control', required: true
+          .help-block
 
         .form-group
           = f.email_field :email, placeholder: 'E-mail', class: 'form-control'
@@ -25,10 +28,18 @@
 
       %fieldset
         .form-group
-          = f.password_field :password, placeholder: 'Password', class: 'form-control'
+          %label You may upload your photo to be used as an avatar
+          = f.file_field :avatar
+          .help-block #{User::MAX_AVATAR_SIZE_KB} Kb max
+
+      %fieldset
+        .form-group
+          = f.password_field :password, placeholder: 'Password', class: 'form-control', required: true
+          .help-block
 
         .form-group
-          = f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: 'form-control'
+          = f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: 'form-control', required: true
+          .help-block
 
         .form-group
           = f.submit 'Sign up', class: 'btn btn-primary'

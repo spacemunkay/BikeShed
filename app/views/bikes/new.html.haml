@@ -4,70 +4,77 @@
 
 .row
   .col-xs-12.col-sm-6.col-lg-4
-    %fieldset
-      .form-group
-        = number_field_tag nil, nil, id: 'shop_id', placeholder: 'Shop ID', min: 0, class: 'form-control'
-        .help-block
+    = form_for @bike, as: 'bikes', index: '', url: api_create_bike_path, method: :post, enctype: 'multipart/form-data', html: {id: 'add_bike_form'} do |f|
+      = f.hidden_field 'bike_purpose_id'
+      %fieldset
+        .form-group
+          = f.number_field 'shop_id', placeholder: 'Shop ID', min: 0, class: 'form-control', id: 'shop_id'
+          .help-block
 
-      .form-group
-        = select_tag :bike_brand_id, options_for_select(@brands), class: 'form-control'
-        .help-block
+        .form-group
+          = f.select 'bike_brand_id', options_for_select(@brands), {}, class: 'form-control', id: 'bike_brand_id'
+          .help-block
 
-      .form-group
-        = text_field_tag nil, nil, id: 'model', placeholder: 'Model', class: 'form-control'
-        .help-block
+        .form-group
+          = f.text_field 'model', placeholder: 'Model', class: 'form-control', id: 'model'
+          .help-block
 
-      .form-group
-        = text_field_tag nil, nil, id: 'serial_number', placeholder: 'Serial Number', class: 'form-control'
-        .help-block
+        .form-group
+          = f.text_field 'serial_number', placeholder: 'Serial Number', class: 'form-control', id: 'serial_number'
+          .help-block
 
-      .form-group
-        .btn-group(data-toggle="buttons")
-          %label.btn.btn-default
-            = radio_button_tag 'bike_style', 3
-            RD
-          %label.btn.btn-default
-            = radio_button_tag 'bike_style', 1
-            MTN
-          %label.btn.btn-default
-            = radio_button_tag 'bike_style', 2
-            HYB
-          %label.btn.btn-default
-            = radio_button_tag 'bike_style', 4
-            OTHER
-        = hidden_field_tag nil, nil, id: 'bike_style_id'
-        .help-block
+        .form-group
+          .btn-group(data-toggle="buttons")
+            %label.btn.btn-default
+              = f.radio_button 'bike_style_id', 3
+              RD
+            %label.btn.btn-default
+              = f.radio_button 'bike_style_id', 1
+              MTN
+            %label.btn.btn-default
+              = f.radio_button 'bike_style_id', 2
+              HYB
+            %label.btn.btn-default
+              = f.radio_button 'bike_style_id', 4
+              OTHER
+          = hidden_field_tag nil, nil, id: 'bike_style_id'
+          .help-block
 
-      .form-group
-        = select_tag :bike_wheel_size_id, options_for_select(@wheel_sizes), id: :bike_wheel_size_id, class: 'form-control'
-        .help-block
+        .form-group
+          = f.select 'bike_wheel_size_id', options_for_select(@wheel_sizes), {}, class: 'form-control', id: 'bike_wheel_size_id'
+          .help-block
 
-      .form-group
-        .btn-group(data-toggle="buttons")
-          %label.btn.btn-default
-            = radio_button_tag 'bike_condition', 2
-            Poor
-          %label.btn.btn-default
-            = radio_button_tag 'bike_condition', 3
-            Fair
-          %label.btn.btn-default
-            = radio_button_tag 'bike_condition', 4
-            Good
-          %label.btn.btn-default
-            = radio_button_tag 'bike_condition', 5
-            Excellent
-        = hidden_field_tag nil, nil, id: 'bike_condition_id'
-        .help-block
+        .form-group
+          .btn-group(data-toggle="buttons")
+            %label.btn.btn-default
+              = f.radio_button 'bike_condition_id', 2
+              Poor
+            %label.btn.btn-default
+              = f.radio_button 'bike_condition_id', 3
+              Fair
+            %label.btn.btn-default
+              = f.radio_button 'bike_condition_id', 4
+              Good
+            %label.btn.btn-default
+              = f.radio_button 'bike_condition_id', 5
+              Excellent
+          = hidden_field_tag nil, nil, id: 'bike_condition_id'
+          .help-block
 
-      .form-group
-        .input-group
-          = number_field_tag nil, nil, id: 'seat_tube_height', placeholder: 'Seat Tube', min: 0, max: 100, class: 'form-control'
-          .input-group-addon cm
-        .help-block
+        .form-group
+          .input-group
+            = f.number_field 'seat_tube_height', placeholder: 'Seat Tube', min: 0, max: 100, class: 'form-control', id: 'seat_tube_height'
+            .input-group-addon cm
+          .help-block
 
-      -# Commenting this out until description is added to Bike
-        /.form-group
-          %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
+        .form-group
+          %label Bike photo (optional)
+          = f.file_field 'photo', id: 'photo'
+          .help-block
 
-      .form-group
-        = button_tag 'Add Bike', id: 'add_bike_submit', class: 'btn btn-primary', data: {url: api_create_bike_path}
+        -# Commenting this out until description is added to Bike
+          /.form-group
+            %input{id: "bike_description", placeholder: "Short description", type: "text", class: "input-lg" }
+
+        .form-group
+          = button_tag 'Add Bike', class: 'btn btn-primary'

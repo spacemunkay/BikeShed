@@ -1,7 +1,7 @@
 class Bike < ActiveRecord::Base
   acts_as_loggable
   attr_accessible :shop_id, :serial_number, :bike_brand_id, :model, :color, :bike_style_id, :seat_tube_height,
-    :top_tube_length, :bike_wheel_size_id, :value, :bike_condition_id, :bike_purpose_id
+    :top_tube_length, :bike_wheel_size_id, :value, :bike_condition_id, :bike_purpose_id, :photo
 
   has_many :transactions
 
@@ -13,6 +13,8 @@ class Bike < ActiveRecord::Base
   belongs_to :bike_purpose
   belongs_to :bike_wheel_size
 
+  has_attached_file :photo, :styles => {:thumb => '100x100>'}
+
   validates :shop_id, :presence => true, :uniqueness => true, :numericality => { :only_integer => true }
   validates :serial_number, :length => { :minimum => 3 }
   validates :model, :length => { :maximum => 50 }
@@ -23,6 +25,9 @@ class Bike < ActiveRecord::Base
   validates :bike_wheel_size_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid wheel size" }
   validates :bike_condition_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid condition" }
   validates :bike_purpose_id, :presence => true, :numericality => { greater_than: 0, message: "is not a valid purpose" }
+
+  validates_attachment :photo,  :content_type => {:content_type => %w{ image/jpeg image/gif image/png }},
+                                :file_name => {:matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]}
 
   self.per_page = 15
 

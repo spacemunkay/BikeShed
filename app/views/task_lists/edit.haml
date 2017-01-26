@@ -8,6 +8,10 @@
 
 %h4= @task_list.item.model
 
+- if @task_list.item.photo?
+  %p
+    %img{src: @task_list.item.photo.url(:thumb),  class: 'img-thumbnail'}
+
 %fieldset
   .form-group
     - @task_list.tasks.each do |task|

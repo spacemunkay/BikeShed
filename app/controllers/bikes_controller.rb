@@ -1,6 +1,7 @@
 class BikesController < AuthenticatedController
 
   def new
+    @bike = Bike.new bike_purpose_id: 1
     @brands = BikeBrand.all.map{ |b| [b.brand, b.id] }
     @brands.unshift( ["Select a brand", -1] )
     @wheel_sizes = BikeWheelSize.all.map{ |w| [w.display_string, w.id] }

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  MAX_AVATAR_SIZE_KB = 1024
+
   acts_as_loggable
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -8,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :first_name, :last_name, :bike_id,
-    :user_profiles_attributes, :username
+    :user_profiles_attributes, :username, :avatar
 
   has_many :transactions, as: :customer
   has_many :transaction_logs, through: :transactions, source: :logs
@@ -20,10 +22,18 @@ class User < ActiveRecord::Base
 
   belongs_to :bike
 
+  has_attached_file :avatar, :styles => {:thumb => '100x100>'}
+
   default_scope order('username ASC')
 
+  validates :username, :presence => true, uniqueness: true
   validates :first_name, :presence => true
   validates :last_name, :presence => true
+
+  validates_attachment :avatar, :content_type => {:content_type => %w{ image/jpeg image/gif image/png }},
+                                :file_name => {:matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]},
+                                :size => {:in => 0..MAX_AVATAR_SIZE_KB.kilobytes}
+
 
   def to_s
     "#{first_name} #{last_name}"
