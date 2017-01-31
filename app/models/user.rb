@@ -54,6 +54,11 @@ class User < ActiveRecord::Base
     roles.include?(role)
   end
 
+  # try keeping the email field in DB clear and consistent, without empty strings (NULLs instead)
+  def email=(other)
+    super(other.blank? ? nil : other)
+  end
+
 ### TODO methods below probably belong somewhere else
 
   def completed_build_bikes
