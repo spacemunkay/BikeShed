@@ -40,7 +40,7 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 1.0.0'
   gem 'capybara', '~> 2.2.1'
-  gem 'poltergeist', '~> 1.5.0'
+  gem 'poltergeist', '~> 1.10.0'
   gem 'database_cleaner', '~> 1.2.0'
   gem 'launchy', '~> 2.4.2'
   gem 'spork', '~> 0.9.2'
