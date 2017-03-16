@@ -5,7 +5,7 @@ namespace :import do
       file = args[:file]
       next puts "Usage: rake #{t.name}[$csv_file_path]" unless file
       next puts "File #{file} does not exist or is unreachable" unless File.readable? file
-      pp BikesCsvImporter.new(file).run
+      pp BikeCsvImporter.new(file).run
     end
 
     # Analyze a single field from CSV file
@@ -13,7 +13,7 @@ namespace :import do
       file, field = args.values_at :file, :field
       next puts "Usage: rake #{t.name}[$csv_file_path[,\"$field_name\"]]" unless file
       next puts "File #{file} does not exist or is unreachable" unless File.readable? file
-      pp BikesCsvImporter.new(file).analyze field ? [field] : []
+      pp BikeCsvImporter.new(file).analyze field ? [field] : []
     end
   end
 end
