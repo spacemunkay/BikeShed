@@ -78,11 +78,11 @@ class BikeCsvImporter
   # I realize the log entry stuff is likely complicated and time consuming. At a minimum, the most important columns to import are the following: Velocipede Number, Program, Gone, Make, Model. To avoid creating the log entry for "Gone", we would instead just set 'gone' to  true.
   def import_bike(bike_hash)
     bike = Bike.new bike_attrs(bike_hash)
-    bike.save
+    #bike.save
   end
 
   def bike_attrs(bike_hash)
-    %i{ shop_id bike_purpose gone }.each_with_object({}) do |field, memo|
+    %i{ shop_id bike_purpose_id }.each_with_object({}) do |field, memo|
       memo[field] = send :"bike_attr_#{ field }", bike_hash
     end
   end
@@ -91,8 +91,20 @@ class BikeCsvImporter
     bike_hash['velocipede number'].to_i
   end
 
-  def bike_attr_bike_purpose(bike_hash)
-    # TODO bike_hash['program']
+  def bike_attr_bike_purpose_id(bike_hash)
+    map = {
+      'SALE'      => /shop|as(-|\s+)is|safety\s*check/,
+      'BUILDBIKE' => /build|bikes.*world/,
+      'STORAGE'   => nil,
+      'PARTS'     => /part|frame/,
+      'SCRAP'     => /scrap|strip/,
+    }
+
+    default     = 'UNDETERMINED'
+    test_value  = clean_value(bike_hash['program']).try :downcase
+    value       = map.find { |_, regexp| regexp.try :match, test_value }.try :first
+
+    cached_bike_purpose(value || default).id
   end
 
   def bike_attr_gone(bike_hash)
@@ -109,5 +121,10 @@ class BikeCsvImporter
 
   def value_or_nil(value)
     return value unless ['?', 'n/a', 'missing', 'unknown', ''].include? value.try(:downcase)
+  end
+
+  def cached_bike_purpose(purpose)
+    @bike_purpose_cache           ||= {}
+    @bike_purpose_cache[purpose]  ||= BikePurpose.find_by_purpose purpose
   end
 end
