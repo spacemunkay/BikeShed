@@ -57,20 +57,20 @@ class BikeCsvImporter
   end
 
   # + Velocipede Number -> Bikes.shop_id
-  # Program -> Bikes.bike_purpose_id
+  # + Program -> Bikes.bike_purpose_id
   #
   # Gone -> If "Yes", set 'gone' to true, then create a Log entry like the following:
-  #                                                                            id | loggable_id | loggable_type | logger_id | logger_type | context | start_date | end_date | description | log_action_id | log_action_type       | created_at | updated_at
+  # id | loggable_id | loggable_type | logger_id | logger_type | context | start_date | end_date | description | log_action_id | log_action_type       | created_at | updated_at
   # 18 | 1 | Bike | 4 | User | | 2017-02-03 23:27:00 | 2017-02-03 23:27:00 | Gone | 5 | ActsAsLoggable::BikeAction | 2017-02-03 23:27:36.8387 | 2017-02-03 23:27:36.8387
   # See https://github.com/spacemunkay/BikeShed/blob/master/app/components/bike_logs.rb#L12-L18 for example. Use user_id 1 for current_user_id (1 should be the admin ID I think). Use "Date Out" column for start_date & end_date.  Set action_id to "COMPLETED".
   #
   # Date In -> Create a bike log entry with start_date & end_date with same value as "Date In". Set action_id to "AQUIRED"
   # Date Out -> Should be the start_date & end_date value for "Gone" column mentioned above.
-  #     Price -> Bikes.value
+  # + Price -> Bikes.value
   # Make -> Bikes.bike_brand_id
   # Model -> Bikes.bike_model_id
-  # to Whom -> ignore
-  # Zip Code -> ignore
+  # + to Whom -> ignore
+  # + Zip Code -> ignore
   # Comment -> Create a bike log entry with action_id "NOTE". The log 'description' should be the value of 'Comment'.
   #
   # Data at the end of the CSV seems to be missing a lot of fields. If any field is empty, the the value can be "UNDETERMINED" if applicable, or ignored.  Any other dates beside "Date In/Out" can be current date.
@@ -82,7 +82,7 @@ class BikeCsvImporter
   end
 
   def bike_attrs(bike_hash)
-    %i{ shop_id bike_purpose_id }.each_with_object({}) do |field, memo|
+    %i{ shop_id bike_purpose_id value }.each_with_object({}) do |field, memo|
       memo[field] = send :"bike_attr_#{ field }", bike_hash
     end
   end
@@ -109,6 +109,10 @@ class BikeCsvImporter
 
   def bike_attr_gone(bike_hash)
     %w{ yes yeah y }.include? clean_value(bike_hash['gone']).try :downcase
+  end
+
+  def bike_attr_value(bike_hash)
+    clean_value(bike_hash['price']).try(:gsub, /[$]/, '').try :to_i
   end
 
   def clean_value(value)
