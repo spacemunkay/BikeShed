@@ -9,6 +9,11 @@ class BikeCsvImporter
 
   def run
     result = {imported_count: 0, skipped_shop_ids: []}
+
+    @bike_purpose_cache = {}
+    @bike_brand_cache   = {}
+    @bike_model_cache   = {}
+
     fetch do |bike_hash|
        bike = import_bike bike_hash
        if bike.try :persisted?
@@ -17,6 +22,13 @@ class BikeCsvImporter
          result[:skipped_shop_ids].push bike.try(:shop_id) || bike_hash.values.first
        end
     end
+
+    missing_brands = @bike_brand_cache.select { |_, v| v.nil? }.map(&:first)
+    result[:missing_brands] = missing_brands if missing_brands.any?
+
+    missing_models = @bike_model_cache.select { |_, v| v.nil? }.map(&:first)
+    result[:missing_models] = missing_models if missing_models.any?
+
     result
   end
 
@@ -67,8 +79,8 @@ class BikeCsvImporter
   # Date In -> Create a bike log entry with start_date & end_date with same value as "Date In". Set action_id to "AQUIRED"
   # Date Out -> Should be the start_date & end_date value for "Gone" column mentioned above.
   # + Price -> Bikes.value
-  # Make -> Bikes.bike_brand_id
-  # Model -> Bikes.bike_model_id
+  # + Make -> Bikes.bike_brand_id
+  # + Model -> Bikes.bike_model_id
   # + to Whom -> ignore
   # + Zip Code -> ignore
   # Comment -> Create a bike log entry with action_id "NOTE". The log 'description' should be the value of 'Comment'.
@@ -82,7 +94,7 @@ class BikeCsvImporter
   end
 
   def bike_attrs(bike_hash)
-    %i{ shop_id bike_purpose_id value }.each_with_object({}) do |field, memo|
+    %i{ shop_id bike_purpose_id value bike_brand_id bike_model_id model }.each_with_object({}) do |field, memo|
       memo[field] = send :"bike_attr_#{ field }", bike_hash
     end
   end
@@ -115,6 +127,22 @@ class BikeCsvImporter
     clean_value(bike_hash['price']).try(:gsub, /[$]/, '').try :to_i
   end
 
+  def bike_attr_bike_brand_id(bike_hash)
+    brand = clean_value(bike_hash['make'])
+    return unless brand
+    cached_bike_brand(brand).try :id
+  end
+
+  def bike_attr_bike_model_id(bike_hash)
+    model = clean_value(bike_hash['model'])
+    return unless model
+    cached_bike_model(model).try :id
+  end
+
+  def bike_attr_model(bike_hash)
+    clean_value bike_hash['model']
+  end
+
   def clean_value(value)
     value_or_nil strip_value(value)
   end
@@ -128,7 +156,22 @@ class BikeCsvImporter
   end
 
   def cached_bike_purpose(purpose)
-    @bike_purpose_cache           ||= {}
-    @bike_purpose_cache[purpose]  ||= BikePurpose.find_by_purpose purpose
+    @bike_purpose_cache[purpose] ||= BikePurpose.find_by_purpose purpose
+  end
+
+  def cached_bike_brand(brand)
+    if @bike_brand_cache.has_key? brand
+      @bike_brand_cache[brand]
+    else
+      @bike_brand_cache[brand] = BikeBrand.where('lower(brand) = ?', brand.downcase).first
+    end
+  end
+
+  def cached_bike_model(model)
+    if @bike_model_cache.has_key? model
+      @bike_model_cache[model]
+    else
+      @bike_model_cache[model] = BikeModel.where('lower(model) = ?', model.downcase).first
+    end
   end
 end
