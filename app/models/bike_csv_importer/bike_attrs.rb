@@ -1,20 +1,33 @@
 class BikeCsvImporter
   module BikeAttrs
     def bike_attr_fields
-      %i{ shop_id bike_purpose_id value bike_brand_id bike_model_id model bike_style_id bike_condition_id seat_tube_height bike_wheel_size_id serial_number }
+      {
+        shop_id:            'velocipede number',
+        bike_purpose_id:    'program',
+        #gone:               'gone',
+        value:              'price',
+        bike_brand_id:      'make',
+        bike_model_id:      'model',
+        model:              'model',
+        bike_style_id:      nil,
+        bike_condition_id:  nil,
+        seat_tube_height:   nil,
+        bike_wheel_size_id: nil,
+        serial_number:      nil,
+      }
     end
 
     def bike_attrs(bike_hash)
-      bike_attr_fields.each_with_object({}) do |field, memo|
-        memo[field] = send :"bike_attr_#{ field }", bike_hash
+      bike_attr_fields.each_with_object({}) do |(model_field, csv_field), memo|
+        memo[model_field] = send :"bike_attr_#{ model_field }", clean_value(bike_hash[csv_field])
       end
     end
 
-    def bike_attr_shop_id(bike_hash)
-      bike_hash['velocipede number'].to_i
+    def bike_attr_shop_id(value)
+      value.to_i
     end
 
-    def bike_attr_bike_purpose_id(bike_hash)
+    def bike_attr_bike_purpose_id(value)
       map = {
           'SALE'      => /shop|as(-|\s+)is|safety\s*check/,
           'BUILDBIKE' => /build|bikes.*world/,
@@ -24,35 +37,32 @@ class BikeCsvImporter
       }
 
       default     = 'UNDETERMINED'
-      test_value  = clean_value(bike_hash['program']).try :downcase
+      test_value  = value.try :downcase
       value       = map.find { |_, regexp| regexp.try :match, test_value }.try :first
 
       cached_bike_purpose(value || default).id
     end
 
-    def bike_attr_gone(bike_hash)
-      %w{ yes yeah y }.include? clean_value(bike_hash['gone']).try :downcase
+    def bike_attr_gone(value)
+      %w{ yes yeah y }.include? value.try :downcase
     end
 
-    def bike_attr_value(bike_hash)
-      clean_value(bike_hash['price']).try(:gsub, /[$]/, '').try :to_i
+    def bike_attr_value(value)
+      value.try(:gsub, /[$]/, '').try :to_i
     end
 
-    def bike_attr_bike_brand_id(bike_hash)
-      brand = clean_value(bike_hash['make'])
-      return unless brand
-      cached_bike_brand(brand).try :id
+    def bike_attr_bike_brand_id(value)
+      return unless value
+      cached_bike_brand(value).try :id
     end
 
-    def bike_attr_bike_model_id(bike_hash)
-      model = clean_value(bike_hash['model'])
-      return unless model
-      cached_bike_model(model).try :id
+    def bike_attr_bike_model_id(value)
+      return unless value
+      cached_bike_model(value).try :id
     end
 
-    def bike_attr_model(bike_hash)
-      model = clean_value bike_hash['model']
-      model unless model =~ /unknown/i
+    def bike_attr_model(value)
+      value if value && value !~ /unknown/i
     end
 
     def bike_attr_bike_style_id(_)
