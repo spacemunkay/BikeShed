@@ -1,11 +1,11 @@
 namespace :import do
   namespace :bikes do
     # Imports bikes info from CSV file
-    task :csv, [:file] => :environment do |t, args|
-      file = args[:file]
-      next puts "Usage: rake #{t.name}[$csv_file_path]" unless file
+    task :csv, [:file, :dry_run] => :environment do |t, args|
+      file, dry_run = args.values_at :file, :dry_run
+      next puts "Usage: rake #{t.name}[$csv_file_path[,$dry_run=dry]]" unless file
       next puts "File #{file} does not exist or is unreachable" unless File.readable? file
-      pp BikeCsvImporter.new(file).run
+      pp BikeCsvImporter.new(file, dry_run == 'dry').run
     end
 
     # Analyze a single field from CSV file

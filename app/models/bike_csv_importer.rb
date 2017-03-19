@@ -1,14 +1,15 @@
 require 'csv'
 
 class BikeCsvImporter
-  attr_reader :file
+  attr_reader :file, :dry_run
 
-  def initialize(file)
-    @file = file
+  def initialize(file, dry_run)
+    @file     = file
+    @dry_run  = !!dry_run
   end
 
   def run
-    result = {imported_count: 0, skipped_shop_ids: []}
+    result = {imported_count: 0, skipped_errors: {}}
 
     @bike_purpose_cache = {}
     @bike_brand_cache   = {}
@@ -16,10 +17,11 @@ class BikeCsvImporter
 
     fetch do |bike_hash|
        bike = import_bike bike_hash
-       if bike.try :persisted?
+       check_method = dry_run ? :valid? : :persisted?
+       if bike.try check_method
          result[:imported_count] += 1
        else
-         result[:skipped_shop_ids].push bike.try(:shop_id) || bike_hash.values.first
+         result[:skipped_errors][bike.try(:shop_id) || bike_hash.values.first] = bike.try(:errors).try(:messages)
        end
     end
 
@@ -90,7 +92,9 @@ class BikeCsvImporter
   # I realize the log entry stuff is likely complicated and time consuming. At a minimum, the most important columns to import are the following: Velocipede Number, Program, Gone, Make, Model. To avoid creating the log entry for "Gone", we would instead just set 'gone' to  true.
   def import_bike(bike_hash)
     bike = Bike.new bike_attrs(bike_hash)
-    #bike.save
+    #bike.save unless dry_run
+    raise 'TODO save' unless dry_run
+    bike
   end
 
   def bike_attrs(bike_hash)
