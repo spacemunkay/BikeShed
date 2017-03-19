@@ -9,7 +9,7 @@ class BikeCsvImporter
   end
 
   def run
-    result = {imported_count: 0, skipped_errors: {}}
+    result = {imported: {}, skipped: {}}
 
     @bike_purpose_cache = {}
     @bike_brand_cache   = {}
@@ -19,9 +19,9 @@ class BikeCsvImporter
        bike = import_bike bike_hash
        check_method = dry_run ? :valid? : :persisted?
        if bike.try check_method
-         result[:imported_count] += 1
+         result[:imported][bike.shop_id] = bike.inspect
        else
-         result[:skipped_errors][bike.try(:shop_id) || bike_hash.values.first] = bike.try(:errors).try(:messages)
+         result[:skipped][bike.try(:shop_id) || bike_hash.values.first] = bike.try(:errors).try(:messages)
        end
     end
 
@@ -144,7 +144,8 @@ class BikeCsvImporter
   end
 
   def bike_attr_model(bike_hash)
-    clean_value bike_hash['model']
+    model = clean_value bike_hash['model']
+    model unless model =~ /unknown/i
   end
 
   def clean_value(value)
