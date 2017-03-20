@@ -1,3 +1,4 @@
+# Helper module to clean the incoming data from CSV fields
 class BikeCsvImporter
   module Cleaner
     def clean_value(value)

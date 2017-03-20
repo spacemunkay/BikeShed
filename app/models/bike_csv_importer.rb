@@ -1,5 +1,6 @@
 require 'csv'
 
+# Imports data from CSV file into the bikes database.
 class BikeCsvImporter
 
   include BikeCsvImporter::Cache
@@ -9,10 +10,16 @@ class BikeCsvImporter
 
   attr_reader :file
 
+  # Default constructor
+  #
+  # @param [String] file Path to the CSV file
   def initialize(file)
     @file = file
   end
 
+  # Runs the import. Will print out progress to stdout
+  #
+  # @param [Boolean] dry_run If true, does not save data, only shows the progress of validation
   def run(dry_run)
     imported_count, skipped_count = 0, 0
 
@@ -43,6 +50,9 @@ class BikeCsvImporter
     puts "#{imported_count} bikes imported, #{skipped_count} bikes skipped, total of #{imported_count + skipped_count} rows in the CSV"
   end
 
+  # Analyzes and prints out the input CSV file values
+  #
+  # @param [Array<Strong>] fields If passed, analyze only the given fields (names are down cased)
   def analyze(fields = [])
     puts "Analyzing CSV values frequency for #{fields.any? ? fields.join(', ') + ' field' : 'all fields'}"
 
@@ -70,6 +80,10 @@ class BikeCsvImporter
 
   private
 
+  # Parses the CSV header & rows, yielding a block for each row (except the header)
+  # Header is down cased!
+  #
+  # @param [Proc] &block The block to yield to
   def fetch
     CSV.foreach(file).each_with_index do |row, i|
       if i.zero?
@@ -80,18 +94,37 @@ class BikeCsvImporter
     end
   end
 
+  # Parses & stores the input header, down casing by the way
+  #
+  # @param [Array<String>] row
   def parse_header(row)
     @header = row.map(&:downcase)
   end
 
+  # Parses the input row into a hash with keys from the header, @see #parse_header
+  #
+  # @param [Array<String>] row
+  #
+  # @return [Hash]
   def parse_bike(row)
     @header.zip(row).to_h
   end
 
+  # Constructs a new Bike instance from the given hash from a CSV row
+  #
+  # @param [Hash] bike_hash
+  #
+  # @return [Bike]
   def new_bike(bike_hash)
     Bike.new bike_attrs(bike_hash)
   end
 
+  # Constructs new Bike Log Entries instances from the given hash from a CSV row
+  #
+  # @param [Bike] bike      The Bike instance to construct log entries for
+  # @param [Hash] bike_hash The input hash from a CSV row
+  #
+  # @return [Array<ActsAsLoggable::Log>]
   def new_logs_entries(bike, bike_hash)
     %i{ acquired comment gone }.map { |x| send :"log_entry_#{x}", bike, bike_hash }.compact
   end

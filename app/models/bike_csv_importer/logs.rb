@@ -1,3 +1,4 @@
+# Helper module to create ActsAsLoggable log entries for a Bike instance from a CSV row hash
 class BikeCsvImporter
   module Logs
     def log_entry_gone(bike, bike_hash)

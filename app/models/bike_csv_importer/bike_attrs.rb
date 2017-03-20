@@ -1,3 +1,4 @@
+# Helper module to create various Bike instanct fields from a CSV row hash
 class BikeCsvImporter
   module BikeAttrs
     def bike_attr_fields

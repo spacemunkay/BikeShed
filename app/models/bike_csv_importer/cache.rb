@@ -1,3 +1,4 @@
+# Helper module to create various cached instances for bike CSV imports
 class BikeCsvImporter
   module Cache
     def cached_bike_purpose(purpose)
