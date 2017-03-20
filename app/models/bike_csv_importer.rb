@@ -1,19 +1,11 @@
 require 'csv'
 
-# Gone -> If "Yes", set 'gone' to true, then create a Log entry like the following:
-# id | loggable_id | loggable_type | logger_id | logger_type | context | start_date | end_date | description | log_action_id | log_action_type       | created_at | updated_at
-# 18 | 1 | Bike | 4 | User | | 2017-02-03 23:27:00 | 2017-02-03 23:27:00 | Gone | 5 | ActsAsLoggable::BikeAction | 2017-02-03 23:27:36.8387 | 2017-02-03 23:27:36.8387
-# See https://github.com/spacemunkay/BikeShed/blob/master/app/components/bike_logs.rb#L12-L18 for example. Use user_id 1 for current_user_id (1 should be the admin ID I think). Use "Date Out" column for start_date & end_date.  Set action_id to "COMPLETED".
-#
-# Date In -> Create a bike log entry with start_date & end_date with same value as "Date In". Set action_id to "AQUIRED"
-# Date Out -> Should be the start_date & end_date value for "Gone" column mentioned above.
-# Comment -> Create a bike log entry with action_id "NOTE". The log 'description' should be the value of 'Comment'.
-
 class BikeCsvImporter
 
   include BikeCsvImporter::Cache
   include BikeCsvImporter::Cleaner
   include BikeCsvImporter::BikeAttrs
+  include BikeCsvImporter::Logs
 
   attr_reader :file
 
@@ -31,6 +23,16 @@ class BikeCsvImporter
        check_method = dry_run ? :valid? : :save
        if bike.try check_method
          puts "Imported #{bike.shop_id}: #{bike}".green
+
+         logs = new_logs_entries bike, bike_hash
+         logs.each do |log|
+           if log.send check_method
+             puts "\tLog entry created: #{log.inspect}".green
+           else
+             puts "\tLog entry creation failed: #{log.errors.full_messages.join '; '}".red
+           end
+         end
+
          imported_count += 1
        else
          puts "Skipped #{bike.try(:shop_id) || bike_hash.values.first}: #{bike.try(:errors).try(:full_messages).try :join, '; '}".red
@@ -88,5 +90,9 @@ class BikeCsvImporter
 
   def new_bike(bike_hash)
     Bike.new bike_attrs(bike_hash)
+  end
+
+  def new_logs_entries(bike, bike_hash)
+    %i{ acquired comment gone }.map { |x| send :"log_entry_#{x}", bike, bike_hash }.compact
   end
 end

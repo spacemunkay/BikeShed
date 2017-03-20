@@ -22,5 +22,10 @@ class BikeCsvImporter
         @bike_model_cache[model] = BikeModel.where('lower(model) = ?', model.downcase).first
       end
     end
+
+    def cached_log_bike_action(action)
+      @log_bike_action_id_cache         ||= {}
+      @log_bike_action_id_cache[action] ||= ActsAsLoggable::BikeAction.find_by_action(action)
+    end
   end
 end
