@@ -30,10 +30,10 @@ class BikeCsvImporter
        bike = new_bike bike_hash
        check_method = dry_run ? :valid? : :save
        if bike.try check_method
-         puts "Imported #{bike.shop_id}: #{bike}"
+         puts "Imported #{bike.shop_id}: #{bike}".green
          imported_count += 1
        else
-         puts "Skipped #{bike.try(:shop_id) || bike_hash.values.first}: #{bike.try(:errors).try(:full_messages).try :join, '; '}"
+         puts "Skipped #{bike.try(:shop_id) || bike_hash.values.first}: #{bike.try(:errors).try(:full_messages).try :join, '; '}".red
          skipped_count += 1
        end
     end
