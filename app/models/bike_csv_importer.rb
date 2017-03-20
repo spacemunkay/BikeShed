@@ -22,22 +22,28 @@ class BikeCsvImporter
   end
 
   def run(dry_run)
-    result = {imported: {}, skipped: {}}
+    imported_count, skipped_count = 0, 0
+
+    puts "Performing a #{dry_run ? 'DRY RUN' : 'LIVE RUN'} of import"
 
     fetch do |bike_hash|
        bike = new_bike bike_hash
        check_method = dry_run ? :valid? : :save
        if bike.try check_method
-         result[:imported][bike.shop_id] = bike.inspect
+         puts "Imported #{bike.shop_id}: #{bike}"
+         imported_count += 1
        else
-         result[:skipped][bike.try(:shop_id) || bike_hash.values.first] = bike.try(:errors).try(:messages)
+         puts "Skipped #{bike.try(:shop_id) || bike_hash.values.first}: #{bike.try(:errors).try(:full_messages).try :join, '; '}"
+         skipped_count += 1
        end
     end
 
-    result
+    puts "#{imported_count} bikes imported, #{skipped_count} bikes skipped, total of #{imported_count + skipped_count} rows in the CSV"
   end
 
   def analyze(fields = [])
+    puts "Analyzing CSV values frequency for #{fields.any? ? fields.join(', ') + ' field' : 'all fields'}"
+
     fields = fields.map &:downcase
     grouped = {}
     fetch do |bike_hash|
@@ -48,7 +54,14 @@ class BikeCsvImporter
         grouped[key][value]  += 1
       end
     end
-    grouped
+
+    grouped.each do |field, values|
+      puts "#{field}:"
+      values.each do |value, count|
+        puts "\t#{value.inspect}: #{count}"
+      end
+      puts "\tTotal of #{values.count} distinct values"
+    end
   end
 
 
