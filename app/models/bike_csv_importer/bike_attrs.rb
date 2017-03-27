@@ -20,7 +20,7 @@ class BikeCsvImporter
 
     def bike_attrs(bike_hash)
       bike_attr_fields.each_with_object({}) do |(model_field, csv_field), memo|
-        memo[model_field] = send :"bike_attr_#{ model_field }", clean_value(bike_hash[csv_field])
+        memo[model_field] = send :"bike_attr_#{model_field}", clean_value(bike_hash[csv_field])
       end
     end
 
@@ -52,9 +52,13 @@ class BikeCsvImporter
       value.try(:gsub, /[$]/, '').try :to_i
     end
 
+    def bike_attr_bike_brand(value, new_if_empty = false)
+      value = 'Unknown' if !value || value =~ /\Aunknown/i
+      cached_bike_brand value, new_if_empty
+    end
+
     def bike_attr_bike_brand_id(value)
-      return unless value
-      cached_bike_brand(value).try :id
+      bike_attr_bike_brand(value, false).try :id
     end
 
     def bike_attr_bike_model_id(value)

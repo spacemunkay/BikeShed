@@ -21,5 +21,16 @@ namespace :import do
       next puts "File #{file} does not exist or is unreachable" unless File.readable? file
       BikeCsvImporter.new(file).analyze field ? [field] : []
     end
+
+    # Imports new brands from CSV file
+    #
+    #   rake import:bikes:brands_csv[import.csv,dry] # dry run
+    #   rake import:bikes:brands_csv[import.csv]     # live import
+    task :brands_csv, [:file, :dry_run] => :environment do |t, args|
+      file, dry_run = args.values_at :file, :dry_run
+      next puts "Usage: rake #{t.name}[$csv_file_path[,$dry_run=dry]]" unless file
+      next puts "File #{file} does not exist or is unreachable" unless File.readable? file
+      BikeCsvImporter.new(file).brands dry_run == 'dry'
+    end
   end
 end

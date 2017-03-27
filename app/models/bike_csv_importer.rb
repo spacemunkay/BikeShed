@@ -26,8 +26,9 @@ class BikeCsvImporter
     puts "Performing a #{dry_run ? 'DRY RUN' : 'LIVE RUN'} of import"
 
     fetch do |bike_hash|
-       bike = new_bike bike_hash
+       bike         = new_bike bike_hash
        check_method = dry_run ? :valid? : :save
+
        if bike.try check_method
          puts "Imported #{bike.shop_id}: #{bike}".green
 
@@ -74,6 +75,34 @@ class BikeCsvImporter
       end
       puts "\tTotal of #{values.count} distinct values"
     end
+  end
+
+  # Imports new brands from CSV file (field 'make'). Will print out progress to stdout
+  #
+  # @param [Boolean] dry_run If true, does not save data, only shows the progress of validation
+  def brands(dry_run)
+    created_count, skipped_count = 0, 0
+
+    puts "Performing a #{dry_run ? 'DRY RUN' : 'LIVE RUN'} of brands import"
+
+    fetch do |bike_hash|
+      make          = clean_value bike_hash['make']
+      brand         = bike_attr_bike_brand make, true
+      check_method  = dry_run ? :valid? : :save
+
+      if brand.try :persisted?
+        puts "Skipped already existing brand #{brand.brand}"
+        skipped_count +=1
+      elsif brand.try check_method
+        puts "Created brand #{brand.brand}".green
+        created_count += 1
+      else
+        puts "Skipped #{brand.try(:brand) || make}: #{brand.try(:errors).try(:full_messages).try(:join, '; ') || 'object not created'}".red
+        skipped_count += 1
+      end
+    end
+
+    puts "#{created_count} brand created, #{skipped_count} brand skipped, total of #{created_count + skipped_count} rows in the CSV"
   end
 
 

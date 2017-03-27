@@ -6,12 +6,15 @@ class BikeCsvImporter
       @bike_purpose_cache[purpose]  ||= BikePurpose.find_by_purpose purpose
     end
 
-    def cached_bike_brand(brand)
+    def cached_bike_brand(brand, new_if_empty = false)
       @bike_brand_cache ||= {}
       if @bike_brand_cache.has_key? brand
         @bike_brand_cache[brand]
       else
-        @bike_brand_cache[brand] = BikeBrand.where('lower(brand) = ?', brand.downcase).first
+        bike_brand   = BikeBrand.where('lower(brand) = ?', brand.downcase).first
+        bike_brand ||= BikeBrand.new(brand: brand) if new_if_empty
+
+        @bike_brand_cache[brand] = bike_brand
       end
     end
 
