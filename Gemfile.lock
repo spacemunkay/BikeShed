@@ -69,6 +69,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    colorize (0.8.1)
     database_cleaner (1.2.0)
     decent_exposure (1.0.2)
     devise (2.0.6)
@@ -255,6 +256,7 @@ DEPENDENCIES
   cancan
   capybara (~> 2.2.1)
   coffee-rails (~> 3.2.1)
+  colorize
   database_cleaner (~> 1.2.0)
   decent_exposure (~> 1.0.1)
   devise (~> 2.0.4)

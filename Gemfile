@@ -35,6 +35,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 1.2'
   gem 'pry', '~> 0.9.8'
   gem 'faker', '~> 1.2.0'
+  gem 'colorize'
 end
 
 group :test do

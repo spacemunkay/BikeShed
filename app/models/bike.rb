@@ -1,13 +1,14 @@
 class Bike < ActiveRecord::Base
   acts_as_loggable
-  attr_accessible :shop_id, :serial_number, :bike_brand_id, :model, :color, :bike_style_id, :seat_tube_height,
-    :top_tube_length, :bike_wheel_size_id, :value, :bike_condition_id, :bike_purpose_id, :photo
+  attr_accessible :shop_id, :serial_number, :bike_brand_id, :bike_model_id, :model, :color, :bike_style_id,
+    :seat_tube_height, :top_tube_length, :bike_wheel_size_id, :value, :bike_condition_id, :bike_purpose_id, :photo
 
   has_many :transactions
 
   has_one :owner, :class_name => 'User'
   has_one :task_list, :as => :item, :dependent => :destroy
   belongs_to :bike_brand
+  belongs_to :bike_model
   belongs_to :bike_style
   belongs_to :bike_condition
   belongs_to :bike_purpose
