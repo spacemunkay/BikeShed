@@ -1,3 +1,12 @@
+# BikeShed
+#
+# cp config/database.yml.example config/database.yml
+#
+# docker-compose -f docker-compose.demo.yml build
+# docker-compose -f docker-compose.demo.yml up -d db
+# docker-compose -f docker-compose.demo.yml run bikeshed rake db:setup
+# docker-compose -f docker-compose.demo.yml up -d bikeshed
+
 db:
   image: postgres
   ports:
