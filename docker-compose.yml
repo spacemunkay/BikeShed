@@ -5,6 +5,7 @@
 # docker-compose -f docker-compose.demo.yml build
 # docker-compose -f docker-compose.demo.yml up -d db
 # docker-compose -f docker-compose.demo.yml run bikeshed rake db:setup
+# docker-compose -f docker-compose.demo.yml restart db
 # docker-compose -f docker-compose.demo.yml up -d bikeshed
 
 db:
