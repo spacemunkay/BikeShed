@@ -14,10 +14,15 @@ RUN apt-get update && apt-get install -y nodejs --no-install-recommends && \
 COPY Gemfile /usr/src/app/
 COPY Gemfile.lock /usr/src/app/
 
-RUN bundle install
+RUN env NOKOGIRI_USE_SYSTEM_LIBRARIES=true bundle install
 
-COPY install_extjs.rb /usr/src/app/
-RUN /usr/src/app/install_extjs.rb
+#COPY install_extjs.rb /usr/src/app/
+#RUN /usr/src/app/install_extjs.rb
+
+COPY  extjs-4.1.1.zip /usr/lib/
+
+RUN unzip -d /usr/lib /usr/lib/extjs-4.1.1.zip; \
+    mv /usr/lib/ext-4.1.1a /usr/lib/extjs
 
 COPY install_famfamfam.rb /usr/src/app/
 RUN /usr/src/app/install_famfamfam.rb
